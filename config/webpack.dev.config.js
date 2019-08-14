@@ -58,10 +58,10 @@ module.exports = merge(baseWebpackConfig, {
     contentBase: resolve(__dirname, '..', 'dist'),
     publicPath: '/',
     host: process.env.HOST || 'localhost',
-    port: process.env.PORT || '3001',
+    port: process.env.PORT || '3000',
     disableHostCheck: true,
     proxy: {
-      '/api': 'http://localhost:3000'
+      '/api': 'http://localhost:3001'
     }
   },
   plugins: [
