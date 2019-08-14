@@ -1,0 +1,9 @@
+kind: pipeline
+steps:
+  - name: lint
+    image: node
+    commands:
+      - npm install -g yarn
+      - yarn --frozen-lockfile --non-interactive
+      - yarn lint
+      - yarn test
