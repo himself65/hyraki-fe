@@ -166,7 +166,7 @@ exports.config = {
     // to their corresponding output file so that tools can pick it up without
     // having to parse `index.html`.
     new ManifestPlugin({
-      fileName: 'asset-manifest.json',
+      fileName: 'manifest.json',
       publicPath: '/',
       generate: (seed, files) => {
         const manifestFiles = files.reduce(function (manifest, file) {
@@ -175,6 +175,7 @@ exports.config = {
         }, seed)
 
         return {
+          ...require('../public/manifest'),
           files: manifestFiles
         }
       }
@@ -182,7 +183,7 @@ exports.config = {
     new CopyPlugin([{
       from: resolve(__dirname, '..', 'public'),
       to: resolve(__dirname, '..', 'dist'),
-      ignore: ['index.html']
+      ignore: ['index.html', 'manifest.json']
     }])
   ].filter(Boolean),
   performance: {
