@@ -1,9 +1,15 @@
 kind: pipeline
 steps:
-  - name: lint
+  - name: before-start
     image: node
     commands:
       - npm install -g yarn
       - yarn --frozen-lockfile --non-interactive
+  - name: lint
+    image: node
+    commands:
       - yarn lint
+  - name: test
+    image: node
+    commands:
       - yarn test
