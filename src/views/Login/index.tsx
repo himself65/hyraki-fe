@@ -3,6 +3,8 @@ import { Button, Col, Layout, Menu, Row, Icon } from 'antd'
 import './LoginView.less'
 import HySideBar from '../../components/Layout/Sidebar'
 import HyHeader from '../../components/Layout/Header'
+import HyFooter from '../../components/Layout/Footer'
+import { HyContent } from '../../components/Layout/Content'
 
 const LoginView: React.FC = (props: any /* fixme: type any */) => {
   const defaultSelected = (function () {
@@ -48,20 +50,22 @@ const LoginView: React.FC = (props: any /* fixme: type any */) => {
           gutter={12}
         >
           <Col>
-            <Button size='large'>
+            <Button size='large' ghost>
               <Icon type='user' />
               登录
             </Button>
           </Col>
           <Col>
-            <Button size='large' ghost>
+            <Button size='large'>
               注册
             </Button>
           </Col>
         </Row>
       </HySideBar>
       <Layout>
-        孔乙己一到店，所有喝酒的人便都看着他笑，有的叫道，“孔乙己，你脸上又添上新伤疤了！”他不回答，对柜里说，“温两碗酒，要一碟茴香豆。”便排出九文大钱。他们又故意的高声嚷道，“你一定又偷了人家的东西了！”孔乙己睁大眼睛说，“你怎么这样凭空污人清白……”“什么清白?我前天亲眼见你窃了何家的书，吊着打。”孔乙己便涨红了脸，额上的青筋条条绽出，争辩道，“窃书不能算偷……窃书！……读书人的事，能算偷么？”接连便是难懂的话，什么“君子固穷”，什么“者乎”之类，引得众人都哄笑起来：店内外充满了快活的空气。
+        <HyContent>
+        </HyContent>
+        <HyFooter />
       </Layout>
     </Layout>
   )
