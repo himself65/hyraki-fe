@@ -1,5 +1,5 @@
-import React from 'react'
-import { Button, Col, Layout, Menu, Row, Icon } from 'antd'
+import React, { useState, Fragment } from 'react'
+import { Button, Col, Layout, Menu, Row, Icon, Input } from 'antd'
 import './LoginView.less'
 import HySideBar from '../../components/Layout/Sidebar'
 import HyHeader from '../../components/Layout/Header'
@@ -11,6 +11,8 @@ const LoginView: React.FC = (props: any /* fixme: type any */) => {
     if (props.location.pathname === '/') return 'main'
     else if (props.location.pathname === '/about') return 'about'
   })()
+
+  const [loginBoard, setLoginBoard] = useState(false)
 
   return (
     <Layout style={{
@@ -41,29 +43,51 @@ const LoginView: React.FC = (props: any /* fixme: type any */) => {
           </Menu>
         </HyHeader>
         <div className='logo'/>
-        <Row
-          className='hy-menu-login'
-          type='flex'
-          justify='center'
-          align='middle'
-          gutter={12}
-        >
-          <Col>
-            <Button size='large' type='link'>
-              <Icon type='user' />
+        <div className='hy-menu'>
+          <Row
+            className='login'
+            type='flex'
+            justify='center'
+            align='middle'
+          >
+            <Col>
+              <Button onClick={() => setLoginBoard(true)} size='large' type='link'>
+                <Icon type='user' />
               登录
-            </Button>
-          </Col>
-          <Col>
-            <Button size='large'>
+              </Button>
+            </Col>
+            <Col>
+              <Button size='large'>
               注册
-            </Button>
-          </Col>
-        </Row>
+              </Button>
+            </Col>
+          </Row>
+          <Row
+            className='login-board'
+            type='flex'
+            justify='center'
+            align='top'
+          >
+            {
+              loginBoard
+                ? (
+                  <Fragment>
+                    <Col className='away'>
+                      <Input
+                        placeholder='输入你的账户名'
+                      />
+                      <Input.Password placeholder="输入你的密码" />
+                    </Col>
+                  </Fragment>
+                )
+                : undefined
+            }
+          </Row>
+        </div>
       </HySideBar>
       <Layout>
         <HyContent>
-          12345
+          Todo
         </HyContent>
         <HyFooter />
       </Layout>

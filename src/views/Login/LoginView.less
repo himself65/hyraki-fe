@@ -11,7 +11,24 @@
     }
   }
 
-  .hy-menu-login {
-    height: calc(100% - 64px)
+  .hy-menu {
+    height: calc(100% - 64px);
+
+    .login {
+      height: calc(100% - 61.8%)
+    }
+
+    .login-board {
+      height: 61.8%;
+
+      .away {
+        margin: 0 1rem;
+
+        > * {
+          margin-top: 0.1rem;
+          margin-bottom: 0.1rem
+        }
+      }
+    }
   }
 }
