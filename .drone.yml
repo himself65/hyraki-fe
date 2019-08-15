@@ -3,6 +3,9 @@ name: frontend
 steps:
   - name: before-start
     image: node
+    cache:
+      mount:
+        - node_modules
     commands:
       - npm install --registry=https://registry.npm.taobao.org -g yarn
       - yarn config set registry https://registry.npm.taobao.org
