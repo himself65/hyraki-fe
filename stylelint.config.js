@@ -4,6 +4,7 @@ module.exports = {
     'declaration-block-trailing-semicolon': 'never',
     'no-empty-source': [true, {
       severity: 'warning'
-    }]
+    }],
+    'block-no-empty': 'never'
   }
 }
