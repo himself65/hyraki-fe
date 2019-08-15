@@ -11,6 +11,7 @@ const LoginView: React.FC = (props: any /* fixme: type any */) => {
     if (props.location.pathname === '/') return 'main'
     else if (props.location.pathname === '/about') return 'about'
   })()
+
   return (
     <Layout style={{
       height: '100vh' /* notice: 100vh 撑起页面 */
@@ -27,14 +28,12 @@ const LoginView: React.FC = (props: any /* fixme: type any */) => {
             mode='horizontal'
             defaultOpenKeys={['main']}
           >
-            <Menu.Item className='hy-menu-item'
-              style={{ color: 'white' }}
+            <Menu.Item className='hy-sider-nav-item'
               key='main'
             >
               主页
             </Menu.Item>
-            <Menu.Item className='hy-menu-item'
-              style={{ color: 'white' }}
+            <Menu.Item className='hy-sider-nav-item'
               key='about'
             >
               关于
@@ -50,7 +49,7 @@ const LoginView: React.FC = (props: any /* fixme: type any */) => {
           gutter={12}
         >
           <Col>
-            <Button size='large' ghost>
+            <Button size='large' type='link'>
               <Icon type='user' />
               登录
             </Button>
@@ -64,6 +63,7 @@ const LoginView: React.FC = (props: any /* fixme: type any */) => {
       </HySideBar>
       <Layout>
         <HyContent>
+          12345
         </HyContent>
         <HyFooter />
       </Layout>
