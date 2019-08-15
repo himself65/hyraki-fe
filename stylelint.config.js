@@ -5,6 +5,6 @@ module.exports = {
     'no-empty-source': [true, {
       severity: 'warning'
     }],
-    'block-no-empty': 'never'
+    'block-no-empty': null
   }
 }
