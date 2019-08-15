@@ -9,7 +9,7 @@ interface HySidebar extends SiderProps {
 
 const { Sider: Sidebar } = Layout
 
-export default function HySidebar (props: HySidebar) {
+export function HySidebar (props: HySidebar) {
   return (
     <Sidebar {...props}/>
   )
