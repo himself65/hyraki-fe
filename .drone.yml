@@ -1,9 +1,11 @@
 kind: pipeline
+name: frontend
 steps:
   - name: before-start
     image: node
     commands:
-      - npm install -g yarn
+      - npm install --registry=https://registry.npm.taobao.org -g yarn
+      - yarn config set registry https://registry.npm.taobao.org
       - yarn --frozen-lockfile --non-interactive
   - name: lint
     image: node
