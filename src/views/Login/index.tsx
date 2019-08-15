@@ -1,10 +1,7 @@
 import React, { useState, Fragment } from 'react'
 import { Button, Col, Layout, Menu, Row, Icon, Input } from 'antd'
 import './LoginView.less'
-import HySideBar from '../../components/Layout/Sidebar'
-import HyHeader from '../../components/Layout/Header'
-import HyFooter from '../../components/Layout/Footer'
-import { HyContent } from '../../components/Layout/Content'
+import { HyContent, HyLayout, HyFooter, HySidebar, HyHeader } from '../../components/Layout'
 
 const LoginView: React.FC = (props: any /* fixme: type any */) => {
   const defaultSelected = (function () {
@@ -15,11 +12,8 @@ const LoginView: React.FC = (props: any /* fixme: type any */) => {
   const [loginBoard, setLoginBoard] = useState(false)
 
   return (
-    <Layout style={{
-      height: '100vh' /* notice: 100vh 撑起页面 */
-    }} className='hy-sider'
-    >
-      <HySideBar
+    <HyLayout className='hy-sider'>
+      <HySidebar
         breakpoint='lg'
         collapsedWidth='0'
         width='320'
@@ -84,14 +78,14 @@ const LoginView: React.FC = (props: any /* fixme: type any */) => {
             }
           </Row>
         </div>
-      </HySideBar>
+      </HySidebar>
       <Layout>
         <HyContent>
           Todo
         </HyContent>
         <HyFooter />
       </Layout>
-    </Layout>
+    </HyLayout>
   )
 }
 
