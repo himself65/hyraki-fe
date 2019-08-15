@@ -59,10 +59,7 @@ module.exports = merge(baseWebpackConfig, {
     publicPath: '/',
     host: process.env.HOST || 'localhost',
     port: process.env.PORT || '3000',
-    disableHostCheck: true,
-    proxy: {
-      '/api': 'http://localhost:3001'
-    }
+    disableHostCheck: true
   },
   plugins: [
     new HappyPack({
