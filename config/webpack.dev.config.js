@@ -1,8 +1,8 @@
 const { resolve } = require('path')
 
 const merge = require('webpack-merge')
+const { DefinePlugin } = require('webpack')
 const HappyPack = require('happypack')
-const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
 const { config: baseWebpackConfig, happyThreadPool } = require('./webpack.base.config')
 
 const isProd = process.env.NODE_ENV === 'production'
@@ -76,6 +76,9 @@ module.exports = merge(baseWebpackConfig, {
       id: 'js',
       threadPool: happyThreadPool,
       loaders: ['babel-loader', 'eslint-loader?cache=true?emitWarning=true']
+    }),
+    new DefinePlugin({
+      DEBUG: true
     })
   ]
 })

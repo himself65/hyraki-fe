@@ -1,7 +1,6 @@
 const { resolve } = require('path')
 const merge = require('webpack-merge')
 const HappyPack = require('happypack')
-const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
 const { config: baseWebpackConfig, happyThreadPool } = require('./webpack.base.config')
 
 module.exports = merge(baseWebpackConfig, {
