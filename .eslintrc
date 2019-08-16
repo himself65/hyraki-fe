@@ -26,7 +26,11 @@
         ]
       }
     ],
-    "import/prefer-default-export": "off"
+    "import/prefer-default-export": "off",
+    "jsx-quotes": [
+      "error",
+      "prefer-single"
+    ]
   },
   "globals": {
     "fetch": true,
