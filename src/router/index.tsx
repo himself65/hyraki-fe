@@ -7,6 +7,7 @@ const LoginView = asyncComponent({ resolve: () => import('../views/Login') })
 const RegisterView = asyncComponent({ resolve: () => import('../views/Register') })
 
 export default function Router () {
+  // todo: judge if haven't login, then redirect to '/' page
   return (
     <BrowserRouter>
       <Switch>
