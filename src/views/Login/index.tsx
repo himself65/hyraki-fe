@@ -66,7 +66,7 @@ const LoginView: React.FC = (props: DefaultProps) => {
                       <Input
                         placeholder='输入你的账户名'
                       />
-                      <Input.Password placeholder="输入你的密码" />
+                      <Input.Password placeholder='输入你的密码' />
                     </Col>
                   </Fragment>
                 )
