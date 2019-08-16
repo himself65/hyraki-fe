@@ -59,6 +59,7 @@ module.exports = merge(baseWebpackConfig, {
     publicPath: '/',
     host: process.env.HOST || 'localhost',
     port: process.env.PORT || '3000',
+    historyApiFallback: true,
     disableHostCheck: true
   },
   plugins: [
