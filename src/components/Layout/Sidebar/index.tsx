@@ -6,7 +6,5 @@ import './index.less'
 const { Sider: Sidebar } = Layout
 
 export function HySidebar (props: SiderProps) {
-  return (
-    <Sidebar {...props}/>
-  )
+  return (<Sidebar className='hy-sider' {...props}/>)
 }

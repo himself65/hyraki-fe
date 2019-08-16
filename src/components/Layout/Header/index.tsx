@@ -5,7 +5,5 @@ import { BasicProps } from 'antd/lib/layout/layout'
 const { Header } = Layout
 
 export function HyHeader (props: BasicProps) {
-  return (
-    <Header {...props}/>
-  )
+  return (<Header className='hy-header' {...props}/>)
 }
