@@ -2,17 +2,13 @@ import React, { useState, Fragment } from 'react'
 import { Button, Col, Layout, Menu, Row, Icon, Input } from 'antd'
 import './LoginView.less'
 import { HyContent, HyLayout, HyFooter, HySidebar, HyHeader } from '../../components/Layout'
+import { DefaultProps } from '../../types'
 
-const LoginView: React.FC = (props: any /* fixme: type any */) => {
-  const defaultSelected = (function () {
-    if (props.location.pathname === '/') return 'main'
-    else if (props.location.pathname === '/about') return 'about'
-  })()
-
+const LoginView: React.FC = (props: DefaultProps) => {
   const [loginBoard, setLoginBoard] = useState(false)
 
   return (
-    <HyLayout className='hy-sider'>
+    <HyLayout>
       <HySidebar
         breakpoint='lg'
         collapsedWidth='0'
