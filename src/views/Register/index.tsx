@@ -9,3 +9,5 @@ const RegisterView: React.FC = (props: any /* fixme: type any */) => {
     </HyLayout>
   )
 }
+
+export default RegisterView
