@@ -5,5 +5,5 @@ import { BasicProps } from 'antd/lib/layout/layout'
 const { Content } = Layout
 
 export function HyContent (props: BasicProps) {
-  return (<Content {...props}/>)
+  return (<Content style={{ margin: '16px 0' }} {...props}/>)
 }
