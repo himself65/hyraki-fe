@@ -1,10 +1,9 @@
 import React from 'react'
 import { Layout } from 'antd'
 import './index.less'
+import { BasicProps } from 'antd/lib/layout/layout'
 const { Content } = Layout
 
-export function HyContent (props: any /* fixme: remove type 'any' */) {
-  return (
-    <Content {...props}/>
-  )
+export function HyContent (props: BasicProps) {
+  return (<Content {...props}/>)
 }
