@@ -11,7 +11,7 @@ const extractCSS = isProd || process.env.TARGET === 'development'
 module.exports = merge(baseWebpackConfig, {
   devtool: 'source-map',
   entry: [
-    require.resolve('react-dev-utils/webpackHotDevClient'),
+    require.resolve('react-hot-loader/patch'),
     resolve(__dirname, '..', 'src', 'index.tsx')
   ].filter(Boolean),
   output: {
@@ -80,5 +80,10 @@ module.exports = merge(baseWebpackConfig, {
     new DefinePlugin({
       DEBUG: true
     })
-  ]
+  ],
+  resolve: {
+    alias: {
+      'react-dom': '@hot-loader/react-dom'
+    }
+  }
 })

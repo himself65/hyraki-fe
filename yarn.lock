@@ -992,10 +992,10 @@
   dependencies:
     "@hapi/hoek" "8.x.x"
 
-"@hot-loader/react-dom@^16.9.0-4.12.11":
-  version "16.9.0-4.12.11"
-  resolved "https://registry.npm.taobao.org/@hot-loader/react-dom/download/@hot-loader/react-dom-16.9.0-4.12.11.tgz#3fb882845d57fd3a249715a7bdeb65020bde8f25"
-  integrity sha1-P7iChF1X/ToklxWnvetlAgvejyU=
+"@hot-loader/react-dom@^16.9.0":
+  version "16.9.0"
+  resolved "https://registry.npm.taobao.org/@hot-loader/react-dom/download/@hot-loader/react-dom-16.9.0.tgz#7782cec9d78172f3e4c86a317ba7a73bd0271acd"
+  integrity sha1-d4LOydeBcvPkyGoxe6enO9AnGs0=
   dependencies:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
