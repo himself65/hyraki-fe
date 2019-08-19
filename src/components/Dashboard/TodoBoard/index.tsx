@@ -11,6 +11,7 @@ const todoGridStyle = {
 }
 
 const TodoBoard: React.FC = () => {
+  // fixme: remove mock data
   return (
     <Card hoverable className='hy-card' style={{ marginTop: '1rem' }} title='待办事项'>
       <Card.Grid style={todoGridStyle}>

@@ -5,7 +5,7 @@ import Router from './router'
 import configStore from './store'
 import './App.less'
 
-const store = configStore()
+export const store = configStore()
 
 const App: React.FC = () => {
   return (<Provider store={store}><Router /></Provider>)

@@ -1,10 +1,10 @@
 import React, { Fragment } from 'react'
-import { Breadcrumb, Icon, Tooltip } from 'antd'
+import { Breadcrumb, Icon, Menu, Tooltip } from 'antd'
 import { ChartCard, Field, MiniBar } from 'ant-design-pro/lib/Charts'
 import numeral from 'numeral'
 import moment from 'moment'
 import { DefaultProps } from '../../../types'
-import { HyContent, HyHeader } from '../../../components/Layout'
+import { HyContent, HyFooter, HyHeader } from '../../../components/Layout'
 import { BreadcrumbFactory } from '../../../utils/helpers'
 import { TodayBoard, CommonBoard, TodoBoard } from '../../../components/Dashboard'
 import './index.less'
@@ -19,11 +19,18 @@ for (let i = 0; i < 20; i += 1) {
   })
 }
 
+export const Footer:React.FC = () => <HyFooter/>
+
 export default function DashboardContent (props: DefaultProps) {
   return (
     <Fragment>
       <HyHeader>
-        Header
+        <Menu style={{ lineHeight: '64px' }}
+          selectedKeys={['1']}
+          mode='horizontal'
+        >
+          <Menu.Item key='1'>预览</Menu.Item>
+        </Menu>
       </HyHeader>
       <HyContent>
         <Breadcrumb className='top-element hy-top-breadcrumb'>

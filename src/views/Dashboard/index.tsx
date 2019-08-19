@@ -1,11 +1,11 @@
 import React from 'react'
-import { Avatar, Layout, Row, Menu, Icon } from 'antd'
+import { Avatar, Layout, Row, Menu, Icon, Badge } from 'antd'
 import { Logger } from '../../utils/debug'
 import { Switch, Route, Link } from 'react-router-dom'
 import { HySidebar, HyLayout, HyFooter } from '../../components/Layout'
 import { DefaultProps } from '../../types'
 import './DashboardView.less'
-import DashboardContent from './Dashboard'
+import DashboardContent, { Footer } from './Dashboard'
 import DateContent from './Date'
 
 const DashboardView: React.FC = (props: DefaultProps) => {
@@ -22,7 +22,10 @@ const DashboardView: React.FC = (props: DefaultProps) => {
         width={140}
       >
         <Row className='top-element' type='flex' justify='center'>
-          <Avatar size={64}/>
+          {/* fixme */}
+          <Badge count={666}>
+            <Avatar size={64}/>
+          </Badge>
         </Row>
         <Menu style={{ backgroundColor: 'transparent' }}
           theme='light'
@@ -86,7 +89,7 @@ const DashboardView: React.FC = (props: DefaultProps) => {
           <Route exact path='/dashboard' component={DashboardContent}/>
           <Route path='/dashboard/date' component={DateContent}/>
         </Switch>
-        <HyFooter />
+        {Footer ? <Footer/> : <HyFooter/>}
       </Layout>
     </HyLayout>
   )
