@@ -1,6 +1,17 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import { Breadcrumb } from 'antd'
 
+/***
+ * @example
+ * import { BreadCrumb } from 'antd'
+ * function App() {
+ *   return (
+ *     <BreadCrumb>
+ *       {...BreadcrumbFactory('/foo/goo')}
+ *     </BreadCrumb>
+ *   )
+ * }
+ */
 export function BreadcrumbFactory (pathname: string) {
   let path = '/'
   let key = 1
