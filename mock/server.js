@@ -23,7 +23,7 @@ app.all('*', function (req, res, next) {
   }
 })
 
-app.post('/user/loginAction', (req, res) => {
+app.post('/user/login', (req, res) => {
   const { username, password } = req.body
   console.log(req.body)
   if (username && password) {
