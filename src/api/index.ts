@@ -26,7 +26,7 @@ axiosInstance.interceptors.response.use(
         store.dispatch({ type: 'LOG_OUT' })
       }
     }
-    return Promise.reject(error.response.data)
+    return Promise.reject(error.response)
   }
 )
 

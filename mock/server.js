@@ -9,7 +9,7 @@ const secretKey = 'secretKey'
 
 app.use(morgan('combined'))
 app.use(bodyParser())
-app.use(expressJwt({ secret: secretKey }).unless({ path: ['/user/loginAction', '/user/register'] }))
+app.use(expressJwt({ secret: secretKey }).unless({ path: ['/user/login', '/user/register'] }))
 
 app.all('*', function (req, res, next) {
   res.header('Access-Control-Allow-Origin', '*')

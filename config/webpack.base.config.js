@@ -94,6 +94,10 @@ exports.config = {
         }
       },
       {
+        test: /\.css$/,
+        use: cssLoaders
+      },
+      {
         test: /\.less$/,
         use: lessLoaders
       }

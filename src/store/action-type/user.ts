@@ -4,4 +4,9 @@ enum USER_STATE {
   LOGERROR = 'LOG_ERROR'
 }
 
+export type USER_ACTION_TYPE = {
+  type: USER_STATE,
+  message: string
+}
+
 export default USER_STATE

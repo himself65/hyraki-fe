@@ -10,7 +10,9 @@
   "extends": "standard",
   "plugins": [
     "@typescript-eslint",
-    "react"
+    "react",
+    "react-hooks",
+    "jsx-a11y"
   ],
   "rules": {
     "no-unused-vars": "off",

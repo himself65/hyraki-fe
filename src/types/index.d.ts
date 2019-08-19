@@ -6,6 +6,10 @@ export interface DefaultProps extends RouteProps {
 }
 
 export interface IState {
-  loginMessage: string,
-  drawerState: boolean
+  user: {
+    loginMessage: string
+  },
+  drawer: {
+    drawerState: boolean
+  }
 }
