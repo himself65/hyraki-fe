@@ -10,8 +10,9 @@ export const axiosInstance = Axios.create({
 })
 
 axiosInstance.interceptors.request.use(config => {
-  if (localStorage.JWT_TOKEN) {
-    config.headers.Authorization = `token ${localStorage.JWT_TOKEN}`
+  const token = localStorage.getItem('JWT_TOKEN')
+  if (token) {
+    config.headers.Authorization = `token ${token}`
   }
   return config
 }, error => Promise.reject(error))
@@ -20,7 +21,7 @@ axiosInstance.interceptors.response.use(
   response => response,
   error => {
     if (error.response) {
-      console.log('axios:' + error.response.status)
+      Logger('axios: %s', error.response.status)
       if (error.response.status === 401) {
         store.dispatch({ type: 'LOG_OUT' })
       }

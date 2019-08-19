@@ -10,7 +10,9 @@ export async function login (username: string, password: string) {
     if (response.status !== 200) {
       store.dispatch(loginAction.error(response.statusText))
     } else {
+      // status === 200
       store.dispatch(loginAction('登陆成功 '))
+      localStorage.setItem('JWT_TOKEN', response.data.token)
     }
     return response
   })
