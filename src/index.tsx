@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import * as Sentry from '@sentry/browser'
-import 'ant-design-pro/dist/ant-design-pro.css' // 导入 ant-design-pro 的 css
+import 'ant-design-pro/lib/Charts/style/index.less' // fixme: 导入 dist/*.css 会出现未知错误
 import './index.less'
 import './style/theme.less'
 import App from './App'

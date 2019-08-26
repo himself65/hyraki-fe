@@ -16,7 +16,6 @@ const InterpolateHtmlPlugin = require('react-dev-utils/InterpolateHtmlPlugin')
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
 const ModuleNotFoundPlugin = require('react-dev-utils/ModuleNotFoundPlugin')
 const WatchMissingNodeModulesPlugin = require('react-dev-utils/WatchMissingNodeModulesPlugin')
-const postcssNormalize = require('postcss-normalize')
 
 const isProd = process.env.NODE_ENV === 'production'
 const extractCSS = isProd || process.env.TARGET === 'development'
@@ -32,17 +31,6 @@ const cssLoaders = [
   {
     loader: 'postcss-loader',
     options: {
-      ident: 'postcss',
-      plugins: () => [
-        require('postcss-flexbugs-fixes'),
-        require('postcss-preset-env')({
-          autoprefixer: {
-            flexbox: 'no-2009'
-          },
-          stage: 3
-        }),
-        postcssNormalize()
-      ],
       sourceMap: !isProd
     }
   }
@@ -92,10 +80,6 @@ exports.config = {
           limit: imageInlineSizeLimit,
           name: 'static/media/[name].[hash:8].[ext]'
         }
-      },
-      {
-        test: /\.css$/,
-        use: cssLoaders
       },
       {
         test: /\.less$/,
