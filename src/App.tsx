@@ -5,25 +5,35 @@ import configStore from './store'
 import { Redirect, Route, Switch } from 'react-router'
 import { BrowserRouter } from 'react-router-dom'
 import { asyncComponent } from 'react-async-component'
-const DashboardView = asyncComponent({ resolve: () => import('./views/Dashboard') })
-const LoginView = asyncComponent({ resolve: () => import('./views/Login') })
-const RegisterView = asyncComponent({ resolve: () => import('./views/Register') })
-const ErrorView = asyncComponent({ resolve: () => import('./views/Error') })
+import LoadingView from './views/Loading'
+import ErrorView from './views/Error'
+const asyncComponentFactory = (resolve: () => Promise<React.ComponentType | {default: React.ComponentType}>) =>
+  asyncComponent({
+    resolve,
+    LoadingComponent: LoadingView,
+    ErrorComponent: ErrorView
+  })
+
+const DashboardView = asyncComponentFactory(() => import('./views/Dashboard'))
+const LoginView = asyncComponentFactory(() => import('./views/Login'))
+const RegisterView = asyncComponentFactory(() => import('./views/Register'))
 
 export const store = configStore()
 
 const App: React.FC = () => {
-  return (<Provider store={store}>
-    <BrowserRouter>
-      <Switch>
-        <Route exact path='/' component={LoginView}/>
-        <Route path='/dashboard' component={DashboardView}/>
-        <Route path='/register' component={RegisterView}/>
-        <Route path='/error' component={ErrorView}/>
-        <Redirect from='/*' to='/error'/>
-      </Switch>
-    </BrowserRouter>
-  </Provider>)
+  return (
+    <Provider store={store}>
+      <BrowserRouter>
+        <Switch>
+          <Route exact path='/' component={LoginView}/>
+          <Route path='/dashboard' component={DashboardView}/>
+          <Route path='/register' component={RegisterView}/>
+          <Route path='/error' component={ErrorView}/>
+          <Redirect from='/*' to='/error'/>
+        </Switch>
+      </BrowserRouter>
+    </Provider>
+  )
 }
 
 export default hot(App)

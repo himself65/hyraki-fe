@@ -1,6 +1,6 @@
 import React from 'react'
 
-const ErrorView: React.FC = () => {
+const ErrorView = () => {
   return (
     <div>
       找不到该页面
