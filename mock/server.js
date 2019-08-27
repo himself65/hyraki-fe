@@ -41,8 +41,39 @@ app.post('/user/login', (req, res) => {
   res.end()
 })
 
-app.get('/user/dashboard', (req, res) => {
-  console.log(req.body)
+app.get('/user/message', (req, res) => {
+  res.json({
+    count: 108
+  })
+  res.end()
+})
+
+app.get('/dashboard', (req, res) => {
+  res.json({
+    today: {
+      full_income: {
+        type: 'increase',
+        number: 114514
+      },
+      customer_cost: {
+        type: 'decrease',
+        number: 110
+      },
+      all_customers: {
+        type: '',
+        number: 100
+      },
+      sales: [1, 100, 50, 212, 123, 213, 11, 312, 312]
+    },
+    all_sales: 1234,
+    todo: {
+      serviced: 10,
+      pay: 12,
+      ship: 16,
+      review: 5
+    }
+  })
+  res.end()
 })
 
 app.listen(3001, () => {

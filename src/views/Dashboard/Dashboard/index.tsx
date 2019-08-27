@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React, { Fragment, useEffect, useState } from 'react'
 import { Breadcrumb, Icon, Menu, Tooltip } from 'antd'
 import { ChartCard, Field, MiniBar } from 'ant-design-pro/lib/Charts'
 import numeral from 'numeral'
@@ -8,6 +8,7 @@ import { HyContent, HyFooter, HyHeader } from '../../../components/Layout'
 import { BreadcrumbFactory } from '../../../utils/helpers'
 import { TodayBoard, CommonBoard, TodoBoard } from '../../../components/Dashboard'
 import './index.less'
+import { getDashboardData } from '../../../api/dashboard'
 
 // fixme: this is mock data, must remove these
 const visitData: { x: string, y: number }[] = []
@@ -21,7 +22,46 @@ for (let i = 0; i < 20; i += 1) {
 
 export const Footer:React.FC = () => <HyFooter/>
 
+export type TrendType = '' | 'decrease' | 'increase'
+
+export interface DashBoardData {
+  today?: {
+    full_income: {
+      type: TrendType,
+      number: number
+    },
+    customer_cost: {
+      type: TrendType,
+      number: number
+    },
+    all_customers: {
+      type: TrendType,
+      number: number
+    },
+    sales: number[]
+  },
+  all_sales?: number,
+  todo?: {
+    serviced: number,
+    pay: number,
+    ship: number,
+    review: number
+  }
+}
+
 export default function DashboardContent (props: DefaultProps) {
+  const [data, setData] = useState<DashBoardData>({})
+  useEffect(() => {
+    const fetch = async () => {
+      await getDashboardData().then(res => {
+        if (res.status === 200) {
+          setData(res.data)
+        }
+      })
+    }
+    fetch().then()
+  }, [])
+
   return (
     <Fragment>
       <HyHeader>
@@ -36,7 +76,7 @@ export default function DashboardContent (props: DefaultProps) {
         <Breadcrumb className='top-element hy-top-breadcrumb'>
           {...BreadcrumbFactory(props.location!.pathname)}
         </Breadcrumb>
-        <TodayBoard/>
+        <TodayBoard value={data.today}/>
         <ChartCard className='hy-card' style={{ marginTop: '1rem', width: '300px' }} total={8846}
           footer={<Field label='总销售额（月）' value={numeral(1234).format('0,0')}/>}
           action={
