@@ -32,7 +32,8 @@
     "jsx-quotes": [
       "error",
       "prefer-single"
-    ]
+    ],
+    "camelcase": "off"
   },
   "globals": {
     "fetch": true,
