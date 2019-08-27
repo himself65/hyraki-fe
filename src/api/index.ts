@@ -12,7 +12,7 @@ export const axiosInstance = Axios.create({
 axiosInstance.interceptors.request.use(config => {
   const token = localStorage.getItem('JWT_TOKEN')
   if (token) {
-    config.headers.Authorization = `token ${token}`
+    config.headers.Authorization = `Bearer ${token}`
   }
   return config
 }, error => Promise.reject(error))
@@ -31,4 +31,5 @@ axiosInstance.interceptors.response.use(
 )
 
 export default axiosInstance
+export * from './dashboard'
 export * from './user'
