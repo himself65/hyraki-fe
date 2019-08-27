@@ -69,7 +69,7 @@ module.exports = merge(baseWebpackConfig, {
       loaders: [
         'babel-loader',
         { path: 'ts-loader', query: { happyPackMode: true } },
-        'eslint-loader?cache=true?emitWarning=true'
+        'eslint-loader?cache=false?emitWarning=true'
       ]
     }),
     new HappyPack({
