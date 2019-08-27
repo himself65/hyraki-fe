@@ -4,7 +4,6 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { HyContent, HyLayout, HyFooter, HySidebar, HyHeader } from '../../components/Layout'
 import LoginBoard from '../../components/LoginBoard'
-import { login } from '../../api'
 import { loginAction, logoutAction } from '../../store/action/user'
 import './LoginView.less'
 import { DefaultProps, IState } from '../../types'
@@ -15,18 +14,6 @@ interface LoginViewProps extends DefaultProps {
 
 const LoginView: React.FC = (props: LoginViewProps) => {
   const [loginBoard, setLoginBoard] = useState(false)
-  const [loginMessage] = useState(props.loginMessage)
-
-  const loginUser = async (username: string, password: string) => {
-    await login(username, password).then(() => {})
-  }
-
-  useEffect(() => {
-    if (loginMessage) {
-      message.info(loginMessage)
-    }
-  }, [props.loginMessage])
-
   return (
     <HyLayout>
       <HySidebar
