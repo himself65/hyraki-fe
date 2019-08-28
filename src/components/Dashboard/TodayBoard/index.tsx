@@ -1,13 +1,14 @@
-import React, { PropsWithChildren } from 'react'
+import React from 'react'
 import { Card, Icon, Statistic } from 'antd'
 import { TrendType } from '../../../views/Dashboard/Dashboard'
+import { DefaultProps } from '../../../types'
 
 export const todayGridStyle = {
   width: '33.33%',
   height: '120px'
 }
 
-export interface Props extends PropsWithChildren<{
+export interface Props extends DefaultProps {
   value?: {
     full_income: {
       type: TrendType,
@@ -23,8 +24,6 @@ export interface Props extends PropsWithChildren<{
     },
     sales: number[]
   }
-}>{
-
 }
 
 const TodayBoard = (props: Props) => {
@@ -43,7 +42,7 @@ const TodayBoard = (props: Props) => {
     },
     sales: []
   }
-  const upOrDown = (value: { number: number, type: TrendType}) => {
+  const upOrDown = (value: { number: number, type: TrendType }) => {
     if (value.type === 'increase') {
       return ({ value: value.number, prefix: <Icon type='arrow-up'/>, valueStyle: { color: '#cf1322' } })
     } else if (value.type === 'decrease') {
