@@ -8,7 +8,7 @@ import './DashboardView.less'
 import DashboardContent, { Footer } from './Dashboard'
 import DateContent from './Date'
 
-const DashboardView: React.FC = (props: DefaultProps) => {
+const DashboardView: React.FC<DefaultProps> = (props) => {
   let selectedKey = '/dashboard'
   if (props.location) {
     selectedKey = props.location.pathname

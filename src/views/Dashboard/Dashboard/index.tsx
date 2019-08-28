@@ -6,7 +6,7 @@ import moment from 'moment'
 import { DefaultProps } from '../../../types'
 import { HyContent, HyFooter, HyHeader } from '../../../components/Layout'
 import { BreadcrumbFactory } from '../../../utils/helpers'
-import { TodayBoard, CommonBoard, TodoBoard } from '../../../components/Dashboard'
+import { CommonBoard, TodayBoard, TodoBoard } from '../../../components/Dashboard'
 import './index.less'
 import { getDashboardData } from '../../../api/dashboard'
 
@@ -20,7 +20,7 @@ for (let i = 0; i < 20; i += 1) {
   })
 }
 
-export const Footer:React.FC = () => <HyFooter/>
+export const Footer: React.FC = () => <HyFooter/>
 
 export type TrendType = '' | 'decrease' | 'increase'
 
@@ -49,7 +49,7 @@ export interface DashBoardData {
   }
 }
 
-export default function DashboardContent (props: DefaultProps) {
+const DashboardContent: React.FC<DefaultProps> = (props) => {
   const [data, setData] = useState<DashBoardData>({})
   useEffect(() => {
     const fetch = async () => {
@@ -93,3 +93,5 @@ export default function DashboardContent (props: DefaultProps) {
     </Fragment>
   )
 }
+
+export default DashboardContent

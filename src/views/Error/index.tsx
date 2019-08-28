@@ -2,7 +2,7 @@ import React from 'react'
 import { HyContent, HyLayout } from '../../components/Layout'
 import './ErrorView.less'
 
-const ErrorView = () => {
+const ErrorView: React.FC = () => {
   return (
     <HyLayout>
       <HyContent className='error-content'>

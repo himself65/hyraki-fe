@@ -12,7 +12,7 @@ interface LoginViewProps extends DefaultProps {
   loginMessage?: string
 }
 
-const LoginView: React.FC = (props: LoginViewProps) => {
+const LoginView: React.FC<LoginViewProps> = (props) => {
   const [loginBoard, setLoginBoard] = useState(false)
   return (
     <HyLayout>
