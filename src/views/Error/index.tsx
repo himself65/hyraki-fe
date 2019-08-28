@@ -1,10 +1,16 @@
 import React from 'react'
+import { HyContent, HyLayout } from '../../components/Layout'
+import './ErrorView.less'
 
 const ErrorView = () => {
   return (
-    <div>
-      找不到该页面
-    </div>
+    <HyLayout>
+      <HyContent className='error-content'>
+        <span>
+          找不到该页面
+        </span>
+      </HyContent>
+    </HyLayout>
   )
 }
 
