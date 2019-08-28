@@ -62,10 +62,13 @@ app.get('/dashboard', (req, res) => {
       all_customers: {
         type: '',
         number: 100
-      },
-      sales: [1, 100, 50, 212, 123, 213, 11, 312, 312]
+      }
     },
-    all_sales: 1234,
+    trend: {
+      today: 123,
+      sales: [1, 100, 50, 212, 123, 213, 11, 312, 312],
+      all_sales: 12345
+    },
     todo: {
       serviced: 10,
       pay: 12,
