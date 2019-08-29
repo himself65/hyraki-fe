@@ -3,7 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "concurrently \"cross-env NODE_ENV=development webpack-dev-server --config config/webpack.dev.config.js --hot \" \"cross-env nodemon mock/server.js \"",
+    "dev": "concurrently \"yarn dev:app\" \"yarn dev:mock\"",
+    "dev:app": "cross-env NODE_ENV=development webpack-dev-server --config config/webpack.dev.config.js --hot ",
+    "dev:mock": "cross-env nodemon mock/server.js",
     "build": "rimraf dist && cross-env NODE_ENV=production webpack --config config/webpack.build.config.js --progress --hide-modules",
     "test": "cross-env node scripts/test.js",
     "lint": "yarn lint:eslint && yarn lint:style",
