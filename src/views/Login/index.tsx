@@ -15,7 +15,7 @@ interface LoginViewProps extends DefaultProps {
 const LoginView: React.FC<LoginViewProps> = (props) => {
   const [loginBoard, setLoginBoard] = useState(false)
   return (
-    <HyLayout>
+    <HyLayout className='login-view'>
       <HySidebar
         breakpoint='lg'
         collapsedWidth='0'

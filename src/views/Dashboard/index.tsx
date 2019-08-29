@@ -15,7 +15,7 @@ const DashboardView: React.FC<DefaultProps> = (props) => {
   }
   Logger('Opened \'%s\'', props.location ? selectedKey : 'UNKNOWN')
   return (
-    <HyLayout>
+    <HyLayout className='dashboard-view'>
       <HySidebar
         breakpoint='lg'
         collapsedWidth='0'
