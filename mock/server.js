@@ -3,6 +3,7 @@ const morgan = require('morgan')
 const bodyParser = require('body-parser')
 const expressJwt = require('express-jwt')
 const jwt = require('jsonwebtoken')
+const { random } = require('./utils')
 
 const app = express()
 const secretKey = 'secretKey'
@@ -43,7 +44,7 @@ app.post('/user/login', (req, res) => {
 
 app.get('/user/message', (req, res) => {
   res.json({
-    count: 108
+    count: random(100)
   })
   res.end()
 })
@@ -53,27 +54,27 @@ app.get('/dashboard', (req, res) => {
     today: {
       full_income: {
         type: 'increase',
-        number: 114514
+        number: random(10000)
       },
       customer_cost: {
         type: 'decrease',
-        number: 110
+        number: random(10000)
       },
       all_customers: {
         type: '',
-        number: 100
+        number: random(10000)
       }
     },
     trend: {
-      today: 123,
-      sales: [1, 100, 50, 212, 123, 213, 11, 312, 312],
-      all_sales: 12345
+      today: random(10000),
+      sales: Array.from({ length: 30 }).map(() => random(100)),
+      all_sales: random(10000)
     },
     todo: {
-      serviced: 10,
-      pay: 12,
-      ship: 16,
-      review: 5
+      serviced: random(100),
+      pay: random(100),
+      ship: random(100),
+      review: random(100)
     }
   })
   res.end()
