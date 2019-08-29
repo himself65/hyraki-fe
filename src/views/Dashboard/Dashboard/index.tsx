@@ -9,6 +9,9 @@ import { BreadcrumbFactory } from '../../../utils/helpers'
 import { CommonBoard, TodayBoard, TodoBoard } from '../../../components/Dashboard'
 import './index.less'
 import { getDashboardData } from '../../../api/dashboard'
+import { TodayData } from '../../../components/Dashboard/TodayBoard'
+import { TodoData } from '../../../components/Dashboard/TodoBoard'
+import { Logger } from '../../../utils/debug'
 
 // fixme: this is mock data, must remove these
 const visitData: { x: string, y: number }[] = []
@@ -24,33 +27,21 @@ export const Footer: React.FC = () => <HyFooter/>
 
 export type TrendType = '' | 'decrease' | 'increase'
 
+export interface TrendData {
+  today: number,
+  sales: number[],
+  all_sales: number
+}
+
 export interface DashBoardData {
-  today?: {
-    full_income: {
-      type: TrendType,
-      number: number
-    },
-    customer_cost: {
-      type: TrendType,
-      number: number
-    },
-    all_customers: {
-      type: TrendType,
-      number: number
-    },
-    sales: number[]
-  },
-  all_sales?: number,
-  todo?: {
-    serviced: number,
-    pay: number,
-    ship: number,
-    review: number
-  }
+  today?: TodayData,
+  trend?: TrendData,
+  todo?: TodoData
 }
 
 const DashboardContent: React.FC<DefaultProps> = (props) => {
   const [data, setData] = useState<DashBoardData>({})
+  const [trendData, setTrendData] = useState<{ x: string, y: number }[]>([])
   useEffect(() => {
     const fetch = async () => {
       await getDashboardData().then(res => {
@@ -61,6 +52,23 @@ const DashboardContent: React.FC<DefaultProps> = (props) => {
     }
     fetch().then()
   }, [])
+
+  useEffect(() => {
+    // tip: 处理后端传过来的数据
+    if (data.trend) {
+      const today = new Date().getTime()
+      const value = data.trend.sales
+        .map((v, i, arr) => {
+          const offsetDay = (arr.length - i - 1) * 24 * 60 * 60 * 1000
+          return ({
+            x: moment(new Date(today - offsetDay)).format('YYYY-MM-DD'),
+            y: v
+          })
+        })
+      Logger(value)
+      setTrendData(value)
+    }
+  }, [data])
 
   return (
     <Fragment>
@@ -77,17 +85,18 @@ const DashboardContent: React.FC<DefaultProps> = (props) => {
           {...BreadcrumbFactory(props.location!.pathname)}
         </Breadcrumb>
         <TodayBoard value={data.today}/>
-        <ChartCard className='hy-card' style={{ marginTop: '1rem', width: '300px' }} total={8846}
-          footer={<Field label='总销售额（月）' value={numeral(1234).format('0,0')}/>}
+        <ChartCard className='hy-card' style={{ marginTop: '1rem', width: '300px' }}
+          total={data.trend ? data.trend.today : 0}
+          footer={<Field label='总销售额（月）' value={numeral(data.trend ? data.trend.all_sales : 0).format('0,0')}/>}
           action={
             <Tooltip title='详细数据在数据中查看'>
               <Icon type='info-circle-o'/>
             </Tooltip>
           }
           title='今日'>
-          <MiniBar color={'rgb(255, 220, 60)'} height={46} data={visitData}/>
+          <MiniBar color={'rgb(255, 220, 60)'} height={46} data={trendData}/>
         </ChartCard>
-        <TodoBoard/>
+        <TodoBoard value={data.todo}/>
         <CommonBoard/>
       </HyContent>
     </Fragment>
