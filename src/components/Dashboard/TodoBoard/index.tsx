@@ -23,7 +23,6 @@ export interface Props extends DefaultProps {
 }
 
 const TodoBoard: React.FC<Props> = (props) => {
-  // fixme: remove mock data
   return (
     <Card hoverable className='hy-card' style={{ marginTop: '1rem' }} title='待办事项'>
       <Card.Grid style={todoGridStyle}>
