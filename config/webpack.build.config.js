@@ -1,4 +1,5 @@
 const { resolve } = require('path')
+const { DefinePlugin } = require('webpack')
 const merge = require('webpack-merge')
 const HappyPack = require('happypack')
 const { config: baseWebpackConfig, happyThreadPool } = require('./webpack.base.config')
@@ -36,6 +37,9 @@ module.exports = merge(baseWebpackConfig, {
           options: { happyPackMode: true }
         }
       ]
+    }),
+    new DefinePlugin({
+      DEBUG: false
     })
   ]
 })
