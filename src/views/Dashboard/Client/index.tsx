@@ -17,3 +17,5 @@ const ClientContent: React.FC<DefaultProps> = (props) => {
     </Fragment>
   )
 }
+
+export default ClientContent

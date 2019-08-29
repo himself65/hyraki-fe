@@ -7,11 +7,12 @@ import { DefaultProps } from '../../../types'
 import { HyContent, HyFooter, HyHeader } from '../../../components/Layout'
 import { BreadcrumbFactory } from '../../../utils/helpers'
 import { CommonBoard, TodayBoard, TodoBoard } from '../../../components/Dashboard'
-import './index.less'
 import { getDashboardData } from '../../../api/dashboard'
 import { TodayData } from '../../../components/Dashboard/TodayBoard'
 import { TodoData } from '../../../components/Dashboard/TodoBoard'
 import { Logger } from '../../../utils/debug'
+
+import './DashboardContent.less'
 
 // fixme: this is mock data, must remove these
 const visitData: { x: string, y: number }[] = []

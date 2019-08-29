@@ -7,6 +7,7 @@ import { DefaultProps } from '../../types'
 import './DashboardView.less'
 import DashboardContent, { Footer } from './Dashboard'
 import DateContent from './Date'
+import ClientContent from './Client'
 
 const DashboardView: React.FC<DefaultProps> = (props) => {
   let selectedKey = '/dashboard'
@@ -88,6 +89,7 @@ const DashboardView: React.FC<DefaultProps> = (props) => {
         <Switch>
           <Route exact path='/dashboard' component={DashboardContent}/>
           <Route path='/dashboard/date' component={DateContent}/>
+          <Route path='/dashboard/client' component={ClientContent}/>
         </Switch>
         {Footer ? <Footer/> : <HyFooter/>}
       </Layout>
