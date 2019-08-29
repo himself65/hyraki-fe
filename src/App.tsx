@@ -10,7 +10,9 @@ import ErrorView from './views/Error'
 const asyncComponentFactory = (resolve: () => Promise<React.ComponentType | {default: React.ComponentType}>) =>
   asyncComponent({
     resolve,
+    // @ts-ignore
     LoadingComponent: LoadingView,
+    // @ts-ignore
     ErrorComponent: ErrorView
   })
 
