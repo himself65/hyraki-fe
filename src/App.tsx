@@ -7,7 +7,9 @@ import { BrowserRouter } from 'react-router-dom'
 import { asyncComponent } from 'react-async-component'
 import LoadingView from './views/Loading'
 import ErrorView from './views/Error'
-const asyncComponentFactory = (resolve: () => Promise<React.ComponentType | {default: React.ComponentType}>) =>
+
+// fixme: remove type any
+const asyncComponentFactory = (resolve: () => Promise<any>) =>
   asyncComponent({
     resolve,
     // @ts-ignore

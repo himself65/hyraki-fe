@@ -13,6 +13,8 @@ axiosInstance.interceptors.request.use(config => {
   const token = localStorage.getItem('JWT_TOKEN')
   if (token) {
     config.headers.Authorization = `Bearer ${token}`
+  } else {
+    store.dispatch({ type: 'LOG_OUT' })
   }
   return config
 }, error => Promise.reject(error))

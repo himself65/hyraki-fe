@@ -9,6 +9,7 @@ import DashboardContent, { Footer } from './Dashboard'
 import DateContent from './Date'
 import ClientContent from './Client'
 import ShopContent from './Shop'
+import { AccessRequired } from '../../utils/helpers'
 
 const DashboardView: React.FC<DefaultProps> = (props) => {
   let selectedKey = '/dashboard'
@@ -99,4 +100,4 @@ const DashboardView: React.FC<DefaultProps> = (props) => {
   )
 }
 
-export default DashboardView
+export default AccessRequired(DashboardView)

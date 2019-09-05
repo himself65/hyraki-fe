@@ -1,12 +1,13 @@
-import { RouteProps } from 'react-router-dom'
+import { RouteChildrenProps } from 'react-router'
 
-export interface DefaultProps extends RouteProps {
+export interface DefaultProps extends RouteChildrenProps {
 
 }
 
 export interface IState {
   user: {
-    loginMessage: string
+    loginMessage: string,
+    logout: boolean
   },
   drawer: {
     drawerState: boolean

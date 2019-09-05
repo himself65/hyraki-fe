@@ -1,5 +1,9 @@
-import React from 'react'
+import React, { ComponentType } from 'react'
 import { Breadcrumb } from 'antd'
+import { DefaultProps, IState } from '../types'
+import { Logger } from './debug'
+import { connect } from 'react-redux'
+import { Redirect } from 'react-router-dom'
 
 /***
  * @example
@@ -26,4 +30,21 @@ export function BreadcrumbFactory (pathname: string) {
           ? (<Breadcrumb.Item key={key++}>{fixedName}</Breadcrumb.Item>)
           : (<Breadcrumb.Item key={key++}><a href={path}>{fixedName}</a></Breadcrumb.Item>)
       })])
+}
+
+interface AccessRequiredProps extends DefaultProps {
+  logout: boolean
+}
+
+export const AccessRequired = function (C: ComponentType<any>) {
+  const mapStateToProps = (state: IState) => ({ logout: state.user.logout })
+  return connect(mapStateToProps)((props: AccessRequiredProps) => {
+    Logger('userState: %s, path: %s', props.logout, props.location.pathname)
+    if (props.logout) {
+      // todo: ErrorView notice the message to user
+      return (<Redirect to='/error'/>)
+    } else {
+      return (<C/>)
+    }
+  })
 }
