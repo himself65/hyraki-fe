@@ -7,6 +7,7 @@ import { BrowserRouter } from 'react-router-dom'
 import { asyncComponent } from 'react-async-component'
 import LoadingView from './views/Loading'
 import ErrorView from './views/Error'
+import { loginAction } from './store/action/user'
 
 // fixme: remove type any
 const asyncComponentFactory = (resolve: () => Promise<any>) =>
@@ -25,6 +26,10 @@ const RegisterView = asyncComponentFactory(() => import('./views/Register'))
 export const store = configStore()
 
 const App: React.FC = () => {
+  // fixme: abstract this check
+  if (localStorage.getItem('JWT_TOKEN')) {
+    store.dispatch(loginAction('已经登录'))
+  }
   return (
     <Provider store={store}>
       <BrowserRouter>

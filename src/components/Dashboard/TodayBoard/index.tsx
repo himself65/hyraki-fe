@@ -23,11 +23,11 @@ export interface TodayData {
   }
 }
 
-export interface Props extends DefaultProps {
+export interface Props {
   value?: TodayData
 }
 
-const TodayBoard = (props: Props) => {
+const TodayBoard: React.FC<Props> = (props) => {
   const value = props.value || {
     full_income: {
       type: '',

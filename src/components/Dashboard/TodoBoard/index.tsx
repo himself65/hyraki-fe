@@ -19,7 +19,7 @@ export interface TodoData {
   review: number
 }
 
-export interface Props extends DefaultProps {
+export interface Props {
   value?: TodoData
 }
 
