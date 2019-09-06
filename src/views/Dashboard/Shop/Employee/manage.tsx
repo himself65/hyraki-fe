@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react'
 import { Row, Col, Button, List } from 'antd'
 
-export const ManageContent: React.FC = () => {
+const ManageContent: React.FC = () => {
   // todo: 获取数据
   return (
     <Fragment>
@@ -29,3 +29,5 @@ export const ManageContent: React.FC = () => {
     </Fragment>
   )
 }
+
+export default ManageContent

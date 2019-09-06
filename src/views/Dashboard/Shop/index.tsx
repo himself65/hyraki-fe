@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { HyHeader, HyLayout } from '../../../components/Layout'
 import { Menu, Layout } from 'antd'
 import { Link, Route, Switch } from 'react-router-dom'
-import { ManageContent } from './Employee/manage'
+import ManageContent from './Employee/manage'
 
 const { SubMenu } = Menu
 
