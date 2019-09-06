@@ -1,7 +1,8 @@
 import React, { Fragment } from 'react'
 import { Row, Col, Button, List } from 'antd'
+import { DefaultProps } from '../../../../types'
 
-const ManageContent: React.FC = () => {
+const ManageContent: React.FC<DefaultProps> = () => {
   // todo: 获取数据
   return (
     <Fragment>

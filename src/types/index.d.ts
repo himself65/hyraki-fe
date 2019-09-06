@@ -1,6 +1,6 @@
-import { RouteChildrenProps } from 'react-router'
+import { RouteProps } from 'react-router-dom'
 
-export interface DefaultProps extends RouteChildrenProps {
+export interface DefaultProps extends RouteProps {
 
 }
 

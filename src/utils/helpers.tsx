@@ -39,12 +39,16 @@ interface AccessRequiredProps extends DefaultProps {
 export const AccessRequired = function (C: ComponentType<any>) {
   const mapStateToProps = (state: IState) => ({ logout: state.user.logout })
   return connect(mapStateToProps)((props: AccessRequiredProps) => {
-    Logger('userState: %s, path: %s', props.logout, props.location.pathname)
+    Logger('userState: %s, path: %s', props.logout ? 'logout' : 'login',
+      props.location
+        ? props.location.pathname
+        : 'UNKNOWN'
+    )
     if (props.logout) {
       // todo: ErrorView notice the message to user
       return (<Redirect to='/error'/>)
     } else {
-      return (<C/>)
+      return (<C {...props}/>)
     }
   })
 }

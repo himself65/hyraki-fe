@@ -3,19 +3,22 @@ import { HyHeader, HyLayout } from '../../../components/Layout'
 import { Menu, Layout } from 'antd'
 import { Link, Route, Switch } from 'react-router-dom'
 import ManageContent from './Employee/manage'
+import { DefaultProps } from '../../../types'
 
 const { SubMenu } = Menu
 
 const OverviewContent: React.FC = () => {
   return (
     <div>
-      {/* todo */}
+      这是 Overview 页面
     </div>
   )
 }
 
-const ShopContent: React.FC = () => {
-  const [selected, setSelected] = useState('2')
+const ShopContent: React.FC<DefaultProps> = (props) => {
+  const [selected, setSelected] = useState(
+    props.location ? props.location.pathname === '/dashboard/shop' ? '1' : '2' : '1'
+  )
 
   return (
     <HyLayout>
@@ -31,15 +34,15 @@ const ShopContent: React.FC = () => {
           <SubMenu title='员工'>
             <Menu.Item key='2'>
               <Link to='/dashboard/shop/employee/manage'/>
-              <span>员工管理</span>
+              员工管理
             </Menu.Item>
             <Menu.Item key='3'>
               <Link to='/dashboard/shop/employee/schedule'/>
-              <span>员工排班</span>
+              员工排班
             </Menu.Item>
             <Menu.Item key='4'>
               <Link to='/dashboard/shop/employee/attend'/>
-              <span>员工考勤</span>
+              员工考勤
             </Menu.Item>
           </SubMenu>
         </Menu>
