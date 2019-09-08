@@ -48,8 +48,8 @@ const ShopContent: React.FC<DefaultProps> = (props) => {
         </Menu>
         <Layout>
           <Switch>
-            <Route exact to='/dashboard/shop' component={OverviewContent}/>
-            <Route to='/dashboard/shop/employee/manage' component={ManageContent}/>
+            <Route exact path='/dashboard/shop' component={OverviewContent}/>
+            <Route path='/dashboard/shop/employee' component={ManageContent}/>
           </Switch>
         </Layout>
       </HyHeader>
