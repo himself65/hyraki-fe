@@ -1,26 +1,30 @@
-import React, { Fragment } from 'react'
+import React, { Fragment, useEffect } from 'react'
 import { Row, Col, Button, List } from 'antd'
 import { DefaultProps } from '../../../../types'
+import { getEmployeeList } from '../../../../api/employee'
 
 const ManageContent: React.FC<DefaultProps> = () => {
-  // todo: 获取数据
+  useEffect(() => {
+    const fetchData = async () => {
+      await getEmployeeList()
+    }
+    fetchData().then()
+  }, [])
   return (
     <Fragment>
       <Row>
         <Col>
-          <Button>
+          <Button.Group>
+            <Button>
             添加员工
-          </Button>
-        </Col>
-        <Col>
-          <Button>
+            </Button>
+            <Button>
             职位管理
-          </Button>
-        </Col>
-        <Col>
-          <Button>
+            </Button>
+            <Button>
             历史记录
-          </Button>
+            </Button>
+          </Button.Group>
         </Col>
       </Row>
       <Row>

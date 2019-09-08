@@ -80,6 +80,23 @@ app.get('/dashboard', (req, res) => {
   res.end()
 })
 
+app.get('/employee', (req, res) => {
+  res.json([
+    {
+      shop: '1',
+      name: '甜面包',
+      id: 761282619,
+      phone: 1008611,
+      position: 'boss',
+      identity: '',
+      avatar: null,
+      sex: 'man',
+      remark: 'none'
+    }
+  ])
+  res.end()
+})
+
 app.listen(3001, () => {
   console.log(`listen at http://localhost:3001`)
 })
