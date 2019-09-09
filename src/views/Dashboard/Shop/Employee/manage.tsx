@@ -1,12 +1,18 @@
-import React, { Fragment, useEffect } from 'react'
+import React, { Fragment, useEffect, useState } from 'react'
 import { Row, Col, Button, List } from 'antd'
 import { DefaultProps } from '../../../../types'
 import { getEmployeeList } from '../../../../api/employee'
+import EmployeeBriefList from '../../../../components/Employee/EmployeeBriefList'
 
 const ManageContent: React.FC<DefaultProps> = () => {
+  const [employeeData, setEmployeeData] = useState([])
   useEffect(() => {
     const fetchData = async () => {
-      await getEmployeeList()
+      await getEmployeeList().then(res => {
+        if (res.status === 200) {
+          setEmployeeData(res.data)
+        }
+      })
     }
     fetchData().then()
   }, [])
@@ -28,8 +34,7 @@ const ManageContent: React.FC<DefaultProps> = () => {
         </Col>
       </Row>
       <Row>
-        {/* todo: 支持滚动加载 */}
-        <List/>
+        <EmployeeBriefList data={employeeData} existData={false}/>
       </Row>
     </Fragment>
   )

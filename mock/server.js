@@ -83,14 +83,14 @@ app.get('/dashboard', (req, res) => {
 app.get('/employee', (req, res) => {
   res.json([
     {
-      shop: '1',
+      shop: '主店铺',
       name: '甜面包',
       id: 761282619,
       phone: 1008611,
       position: 'boss',
       identity: '',
       avatar: null,
-      sex: 'man',
+      sex: '男',
       remark: 'none'
     }
   ])
