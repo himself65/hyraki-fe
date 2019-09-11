@@ -1,5 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import { hot } from 'react-hot-loader/root'
 import * as Sentry from '@sentry/browser'
 import 'ant-design-pro/lib/Charts/style/index.less' // fixme: 导入 dist/*.css 会出现未知错误
 import './index.less'
@@ -13,7 +14,11 @@ if (DEBUG) {
 } else {
   Sentry.init({ dsn: 'https://1fbf6fa0850d48748c77a03259fe3540@sentry.io/1532395' })
 }
-
-ReactDOM.render(<App/>, document.getElementById('root'))
+if (process.env.NODE_ENV === 'production') {
+  ReactDOM.render(<App/>, document.getElementById('root'))
+} else {
+  const HotApp = hot(App)
+  ReactDOM.render(<HotApp/>, document.getElementById('root'))
+}
 
 serviceWorker.register()

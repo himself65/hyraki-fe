@@ -1,10 +1,9 @@
-import { hot } from 'react-hot-loader/root'
 import React from 'react'
 import { Provider } from 'react-redux'
+import { asyncComponent, AsyncComponentProvider } from 'react-async-component'
 import configStore from './store'
 import { Redirect, Route, Switch } from 'react-router'
 import { BrowserRouter } from 'react-router-dom'
-import { asyncComponent } from 'react-async-component'
 import LoadingView from './views/Loading'
 import ErrorView from './views/Error'
 import { loginAction } from './store/action/user'
@@ -31,18 +30,20 @@ const App: React.FC = () => {
     store.dispatch(loginAction('已经登录'))
   }
   return (
-    <Provider store={store}>
-      <BrowserRouter>
-        <Switch>
-          <Route exact path='/' component={LoginView}/>
-          <Route path='/dashboard' component={DashboardView}/>
-          <Route path='/register' component={RegisterView}/>
-          <Route path='/error' component={ErrorView}/>
-          <Redirect from='/*' to='/error'/>
-        </Switch>
-      </BrowserRouter>
-    </Provider>
+    <AsyncComponentProvider>
+      <Provider store={store}>
+        <BrowserRouter>
+          <Switch>
+            <Route exact path='/' component={LoginView}/>
+            <Route path='/dashboard' component={DashboardView}/>
+            <Route path='/register' component={RegisterView}/>
+            <Route path='/error' component={ErrorView}/>
+            <Redirect from='/*' to='/error'/>
+          </Switch>
+        </BrowserRouter>
+      </Provider>
+    </AsyncComponentProvider>
   )
 }
 
-export default hot(App)
+export default App
