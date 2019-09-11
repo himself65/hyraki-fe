@@ -1,10 +1,12 @@
 import React, { Fragment, useEffect, useState } from 'react'
-import { Button, Col, Row, Modal } from 'antd'
+import { Button, Col, Modal, Row } from 'antd'
 import { Subject } from 'rxjs'
 import { DefaultProps } from '../../../../types'
 import { getEmployeeList } from '../../../../api/employee'
 import EmployeeBriefList from '../../../../components/Employee/EmployeeBriefList'
 import AddEmployeeForm from '../../../../components/Employee/AddEmployeeForm'
+
+const addEmployeeSubject = new Subject<boolean>()
 
 const ManageContent: React.FC<DefaultProps> = () => {
   const [employeeData, setEmployeeData] = useState([])
@@ -19,7 +21,6 @@ const ManageContent: React.FC<DefaultProps> = () => {
     }
     fetchData().then()
   }, [])
-  const addEmployeeSubject = new Subject<boolean>()
   return (
     <Fragment>
       <Row>
@@ -43,14 +44,17 @@ const ManageContent: React.FC<DefaultProps> = () => {
         <Modal
           title='添加员工'
           visible={showAddEmployeeModal}
-          width='80%'
-          onOk={() => addEmployeeSubject.next(true)}
+          onOk={() => {
+            addEmployeeSubject.next(true)
+          }}
           onCancel={() => {
             addEmployeeSubject.next(false)
             setShowAddEmployeeModal(false)
           }}
         >
-          <AddEmployeeForm subject={addEmployeeSubject}/>
+          <AddEmployeeForm
+            subject={addEmployeeSubject}
+          />
         </Modal>
         <EmployeeBriefList data={employeeData} existData={false}/>
       </Row>
