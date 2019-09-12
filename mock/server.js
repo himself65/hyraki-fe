@@ -24,6 +24,10 @@ app.all('*', function (req, res, next) {
   }
 })
 
+/**
+ * 用户（user）相关
+ **/
+
 app.post('/user/login', (req, res) => {
   const { username, password } = req.body
   console.log(req.body)
@@ -79,6 +83,10 @@ app.get('/dashboard', (req, res) => {
   })
   res.end()
 })
+
+/**
+ * 员工（Employee）的删查增改
+ **/
 
 app.get('/employee', (req, res) => {
   res.json([
