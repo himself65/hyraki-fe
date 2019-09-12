@@ -5,7 +5,7 @@ import * as sinon from 'sinon'
 let stubExit
 
 beforeAll(() => {
-  app.listen(3000)
+  app.listen(4000)
   stubExit = sinon.stub(process, 'exit')
 })
 

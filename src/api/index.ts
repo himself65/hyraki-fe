@@ -6,7 +6,7 @@ export const axiosInstance = Axios.create({
   baseURL: process.env.NODE_ENV === 'development'
     ? 'http://localhost:3001'
     : process.env.NODE_ENV === 'test'
-      ? 'http://localhost:3000'
+      ? 'http://localhost:4000'
       : 'https://api.jzmin.top/', // fixme: api.jzmin.top will be replaced
   timeout: 1000
 })
