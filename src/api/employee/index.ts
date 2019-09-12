@@ -5,6 +5,6 @@ export async function getEmployeeList (shopID = 1) {
 }
 
 // fixme: any type
-export async function postAddNewEmployee (data: { [key: string]: any }) {
-  return axiosInstance.post('/employee/add', data)
+export async function postAddEmployee (data: { [key: string]: any }) {
+  return axiosInstance.post('/employee', data)
 }
