@@ -1,26 +1,11 @@
 import React from 'react'
 import { Card, Icon, Statistic } from 'antd'
 import { TrendType } from '../../../views/Dashboard/Dashboard'
-import { DefaultProps } from '../../../types'
+import { TodayData } from '../../../types/Dashboard'
 
 export const todayGridStyle = {
   width: '33.33%',
   height: '120px'
-}
-
-export interface TodayData {
-  full_income: {
-    type: TrendType,
-    number: number
-  },
-  customer_cost: {
-    type: TrendType,
-    number: number
-  },
-  all_customers: {
-    type: TrendType,
-    number: number
-  }
 }
 
 export interface Props {
@@ -43,7 +28,7 @@ const TodayBoard: React.FC<Props> = (props) => {
     },
     sales: []
   }
-  const upOrDown = (value: { number: number, type: TrendType }) => {
+  const upOrDown = (value: { type: TrendType; number: number } | { number: number; type: string }) => {
     if (value.type === 'increase') {
       return ({ value: value.number, prefix: <Icon type='arrow-up'/>, valueStyle: { color: '#cf1322' } })
     } else if (value.type === 'decrease') {

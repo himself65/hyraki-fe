@@ -1,17 +1,6 @@
 import React, { useState } from 'react'
 import { Avatar, List, Spin } from 'antd'
-
-export interface EmployeeBrieData {
-  shop: string
-  name: string
-  id: number
-  phone: number
-  position: string
-  identity: string
-  avatar: string
-  sex: string
-  remark: string
-}
+import { EmployeeBrieData } from '../../types/Employee'
 
 export interface Props {
   data: EmployeeBrieData[]
@@ -45,7 +34,7 @@ const EmployeeBriefList: React.FC<Props> = (props) => {
     >
       {loading && props.existData && (
         <div className='loading-container'>
-          <Spin />
+          <Spin/>
         </div>
       )}
     </List>
