@@ -135,6 +135,4 @@ app.get('/shop', (req, res) => {
   res.end()
 })
 
-app.listen(3001, () => {
-  console.log(`listen at http://localhost:3001`)
-})
+module.exports = app
