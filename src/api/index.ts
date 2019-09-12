@@ -36,4 +36,6 @@ axiosInstance.interceptors.response.use(
 
 export default axiosInstance
 export * from './dashboard'
+export * from './employee'
+export * from './shop'
 export * from './user'
