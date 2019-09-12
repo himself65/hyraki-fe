@@ -97,6 +97,20 @@ app.get('/employee', (req, res) => {
   res.end()
 })
 
+app.post('/employee', (req, res) => {
+  res.json({
+    message: '创建成功'
+  })
+  res.end()
+})
+
+app.delete('/employee', (req, res) => {
+  res.json({
+    message: '删除成功'
+  })
+  res.end()
+})
+
 app.listen(3001, () => {
   console.log(`listen at http://localhost:3001`)
 })
