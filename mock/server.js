@@ -96,7 +96,6 @@ app.get('/employee', (req, res) => {
       id: 761282619,
       phone: 1008611,
       position: 'boss',
-      identity: '',
       avatar: null,
       sex: '男',
       remark: 'none'
@@ -116,6 +115,23 @@ app.delete('/employee', (req, res) => {
   res.json({
     message: '删除成功'
   })
+  res.end()
+})
+
+app.get('/employee/position', (req, res) => {
+  res.json([
+    { id: 1, value: '高级员工' },
+    { id: 2, value: '普通员工' },
+    { id: 3, value: '其他' }
+  ])
+  res.end()
+})
+
+app.get('/shop', (req, res) => {
+  res.json([
+    { id: 1, name: '面包店' },
+    { id: 2, name: '超市' }
+  ])
   res.end()
 })
 
