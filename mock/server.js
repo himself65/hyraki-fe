@@ -119,11 +119,19 @@ app.delete('/employee', (req, res) => {
 })
 
 app.get('/employee/position', (req, res) => {
-  res.json([
-    { id: 1, value: '高级员工' },
-    { id: 2, value: '普通员工' },
-    { id: 3, value: '其他' }
-  ])
+  if (req.query['brief']) {
+    res.json([
+      { id: 1, value: '高级员工' },
+      { id: 2, value: '普通员工' },
+      { id: 3, value: '其他' }
+    ])
+  } else {
+    res.json([
+      { id: 1, value: '高级员工', count: 5 },
+      { id: 2, value: '普通员工', count: 10 },
+      { id: 3, value: '其他', count: 3 }
+    ])
+  }
   res.end()
 })
 

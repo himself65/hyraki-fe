@@ -1,6 +1,7 @@
 import React, { Fragment, useEffect, useState } from 'react'
 import { Button, Col, Modal, Row } from 'antd'
 import { Subject } from 'rxjs'
+import { Link } from 'react-router-dom'
 import { DefaultProps } from '../../../../types'
 import { getEmployeeList } from '../../../../api/employee'
 import EmployeeBriefList from '../../../../components/Employee/EmployeeBriefList'
@@ -32,6 +33,7 @@ const ManageContent: React.FC<DefaultProps> = () => {
               添加员工
             </Button>
             <Button>
+              <Link to='/dashboard/shop/employee/position'/>
               职位管理
             </Button>
             <Button>

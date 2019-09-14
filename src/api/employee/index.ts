@@ -18,6 +18,10 @@ export async function deleteEmployee (id: string | number) {
   })
 }
 
-export async function getEmployeePositions () {
-  return axiosInstance.get<EmployeePositionAPI>('/employee/position')
+export async function getEmployeePositions (brief: boolean = true) {
+  return axiosInstance.get<EmployeePositionAPI>('/employee/position', {
+    params: {
+      brief: brief
+    }
+  })
 }

@@ -44,7 +44,7 @@ export const AccessRequired = function (C: ComponentType<any>) {
         ? props.location.pathname
         : 'UNKNOWN'
     )
-    if (props.logout) {
+    if (props.logout && process.env.NODE_ENV === 'production') {
       // todo: ErrorView notice the message to user
       return (<Redirect to='/error'/>)
     } else {
