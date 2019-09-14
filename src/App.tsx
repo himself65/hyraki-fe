@@ -25,10 +25,6 @@ const RegisterView = asyncComponentFactory(() => import('./views/Register'))
 export const store = configStore()
 
 const App: React.FC = () => {
-  // fixme: abstract this check
-  if (localStorage.getItem('JWT_TOKEN')) {
-    store.dispatch(loginAction('已经登录'))
-  }
   return (
     <AsyncComponentProvider>
       <Provider store={store}>
