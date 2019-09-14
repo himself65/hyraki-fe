@@ -6,7 +6,6 @@ import { Redirect, Route, Switch } from 'react-router'
 import { BrowserRouter } from 'react-router-dom'
 import LoadingView from './views/Loading'
 import ErrorView from './views/Error'
-import { loginAction } from './store/action/user'
 
 // fixme: remove type any
 const asyncComponentFactory = (resolve: () => Promise<any>) =>
