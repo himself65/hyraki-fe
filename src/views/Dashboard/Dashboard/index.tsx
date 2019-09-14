@@ -8,7 +8,7 @@ import { HyContent, HyFooter, HyHeader } from '../../../components/Layout'
 import { BreadcrumbFactory } from '../../../utils/helpers'
 import { CommonBoard, TodayBoard, TodoBoard } from '../../../components/Dashboard'
 import { getDashboardData } from '../../../api/dashboard'
-import { TodayData } from '../../../components/Dashboard/TodayBoard'
+import { TodayData } from '../../../types/Dashboard'
 import { TodoData } from '../../../components/Dashboard/TodoBoard'
 import { Logger } from '../../../utils/debug'
 
@@ -88,7 +88,8 @@ const DashboardContent: React.FC<DefaultProps> = (props) => {
         <TodayBoard value={data.today}/>
         <ChartCard className='hy-card' style={{ marginTop: '1rem', width: '300px' }}
           total={data.trend ? data.trend.today : 0}
-          footer={<Field label='总销售额（月）' value={numeral(data.trend ? data.trend.all_sales : 0).format('0,0')}/>}
+          footer={<Field label='总销售额（月）'
+            value={numeral(data.trend ? data.trend.all_sales : 0).format('0,0')}/>}
           action={
             <Tooltip title='详细数据在数据中查看'>
               <Icon type='info-circle-o'/>
