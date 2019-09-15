@@ -97,7 +97,7 @@ app.get('/employee', (req, res) => {
       phone: 1008611,
       position: 'boss',
       avatar: null,
-      sex: '男',
+      gender: '男',
       remark: 'none'
     }
   ])

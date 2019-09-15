@@ -3,7 +3,6 @@ import { HyHeader, HyLayout } from '../../../components/Layout'
 import { Menu, Layout } from 'antd'
 import { Link, Route, Switch } from 'react-router-dom'
 import ManageContent from './Employee/manage'
-import PositionContent from './Employee/position'
 import { DefaultProps } from '../../../types'
 
 const { SubMenu } = Menu
@@ -51,7 +50,6 @@ const ShopContent: React.FC<DefaultProps> = (props) => {
           <Switch>
             <Route exact path='/dashboard/shop' component={OverviewContent}/>
             <Route path='/dashboard/shop/employee' component={ManageContent}/>
-            <Route path='/dashboard/shop/employee/position' component={PositionContent}/>
           </Switch>
         </Layout>
       </HyHeader>

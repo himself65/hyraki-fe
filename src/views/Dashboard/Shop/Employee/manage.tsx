@@ -1,15 +1,16 @@
 import React, { Fragment, useEffect, useState } from 'react'
-import { Button, Col, Modal, Row } from 'antd'
+import { Button, Col, Layout, Modal, Row } from 'antd'
 import { Subject } from 'rxjs'
-import { Link } from 'react-router-dom'
+import { Link, Route, Switch } from 'react-router-dom'
 import { DefaultProps } from '../../../../types'
 import { getEmployeeList } from '../../../../api/employee'
 import EmployeeBriefList from '../../../../components/Employee/EmployeeBriefList'
 import AddEmployeeForm from '../../../../components/Employee/AddEmployeeForm'
+import PositionContent from './position'
 
 const addEmployeeSubject = new Subject<boolean>()
 
-const ManageContent: React.FC<DefaultProps> = () => {
+const ManageContent: React.FC<DefaultProps> = (props) => {
   const [employeeData, setEmployeeData] = useState([])
   const [showAddEmployeeModal, setShowAddEmployeeModal] = useState(false)
   useEffect(() => {
@@ -32,8 +33,7 @@ const ManageContent: React.FC<DefaultProps> = () => {
             >
               添加员工
             </Button>
-            <Button>
-              <Link to='/dashboard/shop/employee/position'/>
+            <Button onClick={() => props.history.push('/dashboard/shop/employee/position')}>
               职位管理
             </Button>
             <Button>
@@ -42,24 +42,31 @@ const ManageContent: React.FC<DefaultProps> = () => {
           </Button.Group>
         </Col>
       </Row>
-      <Row>
-        <Modal
-          title='添加员工'
-          visible={showAddEmployeeModal}
-          onOk={() => {
-            addEmployeeSubject.next(true)
-          }}
-          onCancel={() => {
-            addEmployeeSubject.next(false)
-            setShowAddEmployeeModal(false)
-          }}
-        >
-          <AddEmployeeForm
-            subject={addEmployeeSubject}
-          />
-        </Modal>
-        <EmployeeBriefList data={employeeData} existData={false}/>
-      </Row>
+      <Layout>
+        <Switch>
+          <Route exact path='/dashboard/shop/employee' component={() => (
+            <Row>
+              <Modal
+                title='添加员工'
+                visible={showAddEmployeeModal}
+                onOk={() => {
+                  addEmployeeSubject.next(true)
+                }}
+                onCancel={() => {
+                  addEmployeeSubject.next(false)
+                  setShowAddEmployeeModal(false)
+                }}
+              >
+                <AddEmployeeForm
+                  subject={addEmployeeSubject}
+                />
+              </Modal>
+              <EmployeeBriefList data={employeeData} existData={false}/>
+            </Row>
+          )}/>
+          <Route path='/dashboard/shop/employee/position' component={PositionContent}/>
+        </Switch>
+      </Layout>
     </Fragment>
   )
 }

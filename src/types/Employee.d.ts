@@ -5,7 +5,7 @@ export interface EmployeeBrieData {
   phone: number
   position: string
   avatar: string
-  sex: string
+  gender: string
   remark: string
 }
 
