@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import { HyHeader, HyLayout } from '../../../components/Layout'
-import { Menu, Layout } from 'antd'
+import { HyContent, HyHeader, HyLayout } from '../../../components/Layout'
+import { Menu } from 'antd'
 import { Link, Route, Switch } from 'react-router-dom'
 import ManageContent from './Employee/manage'
 import { DefaultProps } from '../../../types'
@@ -46,13 +46,13 @@ const ShopContent: React.FC<DefaultProps> = (props) => {
             </Menu.Item>
           </SubMenu>
         </Menu>
-        <Layout>
-          <Switch>
-            <Route exact path='/dashboard/shop' component={OverviewContent}/>
-            <Route path='/dashboard/shop/employee' component={ManageContent}/>
-          </Switch>
-        </Layout>
       </HyHeader>
+      <HyContent style={{ margin: '0.5rem 1rem' }}>
+        <Switch>
+          <Route exact path='/dashboard/shop' component={OverviewContent}/>
+          <Route path='/dashboard/shop/employee' component={ManageContent}/>
+        </Switch>
+      </HyContent>
     </HyLayout>
   )
 }
