@@ -43,24 +43,24 @@ const ManageContent: React.FC<DefaultProps> = (props) => {
         </Col>
       </Row>
       <Layout>
+        <Modal
+          title='添加员工'
+          visible={showAddEmployeeModal}
+          onOk={() => {
+            addEmployeeSubject.next(true)
+          }}
+          onCancel={() => {
+            addEmployeeSubject.next(false)
+            setShowAddEmployeeModal(false)
+          }}
+        >
+          <AddEmployeeForm
+            subject={addEmployeeSubject}
+          />
+        </Modal>
         <Switch>
           <Route exact path='/dashboard/shop/employee' component={() => (
             <Row>
-              <Modal
-                title='添加员工'
-                visible={showAddEmployeeModal}
-                onOk={() => {
-                  addEmployeeSubject.next(true)
-                }}
-                onCancel={() => {
-                  addEmployeeSubject.next(false)
-                  setShowAddEmployeeModal(false)
-                }}
-              >
-                <AddEmployeeForm
-                  subject={addEmployeeSubject}
-                />
-              </Modal>
               <EmployeeBriefList data={employeeData} existData={false}/>
             </Row>
           )}/>
