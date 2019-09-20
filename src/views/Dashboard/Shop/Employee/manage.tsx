@@ -8,9 +8,8 @@ import EmployeeBriefList from '../../../../components/Employee/EmployeeBriefList
 import AddEmployeeForm from '../../../../components/Employee/AddEmployeeForm'
 import PositionContent from './position'
 
-const addEmployeeSubject = new Subject<boolean>()
-
 const ManageContent: React.FC<DefaultProps> = (props) => {
+  const addEmployeeSubject = new Subject<boolean>()
   const [employeeData, setEmployeeData] = useState([])
   const [showAddEmployeeModal, setShowAddEmployeeModal] = useState(false)
   const EmployeeBrief: React.FC = useCallback(() => (
