@@ -5,6 +5,7 @@ import { Button, Card, Menu, Modal } from 'antd'
 import { Link, Route, Switch } from 'react-router-dom'
 import AddDateForm from '../../../components/Date/AddDateForm'
 import { Subject } from 'rxjs'
+import DateSettingsContent from './settings'
 
 const DateOverView: React.FC<DefaultProps> = (props) => {
   const subject = new Subject<boolean>()
@@ -47,7 +48,8 @@ const DateContent: React.FC<DefaultProps> = (props) => {
       <HyContent style={{ margin: '0.5rem 1rem' }}>
         <Switch>
           <Route exact path='/dashboard/date' component={DateOverView}/>
-          <Route path='/dashboard/settings'/>
+          {/* fixme: 将此Route迁移到 'views/dashboard/Settings' 文件夹下 */}
+          <Route path='/dashboard/date/settings' component={DateSettingsContent}/>
         </Switch>
       </HyContent>
     </HyLayout>

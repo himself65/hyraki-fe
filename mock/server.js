@@ -143,4 +143,19 @@ app.get('/shop', (req, res) => {
   res.end()
 })
 
+app.get('/settings', (req, res) => {
+  // 查询预约（Date）的相关设置
+  if (req.query['type'] === 'date') {
+    // 通过 shop 字段查询
+    // 例如 POST /settings?type=date&shop=10086
+    // 则查询key为10086的店铺设置
+    res.json({
+
+    })
+  } else {
+    res.status(404)
+  }
+  res.end()
+})
+
 module.exports = app
