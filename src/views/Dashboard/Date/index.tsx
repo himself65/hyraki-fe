@@ -26,7 +26,9 @@ const DateOverView: React.FC<DefaultProps> = (props) => {
 }
 
 const DateContent: React.FC<DefaultProps> = (props) => {
-  const [selected, setSelected] = useState<string>('1')
+  const [selected, setSelected] = useState<string>(
+    props.location.pathname === '/dashboard/date' ? '1' : '2'
+  )
 
   return (
     <HyLayout>
