@@ -23,6 +23,15 @@ steps:
       restore: true
       mount:
         - ./node_modules
+  - name: rebuild-cache
+    image: drillster/drone-volume-cache
+    volumes:
+      - name: cache
+        path: /cache
+    settings:
+      rebuild: true
+      mount:
+        - ./node_modules
   - name: lint
     image: node
     commands:
@@ -34,15 +43,17 @@ steps:
         path: /cache
     commands:
       - yarn test
-  - name: rebuild-cache
-    image: drillster/drone-volume-cache
+  - name: build
+    image: node
     volumes:
       - name: cache
         path: /cache
-    settings:
-      rebuild: true
-      mount:
-        - ./node_modules
+    commands:
+      - yarn build
+  - name: deploy
+    image: dockito/lftp-client
+    commands:
+      - lftp -u $FTP_USER,$FTP_PASSWD -e 'mirror -R dist hyraki-fe; exit' 58.218.209.199
 
 volumes:
   - name: cache
