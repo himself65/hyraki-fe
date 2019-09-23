@@ -64,7 +64,7 @@ const AddDateForm: React.FC<Props> = (props) => {
           ]
         })(
           <Select onSelect={async (v) => {
-            await getAllShopServe(v).then(res => {
+            await getAllShopServe(v as string).then(res => {
               if (res.status === 200) {
                 setServes(res.data)
               }
