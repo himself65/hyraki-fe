@@ -4,3 +4,11 @@ export interface Shop {
 }
 
 export type ShopListAPI = Shop[]
+
+export interface Serve {
+  id: string
+  name: string
+  price: number
+}
+
+export type ServeListAPI = Serve[]

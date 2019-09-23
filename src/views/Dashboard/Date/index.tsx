@@ -1,4 +1,4 @@
-import React, { useState, Fragment } from 'react'
+import React, { useState, Fragment, useRef } from 'react'
 import { DefaultProps } from '../../../types'
 import { HyContent, HyHeader, HyLayout } from '../../../components/Layout'
 import { Button, Card, Menu, Modal } from 'antd'
@@ -8,7 +8,7 @@ import { Subject } from 'rxjs'
 import DateSettingsContent from './settings'
 
 const DateOverView: React.FC<DefaultProps> = (props) => {
-  const subject = new Subject<boolean>()
+  const subject = useRef(new Subject<boolean>())
   const [showAddDateModal, setShowAddDateModal] = useState<boolean>(false)
   return (
     <Fragment>
@@ -18,6 +18,13 @@ const DateOverView: React.FC<DefaultProps> = (props) => {
       <Modal
         title='新建预约'
         visible={showAddDateModal}
+        onOk={() => {
+          subject.current.next(true)
+        }}
+        onCancel={() => {
+          subject.current.next(false)
+          setShowAddDateModal(false)
+        }}
       >
         <AddDateForm subject={subject}/>
       </Modal>
