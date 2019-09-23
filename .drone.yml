@@ -49,7 +49,7 @@ steps:
       - name: cache
         path: /cache
     commands:
-      - yarn build:test
+      - yarn build
   - name: deploy
     image: dockito/lftp-client
     commands:
