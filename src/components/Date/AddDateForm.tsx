@@ -18,19 +18,9 @@ declare module 'antd/lib/select' {
 
 // todo: finish Form.Item
 const AddDateForm: React.FC<Props> = (props) => {
+  const [selectedShop, setSelectedShop] = useState<boolean>(false) // 是否已经选择了 shop
   const [serves, setServes] = useState<Serve[]>([])
-  const [shops, setShops] = useFetch<Shop[]>(
-    async () => getAllShopList().then(res => {
-      res.status === 200 && getAllShopServe(res.data[0].id).then(res => {
-        if (res.status === 200) {
-          setServes(res.data)
-        }
-        // todo: add error logs
-      }) // 默认读取第一个店铺的服务清单
-      return res
-    }),
-    []
-  )
+  const [shops] = useFetch<Shop[]>(getAllShopList, [])
   const { getFieldDecorator, validateFields } = props.form
   return (
     <Form layout='vertical'>
@@ -67,6 +57,7 @@ const AddDateForm: React.FC<Props> = (props) => {
             await getAllShopServe(v as string).then(res => {
               if (res.status === 200) {
                 setServes(res.data)
+                !selectedShop && setSelectedShop(true)
               }
               // todo: add error logs
               // fixme: 获取后删除 serves 菜单，缓存保存到 LocalStorage
@@ -77,15 +68,16 @@ const AddDateForm: React.FC<Props> = (props) => {
         )}
       </Form.Item>
       <Form.Item label='服务及手艺人'>
-        {getFieldDecorator('serves', {
-          rules: [
-            {
-              required: true,
-              message: '请选择服务及手艺人'
+        {getFieldDecorator('serves')(
+          <Select
+            mode='tags'
+            disabled={!selectedShop}
+            optionLabelProp='label'
+            notFoundContent='该店铺未找到服务'
+            placeholder={
+              !selectedShop ? '请先选择店铺' : '选择需要的服务'
             }
-          ]
-        })(
-          <Select mode='tags' optionLabelProp='label'>
+          >
             {serves.map(v => (<Select.Option key={v.id} label={v.name}>{v.name} {v.price}</Select.Option>))}
           </Select>
         )}
