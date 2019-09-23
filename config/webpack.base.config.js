@@ -155,19 +155,7 @@ exports.config = {
     // having to parse `index.html`.
     new ManifestPlugin({
       fileName: 'manifest.json',
-      publicPath: '/',
-      generate: (seed, files) => {
-        const manifestFiles = files.reduce(function (manifest, file) {
-          if (/service-worker/.test(file)) return manifest
-          manifest[file.name] = file.path
-          return manifest
-        }, seed)
-
-        return {
-          ...require('../public/manifest'),
-          files: manifestFiles
-        }
-      }
+      publicPath: '/'
     }),
     new CopyPlugin([{
       from: resolve(__dirname, '..', 'public'),
