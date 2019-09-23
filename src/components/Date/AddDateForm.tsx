@@ -16,7 +16,6 @@ declare module 'antd/lib/select' {
   }
 }
 
-// todo: finish Form.Item
 const AddDateForm: React.FC<Props> = (props) => {
   const [selectedShop, setSelectedShop] = useState<boolean>(false) // 是否已经选择了 shop
   const [serves, setServes] = useState<Serve[]>([])
