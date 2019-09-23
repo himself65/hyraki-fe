@@ -18,6 +18,7 @@ const ModuleNotFoundPlugin = require('react-dev-utils/ModuleNotFoundPlugin')
 const WatchMissingNodeModulesPlugin = require('react-dev-utils/WatchMissingNodeModulesPlugin')
 
 const isProd = process.env.NODE_ENV === 'production'
+const isTest = process.env.NODE_ENV === 'test'
 const extractCSS = isProd || process.env.TARGET === 'development'
 
 const cssLoaders = [
@@ -157,6 +158,7 @@ exports.config = {
       publicPath: '/',
       generate: (seed, files) => {
         const manifestFiles = files.reduce(function (manifest, file) {
+          if (/service-worker/.test(file)) return manifest
           manifest[file.name] = file.path
           return manifest
         }, seed)
