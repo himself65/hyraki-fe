@@ -1,4 +1,4 @@
-import React, { Fragment, useCallback, useEffect, useState } from 'react'
+import React, { Fragment, useCallback, useEffect, useRef, useState } from 'react'
 import { Button, Col, Layout, Modal, Row } from 'antd'
 import { Subject } from 'rxjs'
 import { Route, Switch } from 'react-router-dom'
@@ -9,7 +9,7 @@ import AddEmployeeForm from '../../../../components/Employee/AddEmployeeForm'
 import PositionContent from './position'
 
 const ManageContent: React.FC<DefaultProps> = (props) => {
-  const addEmployeeSubject = new Subject<boolean>()
+  const addEmployeeSubject = useRef(new Subject<boolean>())
   const [employeeData, setEmployeeData] = useState([])
   const [showAddEmployeeModal, setShowAddEmployeeModal] = useState(false)
   const EmployeeBrief: React.FC = useCallback(() => (
@@ -55,10 +55,10 @@ const ManageContent: React.FC<DefaultProps> = (props) => {
         title='添加员工'
         visible={showAddEmployeeModal}
         onOk={() => {
-          addEmployeeSubject.next(true)
+          addEmployeeSubject.current.next(true)
         }}
         onCancel={() => {
-          addEmployeeSubject.next(false)
+          addEmployeeSubject.current.next(false)
           setShowAddEmployeeModal(false)
         }}
       >

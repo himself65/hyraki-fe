@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { MutableRefObject, useCallback, useEffect, useState } from 'react'
 import { Form, Input, Radio, Select } from 'antd'
 import { FormComponentProps } from 'antd/es/form'
 import { Subject } from 'rxjs'
@@ -9,7 +9,7 @@ import { getAllShopList } from '../../api/shop'
 import { Shop } from '../../types/Shop'
 
 interface Props extends FormComponentProps {
-  subject: Subject<boolean>
+  subject: MutableRefObject<Subject<boolean>>
 }
 
 const AddEmployeeForm: React.FC<Props> = (props) => {
@@ -33,9 +33,9 @@ const AddEmployeeForm: React.FC<Props> = (props) => {
   }, [])
 
   useEffect(() => {
-    props.subject.subscribe(subscriber)
+    props.subject.current.subscribe(subscriber)
     return function cleanup () {
-      props.subject.unsubscribe()
+      props.subject.current.unsubscribe()
     }
   }, [])
   useEffect(() => {
