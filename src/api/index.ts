@@ -5,7 +5,9 @@ import { Logger } from '../utils/debug'
 export const axiosInstance = Axios.create({
   baseURL: process.env.NODE_ENV === 'development'
     ? 'http://localhost:3001'
-    : 'https://api.jzmin.top/', // fixme: api.jzmin.top will be replaced
+    : process.env.NODE_ENV === 'test'
+      ? 'http://localhost:4000'
+      : 'https://api.jzmin.top/', // fixme: api.jzmin.top will be replaced
   timeout: 1000
 })
 
@@ -13,6 +15,8 @@ axiosInstance.interceptors.request.use(config => {
   const token = localStorage.getItem('JWT_TOKEN')
   if (token) {
     config.headers.Authorization = `Bearer ${token}`
+  } else {
+    store.dispatch({ type: 'LOG_OUT' })
   }
   return config
 }, error => Promise.reject(error))
@@ -32,4 +36,6 @@ axiosInstance.interceptors.response.use(
 
 export default axiosInstance
 export * from './dashboard'
+export * from './employee'
+export * from './shop'
 export * from './user'

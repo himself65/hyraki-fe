@@ -8,6 +8,8 @@ import './DashboardView.less'
 import DashboardContent, { Footer } from './Dashboard'
 import DateContent from './Date'
 import ClientContent from './Client'
+import ShopContent from './Shop'
+import { AccessRequired } from '../../utils/helpers'
 
 const DashboardView: React.FC<DefaultProps> = (props) => {
   let selectedKey = '/dashboard'
@@ -90,6 +92,7 @@ const DashboardView: React.FC<DefaultProps> = (props) => {
           <Route exact path='/dashboard' component={DashboardContent}/>
           <Route path='/dashboard/date' component={DateContent}/>
           <Route path='/dashboard/client' component={ClientContent}/>
+          <Route path='/dashboard/shop' component={ShopContent}/>
         </Switch>
         {Footer ? <Footer/> : <HyFooter/>}
       </Layout>
@@ -97,4 +100,4 @@ const DashboardView: React.FC<DefaultProps> = (props) => {
   )
 }
 
-export default DashboardView
+export default AccessRequired(DashboardView)

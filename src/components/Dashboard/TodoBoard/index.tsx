@@ -1,7 +1,6 @@
 import React from 'react'
 import { Card, Statistic } from 'antd'
 import { TextAlignProperty } from 'csstype'
-import { DefaultProps } from '../../../types'
 import { Link } from 'react-router-dom'
 
 const todoGridStyle = {
@@ -19,7 +18,7 @@ export interface TodoData {
   review: number
 }
 
-export interface Props extends DefaultProps {
+export interface Props {
   value?: TodoData
 }
 

@@ -31,6 +31,7 @@ module.exports = merge(baseWebpackConfig, {
       id: 'scripts',
       threadPool: happyThreadPool,
       loaders: [
+        'cache-loader',
         'babel-loader',
         {
           loader: 'ts-loader',

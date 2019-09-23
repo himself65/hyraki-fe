@@ -24,6 +24,10 @@ app.all('*', function (req, res, next) {
   }
 })
 
+/**
+ * 用户（user）相关
+ **/
+
 app.post('/user/login', (req, res) => {
   const { username, password } = req.body
   console.log(req.body)
@@ -80,6 +84,90 @@ app.get('/dashboard', (req, res) => {
   res.end()
 })
 
-app.listen(3001, () => {
-  console.log(`listen at http://localhost:3001`)
+/**
+ * 员工（Employee）的删查增改
+ **/
+
+app.get('/employee', (req, res) => {
+  res.json([
+    {
+      shop: '主店铺',
+      name: '甜面包',
+      id: 761282619,
+      phone: 1008611,
+      position: 'boss',
+      avatar: null,
+      gender: '男',
+      remark: 'none'
+    }
+  ])
+  res.end()
 })
+
+app.post('/employee', (req, res) => {
+  res.json({
+    message: '创建成功'
+  })
+  res.end()
+})
+
+app.delete('/employee', (req, res) => {
+  res.json({
+    message: '删除成功'
+  })
+  res.end()
+})
+
+app.get('/employee/position', (req, res) => {
+  if (req.query['brief']) {
+    res.json([
+      { id: 1, value: '高级员工' },
+      { id: 2, value: '普通员工' },
+      { id: 3, value: '其他' }
+    ])
+  } else {
+    res.json([
+      { id: 1, value: '高级员工', count: 5 },
+      { id: 2, value: '普通员工', count: 10 },
+      { id: 3, value: '其他', count: 3 }
+    ])
+  }
+  res.end()
+})
+
+app.get('/shop', (req, res) => {
+  res.json([
+    { id: 1, name: '面包店' },
+    { id: 2, name: '超市' }
+  ])
+  res.end()
+})
+
+app.get('/shop/serve', (req, res) => {
+  // 根据 query 中的 id 决定返回内容
+  // '/shop/serve?id=10086'
+  // 则查找店铺名称10086的服务（或者说商品）
+  res.json([
+    { id: '1', name: '面包', price: 10 },
+    { id: '3', name: '甜筒', price: random(100) },
+    { id: '2', name: '圣代', price: random(100) }
+  ])
+  res.end()
+})
+
+app.get('/settings', (req, res) => {
+  // 查询预约（Date）的相关设置
+  if (req.query['type'] === 'date') {
+    // 通过 shop 字段查询
+    // 例如 POST /settings?type=date&shop=10086
+    // 则查询key为10086的店铺设置
+    res.json({
+
+    })
+  } else {
+    res.status(404)
+  }
+  res.end()
+})
+
+module.exports = app

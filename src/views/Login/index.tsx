@@ -1,8 +1,8 @@
-import React, { useState, useEffect, Fragment } from 'react'
-import { Button, Col, Layout, Menu, Row, Icon, Input, message } from 'antd'
+import React, { useState } from 'react'
+import { Button, Col, Icon, Layout, Menu, Row } from 'antd'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
-import { HyContent, HyLayout, HyFooter, HySidebar, HyHeader } from '../../components/Layout'
+import { HyContent, HyFooter, HyHeader, HyLayout, HySidebar } from '../../components/Layout'
 import LoginBoard from '../../components/LoginBoard'
 import { loginAction, logoutAction } from '../../store/action/user'
 import './LoginView.less'
@@ -10,9 +10,13 @@ import { DefaultProps, IState } from '../../types'
 
 interface LoginViewProps extends DefaultProps {
   loginMessage?: string
+  logout: boolean
 }
 
 const LoginView: React.FC<LoginViewProps> = (props) => {
+  if (!props.logout) {
+    props.history.push('/dashboard')
+  }
   const [loginBoard, setLoginBoard] = useState(false)
   return (
     <HyLayout className='login-view'>
@@ -57,12 +61,12 @@ const LoginView: React.FC<LoginViewProps> = (props) => {
                       type='link'
                     >
                       <Icon type='user'/>
-                  登录
+                      登录
                     </Button>
                   </Col>
                   <Col>
                     <Button size='large'>
-                  注册
+                      注册
                     </Button>
                   </Col>
                 </Row>
@@ -74,7 +78,7 @@ const LoginView: React.FC<LoginViewProps> = (props) => {
         <HyContent>
           Todo
         </HyContent>
-        <HyFooter />
+        <HyFooter/>
       </Layout>
     </HyLayout>
   )
@@ -84,7 +88,7 @@ LoginView.propTypes = {
   loginMessage: PropTypes.string
 }
 
-const mapStateToProps = (state: IState) => ({ loginMessage: state.user.loginMessage })
+const mapStateToProps = (state: IState) => ({ logout: state.user.logout, loginMessage: state.user.loginMessage })
 const mapDispatchToProps = { loginAction, logoutAction }
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginView)

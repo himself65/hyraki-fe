@@ -1,6 +1,6 @@
-import axiosInstance from '.'
-import { store } from '../App'
-import { loginAction } from '../store/action/user'
+import axiosInstance from '../index'
+import { store } from '../../App'
+import { loginAction } from '../../store/action/user'
 
 export async function login (username: string, password: string) {
   return axiosInstance.post('/user/login', {
