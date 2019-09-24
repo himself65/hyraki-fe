@@ -2,11 +2,11 @@ import React, { useCallback, useEffect, useState } from 'react'
 import { Card, Layout, List, Select, Skeleton } from 'antd'
 import { getAllShopList, getPositionList } from '../../../../api/shop'
 import { Shop } from '../../../../types/Shop'
-import { EmployeePosition } from '../../../../types/Employee'
+import { WorkerPosition } from '../../../../types/Worker'
 
 const PositionContent: React.FC = () => {
   const [shops, setShops] = useState<Shop[]>([])
-  const [positions, setPositions] = useState<EmployeePosition[]>([])
+  const [positions, setPositions] = useState<WorkerPosition[]>([])
   const fetchPositionList = useCallback(async (shopID: string) => {
     await getPositionList(shopID).then(res => {
       if (res.status === 200) {
@@ -42,7 +42,7 @@ const PositionContent: React.FC = () => {
           loading={false}
           itemLayout='horizontal'
           dataSource={positions}
-          renderItem={(item: EmployeePosition) => (
+          renderItem={(item: WorkerPosition) => (
             <List.Item
               actions={[<a key='list-loadmore-edit'>编辑</a>]}
             >

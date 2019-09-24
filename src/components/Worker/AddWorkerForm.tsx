@@ -3,8 +3,8 @@ import { Form, Input, Radio, Select } from 'antd'
 import { FormComponentProps } from 'antd/es/form'
 import { Subject } from 'rxjs'
 import { Logger } from '../../utils/debug'
-import { getEmployeePositions } from '../../api/employee'
-import { EmployeePosition } from '../../types/Employee'
+import { getWorkerPositions } from '../../api/worker'
+import { WorkerPosition } from '../../types/Worker'
 import { getAllShopList } from '../../api/shop'
 import { Shop } from '../../types/Shop'
 
@@ -12,9 +12,9 @@ interface Props extends FormComponentProps {
   subject: MutableRefObject<Subject<boolean>>
 }
 
-const AddEmployeeForm: React.FC<Props> = (props) => {
+const AddWorkerForm: React.FC<Props> = (props) => {
   const { getFieldDecorator, validateFields } = props.form
-  const [positionList, setPositionList] = useState<EmployeePosition[]>([])
+  const [positionList, setPositionList] = useState<WorkerPosition[]>([])
   const [shopList, setShopList] = useState<Shop[]>([])
 
   const subscriber = useCallback((ok: boolean) => {
@@ -25,7 +25,7 @@ const AddEmployeeForm: React.FC<Props> = (props) => {
   const checkFinished = useCallback(() => {
     validateFields((err, val) => {
       if (err) {
-        Logger('A error occur on AddEmployeeForm: ', err)
+        Logger('A error occur on AddWorkerForm: ', err)
       } else {
         Logger(val)
       }
@@ -40,7 +40,7 @@ const AddEmployeeForm: React.FC<Props> = (props) => {
   }, [])
   useEffect(() => {
     const fetchData = async () => {
-      await getEmployeePositions().then(res => {
+      await getWorkerPositions().then(res => {
         if (res.status === 200) {
           setPositionList(res.data)
         }
@@ -139,4 +139,4 @@ const AddEmployeeForm: React.FC<Props> = (props) => {
   )
 }
 
-export default Form.create<Props>({ name: 'addEmployee' })(AddEmployeeForm)
+export default Form.create<Props>({ name: 'addWorker' })(AddWorkerForm)

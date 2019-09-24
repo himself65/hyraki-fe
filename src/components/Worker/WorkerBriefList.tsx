@@ -1,13 +1,13 @@
 import React, { useState } from 'react'
 import { Avatar, List, Spin } from 'antd'
-import { EmployeeBrieData } from '../../types/Employee'
+import { WorkerBrieData } from '../../types/Worker'
 
 export interface Props {
-  data: EmployeeBrieData[]
+  data: WorkerBrieData[]
   existData: boolean
 }
 
-const EmployeeBriefList: React.FC<Props> = (props) => {
+const WorkerBriefList: React.FC<Props> = (props) => {
   const [loading, setLoading] = useState(false)
   // fixme: title href
   return (
@@ -41,4 +41,4 @@ const EmployeeBriefList: React.FC<Props> = (props) => {
   )
 }
 
-export default EmployeeBriefList
+export default WorkerBriefList

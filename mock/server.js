@@ -85,10 +85,10 @@ app.get('/dashboard', (req, res) => {
 })
 
 /**
- * 员工（Employee）的删查增改
+ * 员工（Worker）的删查增改
  **/
 
-app.get('/employee', (req, res) => {
+app.get('/worker', (req, res) => {
   res.json([
     {
       shop: '主店铺',
@@ -104,21 +104,21 @@ app.get('/employee', (req, res) => {
   res.end()
 })
 
-app.post('/employee', (req, res) => {
+app.post('/worker', (req, res) => {
   res.json({
     message: '创建成功'
   })
   res.end()
 })
 
-app.delete('/employee', (req, res) => {
+app.delete('/worker', (req, res) => {
   res.json({
     message: '删除成功'
   })
   res.end()
 })
 
-app.get('/employee/position', (req, res) => {
+app.get('/worker/position', (req, res) => {
   if (req.query['brief']) {
     res.json([
       { id: 1, value: '高级员工' },

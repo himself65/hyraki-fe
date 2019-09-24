@@ -1,4 +1,4 @@
-export interface EmployeeBrieData {
+export interface WorkerBrieData {
   shop: string
   name: string
   id: number
@@ -9,9 +9,9 @@ export interface EmployeeBrieData {
   remark: string
 }
 
-export interface EmployeePosition {
+export interface WorkerPosition {
   id: string,
   value: string
 }
 
-export type EmployeePositionAPI = EmployeePosition[]
+export type WorkerPositionAPI = WorkerPosition[]
