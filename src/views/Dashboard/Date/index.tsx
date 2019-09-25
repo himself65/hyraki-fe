@@ -6,14 +6,18 @@ import { Link, Route, Switch } from 'react-router-dom'
 import AddDateForm from '../../../components/Date/AddDateForm'
 import { Subject } from 'rxjs'
 import DateSettingsContent from './settings'
+import DatingCalendar from '../../../components/Date/DatingCalendar'
 
 const DateOverView: React.FC<DefaultProps> = (props) => {
   const subject = useRef(new Subject<boolean>())
   const [showAddDateModal, setShowAddDateModal] = useState<boolean>(false)
   return (
     <Fragment>
-      <Card>
+      <Card className='hy-card'>
         <Button type='primary' onClick={() => setShowAddDateModal(true)}>添加预约</Button>
+      </Card>
+      <Card className='hy-card' style={{ marginTop: '1rem' }} title='预览图'>
+        <DatingCalendar/>
       </Card>
       <Modal
         title='新建预约'
