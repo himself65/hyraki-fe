@@ -77,7 +77,7 @@ const AddDateForm: React.FC<Props> = (props) => {
               !selectedShop ? '请先选择店铺' : '选择需要的服务'
             }
           >
-            {serves.map(v => (<Select.Option key={v.id} label={v.name}>{v.name} {v.price}</Select.Option>))}
+            {serves.map(v => (<Select.Option key={v.id} label={v.name}>{v.name}</Select.Option>))}
           </Select>
         )}
       </Form.Item>
