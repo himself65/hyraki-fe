@@ -67,6 +67,7 @@ const AddDateForm: React.FC<Props> = (props) => {
         )}
       </Form.Item>
       <Form.Item label='服务及手艺人'>
+        {/* todo: 改成 Table 组件 */}
         {getFieldDecorator('serves')(
           <Select
             mode='tags'
