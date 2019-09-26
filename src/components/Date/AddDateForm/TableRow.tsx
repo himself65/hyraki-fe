@@ -14,7 +14,7 @@ const TableRow: React.FC<PropsWithChildren<{
 }>> = (props) => {
   const isEdit = props.edit
   return (
-    <div></div>
+    <div/>
   )
 }
 

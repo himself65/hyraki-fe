@@ -70,17 +70,7 @@ const AddDateForm: React.FC<Props> = (props) => {
       <Form.Item label='服务及手艺人'>
         {/* todo: 改成 Table 组件 */}
         {getFieldDecorator('serves')(
-          <Select
-            mode='tags'
-            disabled={!selectedShop}
-            optionLabelProp='label'
-            notFoundContent='该店铺未找到服务'
-            placeholder={
-              !selectedShop ? '请先选择店铺' : '选择需要的服务'
-            }
-          >
-            {<ServesTable serves={serves}/>}
-          </Select>
+          <ServesTable disabled={!selectedShop} serves={serves}/>
         )}
       </Form.Item>
       <Form.Item label='到店时间'>

@@ -3,8 +3,10 @@ import { Button, Form, Select, Table } from 'antd'
 import { Serve } from '../../../types/Shop'
 import TableRow from './TableRow'
 import { FormComponentProps } from 'antd/es/form'
+import { Logger } from '../../../utils/debug'
 
 interface Props extends FormComponentProps {
+  disabled: boolean
   serves: Serve[]
 }
 
@@ -13,24 +15,46 @@ const filterNames = (serves: Serve[]) => serves.map(v => v.name).sort()
 const ServesTable: React.FC<Props> = (props) => {
   const form = props.form
   const [orderedServes, setOrderedServes] = useState<Serve[]>([])
-  const [options, setOptions] = useState<string[]>([])
-  const serveNames = useMemo(() => filterNames(props.serves), [props.serves])
+  const serveNames: string[] = useMemo(() => filterNames(props.serves), [props.serves])
+  const nonOrderedServes: Serve[] = useMemo(() =>
+    props.serves.filter(v => !orderedServes.includes(v)),
+  [orderedServes, props.serves])
   // todo: 添加自动 Search 的方法
   return (
     <div>
       <Select
         showSearch
-        placeholder='搜索需要输入的服务'
-        onChange={value => {
-          // todo: 添加到 Table 中
+        disabled={props.disabled}
+        mode='multiple'
+        value={orderedServes.map(v => v.name)}
+        placeholder={props.disabled ? '请先选择店铺' : '搜索需要输入的服务'}
+        onSelect={(value: string) => {
+          // tip: Select 控件添加Serve时候调用
+          const v = props.serves.find(e => e.id === value)
+          if (v) {
+            setOrderedServes([...orderedServes, v])
+            Logger('ServesTables select serve:', v)
+          }
+        }}
+        onDeselect={(value: string) => {
+          // tip: Select 控件删除Serve时候调用
+          const idx = orderedServes.findIndex(v => v.name === value)
+          if (idx !== -1) {
+            setOrderedServes([
+              ...orderedServes.slice(0, idx),
+              ...orderedServes.slice(idx + 1, orderedServes.length)
+            ])
+            Logger('ServesTables remove serve:', orderedServes[idx])
+          }
         }}
         filterOption={(input, option) =>
           (option.props.children! as string)
             .toLowerCase().indexOf(input.toLowerCase()) >= 0
         }>
-        {options.map(v => (<div/>))}
+        {nonOrderedServes.map(v => (<Select.Option key={v.id} value={v.id}>{v.name}</Select.Option>))}
       </Select>
       <Table
+        style={{ marginTop: '0.2rem' }}
         bordered
         components={{
           body: {
