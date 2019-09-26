@@ -5,6 +5,7 @@ import { Subject } from 'rxjs'
 import { useFetch } from '../../../utils/hooks'
 import { getAllShopList, getAllShopServe } from '../../../api/shop'
 import { Serve, ServeListAPI, Shop } from '../../../types/Shop'
+import ServesTable from './ServesTable'
 
 export interface Props extends FormComponentProps {
   subject: MutableRefObject<Subject<boolean>>
@@ -78,7 +79,7 @@ const AddDateForm: React.FC<Props> = (props) => {
               !selectedShop ? '请先选择店铺' : '选择需要的服务'
             }
           >
-            {serves.map(v => (<Select.Option key={v.id} label={v.name}>{v.name}</Select.Option>))}
+            {<ServesTable serves={serves}/>}
           </Select>
         )}
       </Form.Item>
