@@ -68,7 +68,7 @@ const ServesTable: React.FC<Props> = (props) => {
       <Table
         style={{ marginTop: '0.2rem' }}
         bordered
-        dataSource={orderedServes}
+        dataSource={dataSources}
         columns={[
           {
             title: '名称',
@@ -79,8 +79,8 @@ const ServesTable: React.FC<Props> = (props) => {
             title: '价格',
             dataIndex: 'cost',
             key: 'cost',
-            render: (func: () => number) => {
-              return func()
+            render: (func: () => number, record: ServeDetail) => {
+              return func.call(record)
             }
           },
           {
