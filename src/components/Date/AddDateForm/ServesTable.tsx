@@ -24,13 +24,13 @@ const ServesTable: React.FC<Props> = (props) => {
   const nonOrderedServes: Serve[] = useMemo(() =>
     props.serves.filter(v => !orderedServes.includes(v)),
   [orderedServes, props.serves])
-  const dataSources: ServeDetail[] = useMemo(() => nonOrderedServes.map((v: Serve) => ({
+  const dataSources: ServeDetail[] = useMemo(() => orderedServes.map((v: Serve) => ({
     ...v,
     count: 1,
     cost: function (this: ServeDetail): number {
       return this.count * this.price
     }
-  })), [nonOrderedServes])
+  })), [orderedServes])
   // todo: 添加自动 Search 的方法
   return (
     <div>
@@ -91,7 +91,7 @@ const ServesTable: React.FC<Props> = (props) => {
         ]}
         components={{
           body: {
-            cell: TableRow
+            row: TableRow
           }
         }}
       />
