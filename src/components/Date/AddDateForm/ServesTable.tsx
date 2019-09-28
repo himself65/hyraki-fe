@@ -10,6 +10,11 @@ interface Props extends FormComponentProps {
   serves: Serve[]
 }
 
+export interface ServeDetail extends Serve {
+  count: number,
+  cost: (this: ServeDetail) => number
+}
+
 const filterNames = (serves: Serve[]) => serves.map(v => v.name).sort()
 
 const ServesTable: React.FC<Props> = (props) => {
@@ -19,6 +24,13 @@ const ServesTable: React.FC<Props> = (props) => {
   const nonOrderedServes: Serve[] = useMemo(() =>
     props.serves.filter(v => !orderedServes.includes(v)),
   [orderedServes, props.serves])
+  const dataSources: ServeDetail[] = useMemo(() => nonOrderedServes.map((v: Serve) => ({
+    ...v,
+    count: 1,
+    cost: function (this: ServeDetail): number {
+      return this.count * this.price
+    }
+  })), [nonOrderedServes])
   // todo: 添加自动 Search 的方法
   return (
     <div>
@@ -56,6 +68,27 @@ const ServesTable: React.FC<Props> = (props) => {
       <Table
         style={{ marginTop: '0.2rem' }}
         bordered
+        dataSource={orderedServes}
+        columns={[
+          {
+            title: '名称',
+            dataIndex: 'name',
+            key: 'name'
+          },
+          {
+            title: '价格',
+            dataIndex: 'cost',
+            key: 'cost',
+            render: (func: () => number) => {
+              return func()
+            }
+          },
+          {
+            title: '数量',
+            dataIndex: 'count',
+            key: 'count'
+          }
+        ]}
         components={{
           body: {
             cell: TableRow
