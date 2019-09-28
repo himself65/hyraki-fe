@@ -148,9 +148,9 @@ app.get('/shop/serve', (req, res) => {
   // '/shop/serve?id=10086'
   // 则查找店铺名称10086的服务（或者说商品）
   res.json([
-    { id: '1', name: '面包' },
-    { id: '3', name: '甜筒' },
-    { id: '2', name: '圣代' }
+    { id: '1', name: '面包', price: 10 },
+    { id: '3', name: '甜筒', price: 20 },
+    { id: '2', name: '圣代', price: 30 }
   ])
   res.end()
 })
