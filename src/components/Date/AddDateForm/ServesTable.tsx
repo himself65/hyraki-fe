@@ -11,6 +11,7 @@ interface Props extends FormComponentProps {
 }
 
 export interface ServeDetail extends Serve {
+  key: string,
   count: number,
   cost: (this: ServeDetail) => number
 }
@@ -26,6 +27,7 @@ const ServesTable: React.FC<Props> = (props) => {
   [orderedServes, props.serves])
   const dataSources: ServeDetail[] = useMemo(() => orderedServes.map((v: Serve) => ({
     ...v,
+    key: v.id,
     count: 1,
     cost: function (this: ServeDetail): number {
       return this.count * this.price
@@ -79,9 +81,7 @@ const ServesTable: React.FC<Props> = (props) => {
             title: '价格',
             dataIndex: 'cost',
             key: 'cost',
-            render: (func: () => number, record: ServeDetail) => {
-              return func.call(record)
-            }
+            render: (func: () => number, record: ServeDetail) => func.call(record) // 防止 this 丢失
           },
           {
             title: '数量',
