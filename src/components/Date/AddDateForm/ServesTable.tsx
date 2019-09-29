@@ -30,7 +30,7 @@ const ServesTable: React.FC<Props> = (props) => {
       ...orderedServes.slice(0, idx),
       ...orderedServes.slice(idx + 1, orderedServes.length)
     ])
-    Logger('ServesTables remove serve:', orderedServes[idx])
+    Logger('%cServesTables remove serve:', 'background: red', orderedServes[idx])
   }, [orderedServes])
   // 供 Table 使用
   const dataSources: ServeDetail[] = useMemo(() => orderedServes.map((v: Serve) => ({
@@ -55,7 +55,7 @@ const ServesTable: React.FC<Props> = (props) => {
           const v = props.serves.find(e => e.id === value)
           if (v) {
             setOrderedServes([...orderedServes, v])
-            Logger('ServesTables select serve:', v)
+            Logger('%cServesTables select serve:', 'background: green', v)
           }
         }}
         onDeselect={(value: string) => {
