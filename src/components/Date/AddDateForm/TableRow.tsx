@@ -2,9 +2,12 @@ import React, { PropsWithChildren } from 'react'
 import { Form } from 'antd'
 
 // todo: 表行的单元格显示部分
-const TableCell: React.FC = () => {
+const TableCell: React.FC = (props) => {
+  console.log(props)
   return (
-    <div/>
+    <td>
+      {props.children}
+    </td>
   )
 }
 
@@ -17,5 +20,8 @@ const TableRow: React.FC<PropsWithChildren<{
     <tr>{props.children}</tr>
   )
 }
-
+export {
+  TableCell,
+  TableRow
+}
 export default TableRow

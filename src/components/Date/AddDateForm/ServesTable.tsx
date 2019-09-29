@@ -1,7 +1,7 @@
 import React, { useCallback, useMemo, useState } from 'react'
 import { Button, Form, Select, Table } from 'antd'
 import { Serve } from '../../../types/Shop'
-import TableRow from './TableRow'
+import { TableRow, TableCell } from './TableRow'
 import { FormComponentProps } from 'antd/es/form'
 import { Logger } from '../../../utils/debug'
 
@@ -91,7 +91,8 @@ const ServesTable: React.FC<Props> = (props) => {
         ]}
         components={{
           body: {
-            row: TableRow
+            row: TableRow,
+            cell: TableCell
           }
         }}
       />
