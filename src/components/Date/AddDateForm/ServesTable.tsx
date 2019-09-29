@@ -1,5 +1,5 @@
 import React, { useCallback, useMemo, useState } from 'react'
-import { Button, Form, Select, Table } from 'antd'
+import { Button, Form, Select, Table, Popconfirm } from 'antd'
 import { Serve } from '../../../types/Shop'
 import { TableRow, TableCell } from './TableRow'
 import { FormComponentProps } from 'antd/es/form'
@@ -25,6 +25,14 @@ const ServesTable: React.FC<Props> = (props) => {
   const nonOrderedServes: Serve[] = useMemo(() =>
     props.serves.filter(v => !orderedServes.includes(v)),
   [orderedServes, props.serves])
+  const handleDeleteDataSource = useCallback((idx: number) => {
+    setOrderedServes([
+      ...orderedServes.slice(0, idx),
+      ...orderedServes.slice(idx + 1, orderedServes.length)
+    ])
+    Logger('ServesTables remove serve:', orderedServes[idx])
+  }, [orderedServes])
+  // 供 Table 使用
   const dataSources: ServeDetail[] = useMemo(() => orderedServes.map((v: Serve) => ({
     ...v,
     key: v.id,
@@ -54,11 +62,7 @@ const ServesTable: React.FC<Props> = (props) => {
           // tip: Select 控件删除Serve时候调用
           const idx = orderedServes.findIndex(v => v.name === value)
           if (idx !== -1) {
-            setOrderedServes([
-              ...orderedServes.slice(0, idx),
-              ...orderedServes.slice(idx + 1, orderedServes.length)
-            ])
-            Logger('ServesTables remove serve:', orderedServes[idx])
+            handleDeleteDataSource(idx)
           }
         }}
         filterOption={(input, option) =>
@@ -87,6 +91,18 @@ const ServesTable: React.FC<Props> = (props) => {
             title: '数量',
             dataIndex: 'count',
             key: 'count'
+          },
+          {
+            title: '操作',
+            dataIndex: 'operation',
+            render: (_, __, idx) => dataSources.length >= 1 ? (
+              <Popconfirm
+                title='确认删除吗？'
+                onConfirm={() => handleDeleteDataSource(idx)}
+              >
+                <a>删除</a>
+              </Popconfirm>
+            ) : null
           }
         ]}
         components={{
