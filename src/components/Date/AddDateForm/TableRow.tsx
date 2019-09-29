@@ -3,7 +3,6 @@ import { Form } from 'antd'
 
 // todo: 表行的单元格显示部分
 const TableCell: React.FC = (props) => {
-  console.log(props)
   return (
     <td>
       {props.children}
