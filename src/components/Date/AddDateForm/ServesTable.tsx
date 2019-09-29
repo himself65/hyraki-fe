@@ -4,6 +4,7 @@ import { Serve } from '../../../types/Shop'
 import { TableRow, TableCell } from './TableRow'
 import { FormComponentProps } from 'antd/es/form'
 import { Logger } from '../../../utils/debug'
+import { ColumnProps } from 'antd/lib/table'
 
 interface Props extends FormComponentProps {
   disabled: boolean
@@ -41,6 +42,44 @@ const ServesTable: React.FC<Props> = (props) => {
       return this.count * this.price
     }
   })), [orderedServes])
+  const columns: ColumnProps<ServeDetail>[] = useMemo(() => ([
+    {
+      title: '名称',
+      dataIndex: 'name',
+      key: 'name'
+    },
+    {
+      title: '价格',
+      dataIndex: 'cost',
+      key: 'cost',
+      render: (func: () => number, record: ServeDetail) => func.call(record) // 防止 this 丢失
+    },
+    {
+      title: '数量',
+      dataIndex: 'count',
+      key: 'count',
+      editable: true
+    },
+    {
+      title: '操作',
+      dataIndex: 'operation',
+      render: (_: any, __: ServeDetail, idx: number) => dataSources.length >= 1 ? (
+        <Popconfirm
+          title='确认删除吗？'
+          onConfirm={() => handleDeleteDataSource(idx)}
+        >
+          <a>删除</a>
+        </Popconfirm>
+      ) : null
+    }
+  ].map(col => ({
+    ...col,
+    editable: undefined, // 去掉 editable
+    onCell: record => ({
+      record,
+      ...col
+    })
+  }))), [])
   // todo: 添加自动 Search 的方法
   return (
     <div>
@@ -75,36 +114,7 @@ const ServesTable: React.FC<Props> = (props) => {
         style={{ marginTop: '0.2rem' }}
         bordered
         dataSource={dataSources}
-        columns={[
-          {
-            title: '名称',
-            dataIndex: 'name',
-            key: 'name'
-          },
-          {
-            title: '价格',
-            dataIndex: 'cost',
-            key: 'cost',
-            render: (func: () => number, record: ServeDetail) => func.call(record) // 防止 this 丢失
-          },
-          {
-            title: '数量',
-            dataIndex: 'count',
-            key: 'count'
-          },
-          {
-            title: '操作',
-            dataIndex: 'operation',
-            render: (_, __, idx) => dataSources.length >= 1 ? (
-              <Popconfirm
-                title='确认删除吗？'
-                onConfirm={() => handleDeleteDataSource(idx)}
-              >
-                <a>删除</a>
-              </Popconfirm>
-            ) : null
-          }
-        ]}
+        columns={columns}
         components={{
           body: {
             row: TableRow,
