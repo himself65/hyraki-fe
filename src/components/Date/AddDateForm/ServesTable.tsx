@@ -22,7 +22,6 @@ const filterNames = (serves: Serve[]) => serves.map(v => v.name).sort()
 const ServesTable: React.FC<Props> = (props) => {
   const form = props.form
   const [orderedServes, setOrderedServes] = useState<Serve[]>([])
-  const serveNames: string[] = useMemo(() => filterNames(props.serves), [props.serves])
   const nonOrderedServes: Serve[] = useMemo(() =>
     props.serves.filter(v => !orderedServes.includes(v)),
   [orderedServes, props.serves])
@@ -80,7 +79,6 @@ const ServesTable: React.FC<Props> = (props) => {
       ...col
     })
   }))), [])
-  // todo: 添加自动 Search 的方法
   return (
     <div>
       <Select
