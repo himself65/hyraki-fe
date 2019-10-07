@@ -25,7 +25,7 @@ const DashboardView: React.FC<DefaultProps> = (props) => {
         width={140}
       >
         <Row className='top-element' type='flex' justify='center'>
-          {/* fixme */}
+          {/* fixme: 需要API支持 */}
           <Badge count={666}>
             <Avatar size={64}/>
           </Badge>

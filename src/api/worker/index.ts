@@ -5,7 +5,6 @@ export async function getWorkerList (shopID = 1) {
   return axiosInstance.get('/worker')
 }
 
-// fixme: any type
 export async function postAddWorker (data: Worker) {
   return axiosInstance.post('/worker', data)
 }

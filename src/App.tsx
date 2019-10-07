@@ -7,8 +7,7 @@ import { BrowserRouter } from 'react-router-dom'
 import LoadingView from './views/Loading'
 import ErrorView from './views/Error'
 
-// fixme: remove type any
-const asyncComponentFactory = (resolve: () => Promise<any>) =>
+const asyncComponentFactory = (resolve: () => Promise<React.ComponentType<any> | { default: React.ComponentType<any> }>) =>
   asyncComponent({
     resolve,
     // @ts-ignore
@@ -21,6 +20,7 @@ const DashboardView = asyncComponentFactory(() => import('./views/Dashboard'))
 const LoginView = asyncComponentFactory(() => import('./views/Login'))
 const RegisterView = asyncComponentFactory(() => import('./views/Register'))
 
+// 全局 Store
 export const store = configStore()
 
 const App: React.FC = () => {
