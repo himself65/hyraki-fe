@@ -36,19 +36,23 @@ interface AccessRequiredProps extends DefaultProps {
   logout: boolean
 }
 
-export const AccessRequired = function (C: ComponentType<any>) {
+/**
+ * 此方法仅仅是前端简单判断和跳转，不能当作真正的安全防御
+ * @param Component 组件
+ */
+export const AccessRequired = function (Component: ComponentType<any>) {
   const mapStateToProps = (state: IState) => ({ logout: state.user.logout })
   return connect(mapStateToProps)((props: AccessRequiredProps) => {
-    Logger('userState: %s, path: %s', props.logout ? 'logout' : 'login',
-      props.location
-        ? props.location.pathname
-        : 'UNKNOWN'
+    const maybeAccess = props.logout || localStorage.getItem('JWT_TOKEN')
+    Logger('userState: %s, path: %s',
+      maybeAccess ? 'logout' : 'login',
+      props.location.pathname
     )
-    if (props.logout && process.env.NODE_ENV === 'production') {
+    if (maybeAccess && process.env.NODE_ENV === 'production') {
       // todo: ErrorView notice the message to user
       return (<Redirect to='/error'/>)
     } else {
-      return (<C {...props}/>)
+      return (<Component {...props}/>)
     }
   })
 }
