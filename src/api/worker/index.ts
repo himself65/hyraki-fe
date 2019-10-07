@@ -1,12 +1,12 @@
 import axiosInstance from '../index'
-import { WorkerPositionAPI } from '../../types/Worker'
+import { Worker, WorkerPositionAPI } from '../../types/Worker'
 
 export async function getWorkerList (shopID = 1) {
   return axiosInstance.get('/worker')
 }
 
 // fixme: any type
-export async function postAddWorker (data: { [key: string]: any }) {
+export async function postAddWorker (data: Worker) {
   return axiosInstance.post('/worker', data)
 }
 

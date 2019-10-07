@@ -1,4 +1,6 @@
-export interface WorkerBrieData {
+import { Optional } from '.'
+
+export interface WorkerBrief {
   shop: string
   name: string
   id: number
@@ -7,6 +9,10 @@ export interface WorkerBrieData {
   avatar: string
   gender: string
   remark: string
+}
+
+export interface Worker extends Optional<WorkerBrief> {
+
 }
 
 export interface WorkerPosition {

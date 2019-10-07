@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import { Avatar, List, Spin } from 'antd'
-import { WorkerBrieData } from '../../types/Worker'
+import { WorkerBrief } from '../../types/Worker'
 
 export interface Props {
-  data: WorkerBrieData[]
+  data: WorkerBrief[]
   existData: boolean
 }
 
