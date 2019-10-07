@@ -1,11 +1,20 @@
 import { useState, useEffect, Dispatch, SetStateAction } from 'react'
 import { AxiosPromise } from 'axios'
 
-export const useFetch = <T = any>(
+export function useFetch<T = any> (
+  func: (...args: any[]) => AxiosPromise<T>,
+  defaultVal: T
+): [T, Dispatch<SetStateAction<T>>]
+export function useFetch<T = any> (
   func: (...args: any[]) => AxiosPromise<T>,
   defaultVal: T,
   handle?: Function
-): [T, Dispatch<SetStateAction<T>>] => {
+): [T, Dispatch<SetStateAction<T>>]
+export function useFetch<T = any> (
+  func: (...args: any[]) => AxiosPromise<T>,
+  defaultVal: T,
+  handle?: Function
+): [T, Dispatch<SetStateAction<T>>] {
   const [data, setData] = useState<T>(defaultVal)
   const fetchData = async () => {
     await func().then(res => {
