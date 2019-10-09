@@ -1,4 +1,4 @@
-import React, { MutableRefObject, useCallback, useEffect, useState } from 'react'
+import React, { MutableRefObject, useCallback, useEffect, useMemo, useState } from 'react'
 import { Form, DatePicker, Input, Select } from 'antd'
 import { FormComponentProps } from 'antd/es/form'
 import { Subject } from 'rxjs'
@@ -6,6 +6,7 @@ import { useFetch } from '../../../utils/hooks'
 import { getAllShopList, getAllShopServe } from '../../../api/shop'
 import { Serve, ServeListAPI, Shop } from '../../../types/Shop'
 import ServesTable from './ServesTable'
+import { Logger } from '../../../utils/debug'
 
 export interface Props extends FormComponentProps {
   subject: MutableRefObject<Subject<boolean>>
@@ -17,11 +18,25 @@ declare module 'antd/lib/select' {
   }
 }
 
-const AddDateForm: React.FC<Props> = (props) => {
+const AddDateForm: React.FC<Props> = ({ form, subject }) => {
   const [selectedShop, setSelectedShop] = useState<boolean>(false) // 是否已经选择了 shop
   const [serves, setServes] = useState<Serve[]>([])
   const [shops] = useFetch<Shop[]>(getAllShopList, [])
-  const { getFieldDecorator, validateFields } = props.form
+  const { getFieldDecorator, validateFields } = form
+  useMemo(() => {
+    // tip: 仅运行一次
+    subject.current.subscribe((submit: boolean) => {
+      if (submit) {
+        form.validateFields((err, value) => {
+          if (err) {
+            console.error(err)
+          } else {
+            Logger(value)
+          }
+        })
+      }
+    })
+  }, [])
   return (
     <Form layout='vertical'>
       <Form.Item label='手机号'>
