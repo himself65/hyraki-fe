@@ -1,5 +1,5 @@
-import React, { useCallback, useMemo, useState } from 'react'
-import { Button, Form, Select, Table, Popconfirm } from 'antd'
+import React, { useCallback, useEffect, useMemo, useState } from 'react'
+import { Form, Select, Table, Popconfirm } from 'antd'
 import { Serve } from '../../../types/Shop'
 import { TableRow, TableCell } from './TableRow'
 import { FormComponentProps } from 'antd/es/form'
@@ -9,6 +9,9 @@ import { ColumnProps } from 'antd/lib/table'
 interface Props extends FormComponentProps {
   disabled: boolean
   serves: Serve[]
+  // Form 传递下的
+  readonly onChange?: Function
+  readonly value?: ServeDetail[] // defaultValue
 }
 
 export interface ServeDetail extends Serve {
@@ -79,6 +82,12 @@ const ServesTable: React.FC<Props> = (props) => {
       ...col
     })
   }))), [])
+  useEffect(() => {
+    // 传递值给上层 Form
+    if (props.onChange) {
+      props.onChange([...dataSources])
+    }
+  }, [dataSources])
   return (
     <div>
       <Select

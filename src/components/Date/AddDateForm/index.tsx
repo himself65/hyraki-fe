@@ -23,7 +23,7 @@ const AddDateForm: React.FC<Props> = ({ form, subject }) => {
   const [serves, setServes] = useState<Serve[]>([])
   const [shops] = useFetch<Shop[]>(getAllShopList, [])
   const { getFieldDecorator, validateFields } = form
-  useMemo(() => {
+  useEffect(() => {
     // tip: 仅运行一次
     subject.current.subscribe((submit: boolean) => {
       if (submit) {
@@ -83,8 +83,9 @@ const AddDateForm: React.FC<Props> = ({ form, subject }) => {
         )}
       </Form.Item>
       <Form.Item label='服务及手艺人'>
-        {/* todo: 改成 Table 组件 */}
-        {getFieldDecorator('serves')(
+        {getFieldDecorator('serves', {
+          initialValue: []
+        })(
           <ServesTable disabled={!selectedShop} serves={serves}/>
         )}
       </Form.Item>
