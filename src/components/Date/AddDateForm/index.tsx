@@ -27,7 +27,7 @@ const AddDateForm: React.FC<Props> = ({ form, subject }) => {
     // tip: 仅运行一次
     subject.current.subscribe((submit: boolean) => {
       if (submit) {
-        form.validateFields((err, value) => {
+        validateFields((err, value) => {
           if (err) {
             console.error(err)
           } else {
