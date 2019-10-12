@@ -3,7 +3,9 @@ import { Breadcrumb } from 'antd'
 import { DefaultProps, IState } from '../types'
 import { Logger } from './debug'
 import { connect } from 'react-redux'
+import { LocationDescriptorObject } from 'history'
 import { Redirect } from 'react-router-dom'
+import { LocationState } from '../types/Router'
 
 /***
  * @example
@@ -43,16 +45,49 @@ interface AccessRequiredProps extends DefaultProps {
 export const AccessRequired = function (Component: ComponentType<any>) {
   const mapStateToProps = (state: IState) => ({ logout: state.user.logout })
   return connect(mapStateToProps)((props: AccessRequiredProps) => {
-    const maybeAccess = props.logout || localStorage.getItem('JWT_TOKEN')
+    const token = localStorage.getItem('JWT_TOKEN')
+    // when no logout and have token
+    const maybeAccess = !props.logout || token
     Logger('userState: %s, path: %s',
       maybeAccess ? 'logout' : 'login',
       props.location.pathname
     )
-    if (maybeAccess && process.env.NODE_ENV === 'production') {
-      // todo: ErrorView notice the message to user
-      return (<Redirect to='/error'/>)
+    if (!maybeAccess) {
+      // maybe no access
+      const location: LocationDescriptorObject<LocationState> = {
+        pathname: '/error',
+        state: {
+          user: null
+        }
+      }
+      return (<Redirect to={location}/>)
     } else {
       return (<Component {...props}/>)
     }
   })
+}
+
+export enum LoginState {
+  Login,
+  Logout,
+  LoginError
+}
+
+const stateMap = {
+  user: {
+    [LoginState.Login]: '用户已登录',
+    [LoginState.Logout]: '用户未登录',
+    [LoginState.LoginError]: '登录时出现错误'
+  }
+}
+
+export const StateMap: {
+  [key: string]: (key: any) => string
+} = {
+  User: (key: LoginState | null | undefined): string => {
+    if (key) {
+      return stateMap.user[key]
+    }
+    return '未知状态'
+  }
 }
