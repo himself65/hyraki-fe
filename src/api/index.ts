@@ -25,12 +25,14 @@ axiosInstance.interceptors.response.use(
   response => response,
   error => {
     if (error.response) {
-      Logger('axios: %s', error.response.status)
+      Logger('axios: %s', error.response)
       if (error.response.status === 401) {
         store.dispatch({ type: 'LOG_OUT' })
       }
+    } else {
+      Logger('axios: %s', error)
     }
-    return Promise.reject(error.response)
+    return Promise.reject(error)
   }
 )
 
