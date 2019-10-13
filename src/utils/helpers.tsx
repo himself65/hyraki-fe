@@ -6,6 +6,7 @@ import { connect } from 'react-redux'
 import { LocationDescriptorObject } from 'history'
 import { Redirect } from 'react-router-dom'
 import { LocationState } from '../types/Router'
+import { JWT_TOKEN } from './shared'
 
 /***
  * @example
@@ -45,7 +46,7 @@ interface AccessRequiredProps extends DefaultProps {
 export const AccessRequired = function (Component: ComponentType<any>) {
   const mapStateToProps = (state: IState) => ({ logout: state.user.logout })
   return connect(mapStateToProps)((props: AccessRequiredProps) => {
-    const token = localStorage.getItem('JWT_TOKEN')
+    const token = localStorage.getItem(JWT_TOKEN)
     // when no logout and have token
     const maybeAccess = !props.logout || token
     Logger('userState: %s, path: %s',

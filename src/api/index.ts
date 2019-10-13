@@ -1,6 +1,7 @@
 import Axios from 'axios'
 import { store } from '../App'
 import { Logger } from '../utils/debug'
+import { JWT_TOKEN } from '../utils/shared'
 
 export const axiosInstance = Axios.create({
   baseURL: process.env.NODE_ENV === 'development'
@@ -12,7 +13,7 @@ export const axiosInstance = Axios.create({
 })
 
 axiosInstance.interceptors.request.use(config => {
-  const token = localStorage.getItem('JWT_TOKEN')
+  const token = localStorage.getItem(JWT_TOKEN)
   if (token) {
     config.headers.Authorization = `Bearer ${token}`
   } else {
@@ -28,6 +29,7 @@ axiosInstance.interceptors.response.use(
       Logger('axios: %s', error.response)
       if (error.response.status === 401) {
         store.dispatch({ type: 'LOG_OUT' })
+        localStorage.removeItem(JWT_TOKEN)
       }
     } else {
       Logger('axios: %s', error)
