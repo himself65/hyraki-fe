@@ -48,7 +48,7 @@ const DashboardView: React.FC<DefaultProps> = (props) => {
           <Menu.Item key='/dashboard/good'>
             <Link to='/dashboard/good' />
             <Icon type='upload' />
-            <span className='nav-text'> 商品 </span>
+            <span className='nav-text'> 库存 </span>
           </Menu.Item>
           <Menu.Item key='/dashboard/order'>
             <Link to='/dashboard/order' />
