@@ -13,7 +13,8 @@ app.use(bodyParser())
 
 app.all('*', function (req, res, next) {
   res.header('Access-Control-Allow-Origin', '*')
-  res.header('Access-Control-Allow-Headers', 'Content-Type, Content-Length, Authorization, Accept, X-Requested-With , yourHeaderFeild')
+  res.header('Access-Control-Allow-Headers',
+    'Content-Type, Content-Length, Authorization, Accept, X-Requested-With , yourHeaderFeild')
   res.header('Access-Control-Allow-Methods', 'PUT, POST, GET, DELETE, OPTIONS')
 
   if (req.method === 'OPTIONS') {
@@ -23,7 +24,8 @@ app.all('*', function (req, res, next) {
   }
 })
 
-app.use(expressJwt({ secret: secretKey }).unless({ path: ['/user/login', '/user/register'] }))
+app.use(expressJwt({ secret: secretKey })
+  .unless({ path: ['/user/login', '/user/register'] }))
 
 /**
  * 用户（user）相关
@@ -34,9 +36,10 @@ app.post('/user/login', (req, res) => {
   console.log(req.body)
   if (username && password) {
     // tip: hack code
-    const token = jwt.sign({ username: '123456', password: '123456' }, secretKey, {
-      expiresIn: 60 * 60 * 24 // 授权时效24小时
-    })
+    const token = jwt.sign({ username: '123456', password: '123456' },
+      secretKey, {
+        expiresIn: 60 * 60 * 24 // 授权时效24小时
+      })
     res.json({
       token
     })
@@ -156,15 +159,82 @@ app.get('/shop/serve', (req, res) => {
   res.end()
 })
 
+app.get('/goods', (req, res) => {
+  res.json([
+    {
+      id: '1',
+      name: '面包',
+      barCode: '10086',
+      image: 'https://xxx.com/xxx.jpg',
+      unit: '个',
+      mainClass: '食物',
+      subClass: '农副产品',
+      forSale: true,
+      purchasePrice: '10',
+      costPrice: '',
+      sellingPrice: '',
+      safeStock: 1e3,
+      currentStock: 1e5,
+      unsalableWarningDays: 5,
+
+      supplier: { id: '1', name: '面包新语' },
+      brand: { id: '1', name: '面包新语' },
+
+      remark: '扩散性百万甜面包自己正在被卖'
+    },
+    {
+      id: '2',
+      name: '圣代',
+      barCode: '10087',
+      image: 'https://xxx.com/xxx.jpg',
+      unit: '个',
+      mainClass: '食物',
+      subClass: '肯德基主打产品',
+      forSale: false,
+      purchasePrice: '10',
+      costPrice: '',
+      sellingPrice: '',
+      safeStock: 1,
+      currentStock: 1,
+      unsalableWarningDays: 100,
+
+      supplier: { id: '1', name: '面包新语' },
+      brand: { id: '1', name: '面包新语' },
+
+      remark: '圣代好吃'
+    },
+    {
+      id: '3',
+      name: '甜筒',
+      barCode: '10088',
+      image: 'https://xxx.com/xxx.jpg',
+      unit: '个',
+      mainClass: '食物',
+      subClass: '肯德基主打产品',
+      forSale: true,
+      purchasePrice: '10',
+      costPrice: '',
+      sellingPrice: '',
+      safeStock: 1,
+      currentStock: 0,
+      unsalableWarningDays: 1000,
+
+      supplier: { id: '1', name: '面包新语' },
+      brand: { id: '1', name: '面包新语' },
+
+      remark: '甜筒也好吃'
+    }
+  ])
+  res.end()
+})
+
 app.get('/settings', (req, res) => {
   // 查询预约（Date）的相关设置
   if (req.query['type'] === 'date') {
     // 通过 shop 字段查询
     // 例如 POST /settings?type=date&shop=10086
     // 则查询key为10086的店铺设置
-    res.json({
-
-    })
+    res.json({})
   } else {
     res.status(404)
   }
