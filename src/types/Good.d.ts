@@ -6,8 +6,15 @@ export interface Supplier {
 
 export type Brand = Supplier
 
+export interface GoodBrief {
+  id: string
+  name: string
+
+  sellingPrice: string // 销售价
+}
+
 // 货物
-export interface Good {
+export interface Good extends GoodBrief {
   id: string
   name: string
   barCode?: string // 条码
