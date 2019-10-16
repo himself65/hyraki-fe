@@ -2,11 +2,10 @@ const express = require('express')
 const morgan = require('morgan')
 const bodyParser = require('body-parser')
 const expressJwt = require('express-jwt')
-const jwt = require('jsonwebtoken')
 const { random } = require('./utils')
+const { secretKey } = require('./utils/shared')
 
 const app = express()
-const secretKey = 'secretKey'
 
 app.use(morgan('combined'))
 app.use(bodyParser())
@@ -71,5 +70,10 @@ app.get('/settings', (req, res) => {
   }
   res.end()
 })
+
+require('./good')(app)
+require('./shop')(app)
+require('./user')(app)
+require('./worker')(app)
 
 module.exports = app
