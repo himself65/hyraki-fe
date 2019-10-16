@@ -50,11 +50,12 @@ export const AccessRequired = function (Component: ComponentType<any>) {
     // when no logout and have token
     const maybeAccess = !props.logout || token
     Logger('userState: %s, path: %s',
-      maybeAccess ? 'logout' : 'login',
+      maybeAccess ? 'login' : 'logout',
       props.location.pathname
     )
     if (!maybeAccess) {
-      // maybe no access
+      // no access
+      Logger('no access')
       const location: LocationDescriptorObject<LocationState> = {
         pathname: '/error',
         state: {

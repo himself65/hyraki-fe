@@ -1,1 +1,2 @@
 export const JWT_TOKEN = 'JWT_TOKEN'
+export const USER_ERROR_LAST_STATE = 'USER_ERROR_LAST_STATE'

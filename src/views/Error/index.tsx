@@ -4,16 +4,22 @@ import './ErrorView.less'
 import { DefaultProps } from '../../types'
 import { StateMap } from '../../utils/helpers'
 import { Logger } from '../../utils/debug'
+import { USER_ERROR_LAST_STATE } from '../../utils/shared'
 
 const ErrorView: React.FC<DefaultProps> = (props) => {
   const [userState, setUserState] = useState<string>('')
   useEffect(() => {
     const state = props.location.state
     Logger(state)
-    if (!state) {
-      return
+    if (state != null) {
+      state.user && localStorage.setItem(USER_ERROR_LAST_STATE, state.user)
+      setUserState(
+        StateMap.User(
+          state.user ||
+        localStorage.getItem(USER_ERROR_LAST_STATE)
+        )
+      )
     }
-    setUserState(StateMap.User(state.user))
   }, [])
   return (
     <HyLayout>
