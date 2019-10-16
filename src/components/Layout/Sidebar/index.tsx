@@ -5,6 +5,6 @@ import './index.less'
 
 const { Sider: Sidebar } = Layout
 
-export function HySidebar (props: SiderProps) {
+export const HySidebar: React.FC<SiderProps> = (props: SiderProps) => {
   return (<Sidebar className='hy-sider' {...props}/>)
 }
