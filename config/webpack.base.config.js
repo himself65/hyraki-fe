@@ -18,7 +18,6 @@ const ModuleNotFoundPlugin = require('react-dev-utils/ModuleNotFoundPlugin')
 const WatchMissingNodeModulesPlugin = require('react-dev-utils/WatchMissingNodeModulesPlugin')
 
 const isProd = process.env.NODE_ENV === 'production'
-const isTest = process.env.NODE_ENV === 'test'
 const extractCSS = isProd || process.env.TARGET === 'development'
 
 const cssLoaders = [

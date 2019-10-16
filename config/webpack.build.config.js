@@ -4,6 +4,8 @@ const merge = require('webpack-merge')
 const HappyPack = require('happypack')
 const { config: baseWebpackConfig, happyThreadPool } = require('./webpack.base.config')
 
+const useMock = !!process.env.MOCK
+
 module.exports = merge(baseWebpackConfig, {
   entry: {
     app: resolve(__dirname, '..', 'src', 'index.tsx')
@@ -40,7 +42,8 @@ module.exports = merge(baseWebpackConfig, {
       ]
     }),
     new DefinePlugin({
-      DEBUG: false
+      DEBUG: false,
+      MOCK: useMock
     })
   ]
 })
