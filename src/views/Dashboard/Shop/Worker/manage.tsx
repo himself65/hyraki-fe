@@ -1,5 +1,5 @@
 import React, { Fragment, useCallback, useEffect, useRef, useState } from 'react'
-import { Button, Col, Layout, Modal, Row } from 'antd'
+import { Button, Col, Layout, Modal, Row, Card } from 'antd'
 import { Subject } from 'rxjs'
 import { Route, Switch } from 'react-router-dom'
 import { DefaultProps } from '../../../../types'
@@ -13,7 +13,10 @@ const ManageContent: React.FC<DefaultProps> = (props) => {
   const [workerData, setWorkerData] = useState([])
   const [showAddWorkerModal, setShowAddWorkerModal] = useState(false)
   const WorkerBrief: React.FC = useCallback(() => (
-    <WorkerBriefList data={workerData} existData={false}/>), [workerData])
+    <Card bordered={false}>
+      <WorkerBriefList data={workerData} existData={false}/>
+    </Card>
+  ), [workerData])
   useEffect(() => {
     const fetchData = async () => {
       await getWorkerList().then(res => {
@@ -26,23 +29,25 @@ const ManageContent: React.FC<DefaultProps> = (props) => {
   }, [])
   return (
     <Fragment>
-      <Row>
-        <Col>
-          <Button.Group>
-            <Button type='primary'
-              onClick={() => setShowAddWorkerModal(true)}
-            >
-              添加员工
-            </Button>
-            <Button onClick={() => props.history.push('/dashboard/shop/worker/position')}>
-              职位管理
-            </Button>
-            <Button>
-              历史记录
-            </Button>
-          </Button.Group>
-        </Col>
-      </Row>
+      <Card bordered={false}>
+        <Row>
+          <Col>
+            <Button.Group>
+              <Button type='primary'
+                onClick={() => setShowAddWorkerModal(true)}
+              >
+                添加员工
+              </Button>
+              <Button onClick={() => props.history.push('/dashboard/shop/worker/position')}>
+                职位管理
+              </Button>
+              <Button>
+                历史记录
+              </Button>
+            </Button.Group>
+          </Col>
+        </Row>
+      </Card>
       <Row>
         <Layout>
           <Switch>
