@@ -1,16 +1,21 @@
-import React, { useState } from 'react'
+import React, { useState, Fragment } from 'react'
 import { DefaultProps } from '../../../types'
 import { HyContent, HyHeader, HyLayout } from '../../../components/Layout'
-import { Menu } from 'antd'
+import { Button, Card, Menu } from 'antd'
 import { Link, Route, Switch } from 'react-router-dom'
 
-const GoodView: React.FC = () => {
+const GoodView: React.FC<DefaultProps> = () => {
   return (
-    <div/>
+    <Fragment>
+      <Card className='hy-card'>
+        <Button type='primary'>添加</Button>
+        {/* todo: 这里会有一个巨大的表 */}
+      </Card>
+    </Fragment>
   )
 }
 
-const GoodContent: React.FC<DefaultProps> = (props) => {
+export const GoodContent: React.FC<DefaultProps> = (props) => {
   const [selected, setSelected] = useState<string>('1')
   return (
     <HyLayout>

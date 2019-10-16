@@ -12,6 +12,7 @@ import * as serviceWorker from './serviceWorker'
 if (DEBUG) {
   localStorage.debug = 'hyraki-fe:*'
 } else {
+  // tip: Production 环境下报错后会发给 himself65@outlook.com 邮件
   Sentry.init({ dsn: 'https://1fbf6fa0850d48748c77a03259fe3540@sentry.io/1532395' })
 }
 if (process.env.NODE_ENV === 'production') {
