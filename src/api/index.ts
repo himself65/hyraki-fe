@@ -6,9 +6,9 @@ import { JWT_TOKEN } from '../utils/shared'
 export const axiosInstance = Axios.create({
   baseURL: process.env.NODE_ENV === 'development'
     ? 'http://localhost:3001'
-    : process.env.NODE_ENV === 'test'
-      ? 'http://localhost:4000'
-      : 'https://api.jzmin.top/', // fixme: api.jzmin.top will be replaced
+    : process.env.NODE_ENV === 'production'
+      ? 'https://api.jzmin.top/' // fixme: api.jzmin.top will be replaced
+      : 'http://localhost:4000', // tip: 此处为线上 mock server 地址
   timeout: 1000
 })
 
