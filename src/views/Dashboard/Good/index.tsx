@@ -20,14 +20,14 @@ const GoodContent: React.FC<DefaultProps> = (props) => {
           mode='horizontal'
         >
           <Menu.Item key='1'>
-            <Link to='/dashboard/date'/>
+            <Link to='/dashboard/good'/>
             概览
           </Menu.Item>
         </Menu>
       </HyHeader>
       <HyContent style={{ margin: '0.5rem 1rem' }}>
         <Switch>
-          <Route exact path='/dashboard/date' component={GoodView}/>
+          <Route exact path='/dashboard/good' component={GoodView}/>
         </Switch>
       </HyContent>
     </HyLayout>
