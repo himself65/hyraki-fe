@@ -8,11 +8,7 @@ export async function login (username: string, password: string) {
     username,
     password
   }).then(response => {
-    if (response.status !== 200) {
-      store.dispatch(loginAction.error(response.statusText))
-    } else {
-      // status === 200
-      store.dispatch(loginAction('登陆成功'))
+    if (response.status === 200) {
       localStorage.setItem(JWT_TOKEN, response.data.token)
     }
     return response

@@ -35,40 +35,6 @@ export function BreadcrumbFactory (pathname: string) {
       })])
 }
 
-interface AccessRequiredProps extends DefaultProps {
-  logout: boolean
-}
-
-/**
- * 此方法仅仅是前端简单判断和跳转，不能当作真正的安全防御
- * @param Component 组件
- */
-export const AccessRequired = function (Component: ComponentType<any>) {
-  const mapStateToProps = (state: IState) => ({ logout: state.user.logout })
-  return connect(mapStateToProps)((props: AccessRequiredProps) => {
-    const token = localStorage.getItem(JWT_TOKEN)
-    // when no logout and have token
-    const maybeAccess = !props.logout || token
-    Logger('userState: %s, path: %s',
-      maybeAccess ? 'login' : 'logout',
-      props.location.pathname
-    )
-    if (!maybeAccess) {
-      // no access
-      Logger('no access')
-      const location: LocationDescriptorObject<LocationState> = {
-        pathname: '/error',
-        state: {
-          user: null
-        }
-      }
-      return (<Redirect to={location}/>)
-    } else {
-      return (<Component {...props}/>)
-    }
-  })
-}
-
 export enum LoginState {
   Login,
   Logout,

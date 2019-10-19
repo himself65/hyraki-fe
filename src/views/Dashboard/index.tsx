@@ -9,7 +9,6 @@ import DashboardContent, { Footer } from './Dashboard'
 import DateContent from './Date'
 import ClientContent from './Client'
 import ShopContent from './Shop'
-import { AccessRequired } from '../../utils/helpers'
 import { GoodContent } from './Good'
 
 const DashboardView: React.FC<DefaultProps> = (props) => {
@@ -37,53 +36,53 @@ const DashboardView: React.FC<DefaultProps> = (props) => {
           defaultSelectedKeys={[selectedKey]}
         >
           <Menu.Item key='/dashboard'>
-            <Link to='/dashboard' />
-            <Icon type='dashboard' />
+            <Link to='/dashboard'/>
+            <Icon type='dashboard'/>
             <span className='nav-text'> 概览 </span>
           </Menu.Item>
           <Menu.Item key='/dashboard/date'>
-            <Link to='/dashboard/date' />
-            <Icon type='schedule' />
+            <Link to='/dashboard/date'/>
+            <Icon type='schedule'/>
             <span className='nav-text'> 预约 </span>
           </Menu.Item>
           <Menu.Item key='/dashboard/good'>
-            <Link to='/dashboard/good' />
-            <Icon type='upload' />
+            <Link to='/dashboard/good'/>
+            <Icon type='upload'/>
             <span className='nav-text'> 库存 </span>
           </Menu.Item>
           <Menu.Item key='/dashboard/order'>
-            <Link to='/dashboard/order' />
-            <Icon type='profile' />
+            <Link to='/dashboard/order'/>
+            <Icon type='profile'/>
             <span className='nav-text'> 订单 </span>
           </Menu.Item>
           <Menu.Item key='/dashboard/client'>
-            <Link to='/dashboard/client' />
-            <Icon type='user' />
+            <Link to='/dashboard/client'/>
+            <Icon type='user'/>
             <span className='nav-text'> 客户 </span>
           </Menu.Item>
           <Menu.Item key='/dashboard/report'>
-            <Link to='/dashboard/report' />
-            <Icon type='line-chart' />
+            <Link to='/dashboard/report'/>
+            <Icon type='line-chart'/>
             <span className='nav-text'> 数据 </span>
           </Menu.Item>
           <Menu.Item key='/dashboard/asset'>
-            <Link to='/dashboard/asset' />
-            <Icon type='account-book' />
+            <Link to='/dashboard/asset'/>
+            <Icon type='account-book'/>
             <span className='nav-text'> 资产 </span>
           </Menu.Item>
           <Menu.Item key='/dashboard/market'>
-            <Link to='/dashboard/market' />
-            <Icon type='user' />
+            <Link to='/dashboard/market'/>
+            <Icon type='user'/>
             <span className='nav-text'> 营销 </span>
           </Menu.Item>
           <Menu.Item key='/dashboard/shop'>
-            <Link to='/dashboard/shop' />
-            <Icon type='shop' />
+            <Link to='/dashboard/shop'/>
+            <Icon type='shop'/>
             <span className='nav-text'> 店铺 </span>
           </Menu.Item>
           <Menu.Item key='/dashboard/setting'>
-            <Link to='/dashboard/setting' />
-            <Icon type='setting' />
+            <Link to='/dashboard/setting'/>
+            <Icon type='setting'/>
             <span className='nav-text'> 设置 </span>
           </Menu.Item>
         </Menu>
@@ -102,4 +101,4 @@ const DashboardView: React.FC<DefaultProps> = (props) => {
   )
 }
 
-export default AccessRequired(DashboardView)
+export default DashboardView

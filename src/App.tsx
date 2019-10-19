@@ -30,6 +30,7 @@ const App: React.FC = () => {
         <BrowserRouter>
           <Switch>
             <Route exact path='/' component={LoginView}/>
+            <Route path='/login' component={LoginView}/>
             <Route path='/dashboard' component={DashboardView}/>
             <Route path='/register' component={RegisterView}/>
             <Route path='/error' component={ErrorView}/>

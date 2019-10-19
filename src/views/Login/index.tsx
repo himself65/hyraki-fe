@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Button, Col, Icon, Layout, Menu, Row } from 'antd'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
@@ -14,9 +14,11 @@ interface LoginViewProps extends DefaultProps {
 }
 
 const LoginView: React.FC<LoginViewProps> = (props) => {
-  if (!props.logout) {
-    props.history.push('/dashboard')
-  }
+  useEffect(() => {
+    if (!props.logout) {
+      props.history.push('/dashboard')
+    }
+  }, [])
   const [loginBoard, setLoginBoard] = useState(false)
   return (
     <HyLayout className='login-view'>
