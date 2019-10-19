@@ -25,7 +25,9 @@ const cssLoaders = [
   {
     loader: 'css-loader',
     options: {
-      sourceMap: !isProd
+      sourceMap: !isProd,
+      modules: true,
+      importLoaders: 1
     }
   }
 ]
@@ -78,6 +80,11 @@ exports.config = {
       {
         test: /\.less$/,
         use: lessLoaders
+      },
+      {
+        test: /\.css$/,
+        use: cssLoaders,
+        exclude: /node_modules/
       }
     ]
   },
