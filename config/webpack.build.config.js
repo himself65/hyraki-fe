@@ -38,7 +38,8 @@ module.exports = merge(baseWebpackConfig, {
         {
           loader: 'ts-loader',
           options: { happyPackMode: true }
-        }
+        },
+        'eslint-loader?cache=true?emitWarning=true?emitError=true'
       ]
     }),
     new DefinePlugin({

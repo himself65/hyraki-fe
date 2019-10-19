@@ -27,12 +27,6 @@ const cssLoaders = [
     options: {
       sourceMap: !isProd
     }
-  },
-  {
-    loader: 'postcss-loader',
-    options: {
-      sourceMap: !isProd
-    }
   }
 ]
 

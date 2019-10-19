@@ -8,7 +8,7 @@ const { secretKey } = require('./utils/shared')
 const app = express()
 
 app.use(morgan('combined'))
-app.use(bodyParser())
+app.use(bodyParser.json())
 
 app.all('*', function (req, res, next) {
   res.header('Access-Control-Allow-Origin', '*')

@@ -21,7 +21,8 @@ module.exports = merge(baseWebpackConfig, {
     futureEmitAssets: true,
     chunkFilename: '[name].chunk.js',
     publicPath: '/',
-    devtoolModuleFilenameTemplate: info => resolve(info.absoluteResourcePath).replace(/\\/g, '/')
+    devtoolModuleFilenameTemplate: info => resolve(info.absoluteResourcePath)
+      .replace(/\\/g, '/')
   },
   module: {
     rules: [
@@ -44,13 +45,14 @@ module.exports = merge(baseWebpackConfig, {
       },
       {
         test: /\.(png|jpe?g|gif|svg|eot|ttf|woff|woff2)$/,
-        use: [{
-          loader: 'url-loader',
-          options: {
-            limit: 10000,
-            name: 'img/[name].[hash:7].[ext]'
-          }
-        }]
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              limit: 10000,
+              name: 'img/[name].[hash:7].[ext]'
+            }
+          }]
       }
     ]
   },
@@ -67,15 +69,18 @@ module.exports = merge(baseWebpackConfig, {
       id: 'ts',
       threadPool: happyThreadPool,
       loaders: [
+        'cache-loader',
         'babel-loader',
-        { path: 'ts-loader', query: { happyPackMode: true } },
-        'eslint-loader?cache=false?emitWarning=true'
+        { loader: 'ts-loader', options: { happyPackMode: true } }
       ]
     }),
     new HappyPack({
       id: 'js',
       threadPool: happyThreadPool,
-      loaders: ['babel-loader', 'eslint-loader?cache=true?emitWarning=true']
+      loaders: [
+        'cache-loader',
+        'babel-loader'
+      ]
     }),
     new DefinePlugin({
       DEBUG: true
