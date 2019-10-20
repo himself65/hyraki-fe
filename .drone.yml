@@ -54,6 +54,9 @@ steps:
     image: dockito/lftp-client
     commands:
       - lftp -u $FTP_USER,$FTP_PASSWD -e 'mirror -R dist hyraki-fe; exit' 58.218.209.199
+    when:
+      branch:
+        - master
 
 volumes:
   - name: cache
