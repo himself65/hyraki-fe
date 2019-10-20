@@ -1,5 +1,7 @@
 module.exports = ctx => ({
   plugins: [
+    require('precss'),
+    require('cssnano'),
     require('autoprefixer')({
       remove: false
     }),

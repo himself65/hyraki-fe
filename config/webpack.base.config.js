@@ -1,5 +1,6 @@
 require('dotenv').config()
 
+const path = require('path')
 const os = require('os')
 const isWsl = require('is-wsl')
 const { resolve } = require('path')
@@ -82,9 +83,11 @@ exports.config = {
         use: lessLoaders
       },
       {
-        test: /\.css$/,
-        use: cssLoaders,
-        exclude: /node_modules/
+        test: /\.s[ac]ss$/,
+        use: [
+          ...cssLoaders,
+          'sass-loader'
+        ]
       }
     ]
   },
