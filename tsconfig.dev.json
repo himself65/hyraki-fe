@@ -4,7 +4,10 @@
     "baseUrl": "."
   },
   "include": [
-    "src"
+    "config",
+    "src",
+    "mock",
+    "scripts"
   ],
   "exclude": [
     "node_modules"
