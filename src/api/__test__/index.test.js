@@ -1,16 +1,35 @@
-import * as app from '../../../mock/server'
+import supertest from 'supertest'
 import * as API from '../'
 import * as sinon from 'sinon'
 
+const jwt = require('jsonwebtoken')
+const { secretKey } = require('../../../mock/utils/shared')
+const app = require('../../../mock/server')
+
+const token = jwt.sign({ username: '123456', password: '123456' },
+  secretKey, {
+    expiresIn: 60 * 60 * 24
+  })
+
 let stubExit
+const { axiosInstance } = API
+const unableAPI = [
+  API.postAddDate,
+  API.login
+]
 
 beforeAll(() => {
+  axiosInstance.defaults.baseURL = 'http://localhost:4000'
+  axiosInstance.interceptors.request.use(config => {
+    config.headers.Authorization = `Bearer ${token}`
+    return config
+  })
   app.listen(4000)
   stubExit = sinon.stub(process, 'exit')
 })
 
-describe('API test', () => {
-  it('should all pass', (done) => {
+describe('api: base test', () => {
+  it('should all pass', async () => {
     const promises = Object.keys(API)
       .map(v => {
         if (['default', 'axiosInstance'].indexOf(v) !== -1) {
@@ -23,7 +42,35 @@ describe('API test', () => {
       .map(v => {
         return API[v]
       })
-    Promise.all(promises).then(() => done())
+    let ok = 0
+    for (const func of promises) {
+      if (unableAPI.includes(func)) {
+        console.warn('不支持的API: ', func)
+        ok++
+        continue
+      }
+      const res = await func()
+      if (res.status === 200) {
+        ok++
+      }
+    }
+    expect(ok).toBe(promises.length)
+  })
+})
+
+describe('api: api with defaultAxiosHandle', () => {
+  it('should pass by manual control', (done) => {
+    supertest(app)
+      .get('/goods')
+      .expect(200)
+      .end(() => done())
+  })
+
+  it('should pass', (done) => {
+    API.getGoods().then(res => {
+      expect(typeof res.data).toBe('object')
+      done()
+    })
   })
 })
 
