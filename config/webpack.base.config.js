@@ -27,7 +27,6 @@ const cssLoaders = [
     loader: 'css-loader',
     options: {
       sourceMap: !isProd,
-      modules: true,
       importLoaders: 1
     }
   }
