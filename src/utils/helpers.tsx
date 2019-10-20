@@ -55,7 +55,7 @@ export function defaultAxiosHandle<T> (
   return Promise.resolve(req)
 }
 
-export const booleanToString = (value: any): string => !!value ? '是' : '否'
+export const booleanToString = (value: any): string => value ? '是' : '否'
 
 export enum LoginState {
   Login,
