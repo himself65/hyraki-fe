@@ -24,7 +24,6 @@ export interface Good extends GoodBrief {
   subClass: string // 小类
   forSale?: boolean // 是否非卖品
   // 价格
-  purchasePrice?: string // 进货价
   costPrice?: string // 成本价
   sellingPrice?: string // 销售价
   // 库存
