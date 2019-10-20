@@ -1,12 +1,6 @@
-import React, { ComponentType } from 'react'
-import { Breadcrumb } from 'antd'
-import { DefaultProps, IState } from '../types'
-import { Logger } from './debug'
-import { connect } from 'react-redux'
-import { LocationDescriptorObject } from 'history'
-import { Redirect } from 'react-router-dom'
-import { LocationState } from '../types/Router'
-import { JWT_TOKEN } from './shared'
+import React from 'react'
+import { Breadcrumb, message } from 'antd'
+import { AxiosResponse } from 'axios'
 
 /***
  * @example
@@ -33,6 +27,32 @@ export function BreadcrumbFactory (pathname: string) {
           ? (<Breadcrumb.Item key={key++}>{fixedName}</Breadcrumb.Item>)
           : (<Breadcrumb.Item key={key++}><a href={path}>{fixedName}</a></Breadcrumb.Item>)
       })])
+}
+
+export function defaultAxiosHandle<T>(req: AxiosResponse<T>): PromiseLike<AxiosResponse<T>>
+export function defaultAxiosHandle<T>(req: AxiosResponse<T>,
+                                      config: {
+                                        check?: (req: AxiosResponse<T>) => boolean,
+                                        onCheckFailedHandle?: Function,
+                                        onCheckSuccessHandle?: Function
+                                      }): PromiseLike<AxiosResponse<T>>
+export function defaultAxiosHandle<T> (
+  req: AxiosResponse<T>, {
+    check = req => req.status === 200,
+    onCheckFailedHandle = () => message.error('失败'),
+    onCheckSuccessHandle = () => message.success('成功')
+  }: {
+    check?: (req: AxiosResponse<T>) => boolean,
+    onCheckFailedHandle?: Function,
+    onCheckSuccessHandle?: Function
+  } = {}
+): PromiseLike<AxiosResponse<T>> {
+  if (check(req)) {
+    onCheckFailedHandle(req)
+  } else {
+    onCheckSuccessHandle(req)
+  }
+  return Promise.resolve(req)
 }
 
 export enum LoginState {
