@@ -37,13 +37,6 @@ module.exports = merge(baseWebpackConfig, {
         exclude: /node_modules/
       },
       {
-        test: /\.css$/,
-        use: [
-          'style-loader',
-          'css-loader'
-        ]
-      },
-      {
         test: /\.(png|jpe?g|gif|svg|eot|ttf|woff|woff2)$/,
         use: [
           {
