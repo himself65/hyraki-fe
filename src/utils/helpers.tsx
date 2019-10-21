@@ -29,14 +29,16 @@ export function BreadcrumbFactory (pathname: string) {
       })])
 }
 
-export function defaultAxiosHandle<T>(req: AxiosResponse<T>): PromiseLike<AxiosResponse<T>>
-export function defaultAxiosHandle<T>(req: AxiosResponse<T>,
-                                      config: {
+export function axiosHandle<T = any>(
+  req: AxiosResponse<T>
+): Promise<AxiosResponse<T>>
+export function axiosHandle<T = any>(req: AxiosResponse<T>,
+                                     config: {
                                         check?: (req: AxiosResponse<T>) => boolean,
                                         onCheckFailedHandle?: Function,
                                         onCheckSuccessHandle?: Function
-                                      }): PromiseLike<AxiosResponse<T>>
-export function defaultAxiosHandle<T> (
+                                      }): Promise<AxiosResponse<T>>
+export function axiosHandle<T = any> (
   req: AxiosResponse<T>, {
     check = req => req.status === 200,
     onCheckFailedHandle = () => message.error('失败'),
@@ -46,7 +48,7 @@ export function defaultAxiosHandle<T> (
     onCheckFailedHandle?: Function,
     onCheckSuccessHandle?: Function
   } = {}
-): PromiseLike<AxiosResponse<T>> {
+): Promise<AxiosResponse<T>> {
   if (check(req)) {
     onCheckFailedHandle(req)
   } else {

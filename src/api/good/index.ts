@@ -1,10 +1,14 @@
 import axiosInstance from '../index'
-import { defaultAxiosHandle } from '../../utils/helpers'
+import { axiosHandle } from '../../utils/helpers'
+import { Good, GoodBrief } from '../../types/Good'
+import { AxiosResponse } from 'axios'
 
-export async function getGoods (brief: boolean = false) {
-  return axiosInstance.get('/goods', {
+export async function getGoods(brief: true): Promise<AxiosResponse<(GoodBrief)[]>>
+export async function getGoods(brief: false): Promise<AxiosResponse<(Good)[]>>
+export async function getGoods (brief: boolean = false): Promise<AxiosResponse<(Good | GoodBrief)[]>> {
+  return axiosInstance.get<(Good | GoodBrief)[]>('/goods', {
     params: {
       brief: brief
     }
-  }).then(defaultAxiosHandle)
+  }).then(value => axiosHandle(value))
 }

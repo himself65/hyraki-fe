@@ -1,4 +1,4 @@
-import { booleanToString, defaultAxiosHandle } from '../helpers'
+import { booleanToString, axiosHandle } from '../helpers'
 
 describe('helpers - function: defaultAxiosHandle', () => {
   it('should pass', () => {
@@ -6,14 +6,14 @@ describe('helpers - function: defaultAxiosHandle', () => {
       value: 0
     }
 
-    defaultAxiosHandle(ref, {
+    axiosHandle(ref, {
       check: v => v.value++,
       onCheckSuccessHandle: () => ref.value++
     })
     expect(ref.value).toBe(2)
 
     ref.value = 0
-    defaultAxiosHandle(ref, {
+    axiosHandle(ref, {
       check: v => v,
       onCheckFailedHandle: () => ref.value++
     })
