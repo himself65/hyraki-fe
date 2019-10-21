@@ -1990,11 +1990,30 @@
     lodash.unescape "4.0.1"
     semver "^6.3.0"
 
+"@uifabric/azure-themes@^7.0.9":
+  version "7.0.9"
+  resolved "https://registry.npm.taobao.org/@uifabric/azure-themes/download/@uifabric/azure-themes-7.0.9.tgz#5e8edd9a7f5a735962b3ad8f6bb8c8b2b0080154"
+  integrity sha1-Xo7dmn9ac1lis62Pa7jIsrAIAVQ=
+  dependencies:
+    "@uifabric/merge-styles" "^7.5.1"
+    "@uifabric/set-version" "^7.0.2"
+    office-ui-fabric-react "^7.31.3"
+    tslib "^1.7.1"
+
 "@uifabric/example-data@^7.0.1":
   version "7.0.1"
   resolved "https://registry.npm.taobao.org/@uifabric/example-data/download/@uifabric/example-data-7.0.1.tgz#8d5104ffbfa5c5b2589fa60f753932e536fd1003"
   integrity sha1-jVEE/7+lxbJYn6YPdTky5Tb9EAM=
   dependencies:
+    tslib "^1.7.1"
+
+"@uifabric/file-type-icons@^7.1.2":
+  version "7.1.2"
+  resolved "https://registry.npm.taobao.org/@uifabric/file-type-icons/download/@uifabric/file-type-icons-7.1.2.tgz#98aa15761de036520e5b3f04af020923604d3e6d"
+  integrity sha1-mKoVdh3gNlIOWz8ErwIJI2BNPm0=
+  dependencies:
+    "@uifabric/set-version" "^7.0.2"
+    "@uifabric/styling" "^7.7.2"
     tslib "^1.7.1"
 
 "@uifabric/foundation@^7.4.4":
@@ -2017,12 +2036,28 @@
     "@uifabric/styling" "^7.7.1"
     tslib "^1.7.1"
 
-"@uifabric/merge-styles@^7.7.0":
+"@uifabric/merge-styles@^7.5.1", "@uifabric/merge-styles@^7.7.0":
   version "7.7.0"
   resolved "https://registry.npm.taobao.org/@uifabric/merge-styles/download/@uifabric/merge-styles-7.7.0.tgz#10caa72dd5fb9c63e22214f3a53856aa049bdb10"
   integrity sha1-EMqnLdX7nGPiIhTzpThWqgSb2xA=
   dependencies:
     "@uifabric/set-version" "^7.0.2"
+    tslib "^1.7.1"
+
+"@uifabric/react-cards@^0.109.1":
+  version "0.109.1"
+  resolved "https://registry.npm.taobao.org/@uifabric/react-cards/download/@uifabric/react-cards-0.109.1.tgz#c3c0160a4669d02c08f36b204ac21af8f33418a1"
+  integrity sha1-w8AWCkZp0CwI82sgSsIa+PM0GKE=
+  dependencies:
+    "@microsoft/load-themed-styles" "^1.7.13"
+    "@uifabric/azure-themes" "^7.0.9"
+    "@uifabric/file-type-icons" "^7.1.2"
+    "@uifabric/foundation" "^7.4.4"
+    "@uifabric/set-version" "^7.0.2"
+    "@uifabric/styling" "^7.7.2"
+    "@uifabric/theme-samples" "^7.0.5"
+    "@uifabric/utilities" "^7.5.0"
+    office-ui-fabric-react "^7.51.0"
     tslib "^1.7.1"
 
 "@uifabric/react-hooks@^7.0.1":
@@ -2052,6 +2087,16 @@
     "@uifabric/utilities" "^7.2.0"
     tslib "^1.7.1"
 
+"@uifabric/theme-samples@^7.0.5":
+  version "7.0.5"
+  resolved "https://registry.npm.taobao.org/@uifabric/theme-samples/download/@uifabric/theme-samples-7.0.5.tgz#878d25259d222e900d8d149847d23d1299b7e4b2"
+  integrity sha1-h40lJZ0iLpANjRSYR9I9Epm35LI=
+  dependencies:
+    "@uifabric/set-version" "^7.0.2"
+    "@uifabric/variants" "^7.0.5"
+    office-ui-fabric-react "^7.29.2"
+    tslib "^1.7.1"
+
 "@uifabric/utilities@^7.0.10", "@uifabric/utilities@^7.2.0", "@uifabric/utilities@^7.4.0", "@uifabric/utilities@^7.5.0":
   version "7.5.0"
   resolved "https://registry.npm.taobao.org/@uifabric/utilities/download/@uifabric/utilities-7.5.0.tgz#9e7eb2c73595bd105620eea507aeb1bafaba8f14"
@@ -2060,6 +2105,15 @@
     "@uifabric/merge-styles" "^7.7.0"
     "@uifabric/set-version" "^7.0.2"
     prop-types "^15.5.10"
+    tslib "^1.7.1"
+
+"@uifabric/variants@^7.0.5":
+  version "7.0.5"
+  resolved "https://registry.npm.taobao.org/@uifabric/variants/download/@uifabric/variants-7.0.5.tgz#67a5301a8c36bcb2e46c7d86929d58184e37cc2d"
+  integrity sha1-Z6UwGow2vLLkbH2Gkp1YGE43zC0=
+  dependencies:
+    "@uifabric/set-version" "^7.0.2"
+    office-ui-fabric-react "^7.29.2"
     tslib "^1.7.1"
 
 "@webassemblyjs/ast@1.8.5":
@@ -9741,7 +9795,7 @@ obuf@^1.0.0, obuf@^1.1.2:
   resolved "https://registry.npm.taobao.org/obuf/download/obuf-1.1.2.tgz#09bea3343d41859ebd446292d11c9d4db619084e"
   integrity sha1-Cb6jND1BhZ69RGKS0RydTbYZCE4=
 
-office-ui-fabric-react@^7.53.0:
+office-ui-fabric-react@^7.29.2, office-ui-fabric-react@^7.31.3, office-ui-fabric-react@^7.51.0, office-ui-fabric-react@^7.53.0:
   version "7.53.0"
   resolved "https://registry.npm.taobao.org/office-ui-fabric-react/download/office-ui-fabric-react-7.53.0.tgz#2c2006a04260e05ac603d37eeed1c604960957a3"
   integrity sha1-LCAGoEJg4FrGA9N+7tHGBJYJV6M=
