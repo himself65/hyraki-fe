@@ -1,15 +1,22 @@
 import React, { useState, Fragment } from 'react'
 import { DefaultProps } from '../../../types'
+import { Button, Menu, Card } from 'antd'
 import { HyContent, HyHeader, HyLayout } from '../../../components/Layout'
-import { Button, Card, Menu } from 'antd'
 import { Link, Route, Switch } from 'react-router-dom'
+import { GoodList } from '../../../components/Good/GoodList'
+import { useFetch } from '../../../utils/hooks'
+import { getGoods } from '../../../api/good'
+import { Good } from '../../../types/Good'
 
 const GoodView: React.FC<DefaultProps> = () => {
+  const [goods] = useFetch<Good[]>(getGoods, [])
   return (
     <Fragment>
       <Card className='hy-card'>
         <Button type='primary'>添加</Button>
-        {/* todo: 这里会有一个巨大的表 */}
+        <GoodList style={{
+          marginTop: '1rem'
+        }} items={goods} compact={true}/>
       </Card>
     </Fragment>
   )
