@@ -31,7 +31,7 @@ export enum Permission {
 例子：
 
 ```js
-const { data } = axios.get('/goods', { param: { brief: true } })
+const { data } = await axios.get('/goods', { param: { brief: true } })
 data.page
 // 10
 data.data
@@ -44,7 +44,7 @@ data.data
 ```
 
 ```js
-const { data } = axios.get('/goods', { param: { brief: false, page: 1 } })
+const { data } = await axios.get('/goods', { param: { brief: false, page: 1 } })
 data.page
 // 5
 data.data
