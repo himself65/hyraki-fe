@@ -46,7 +46,7 @@ export function useFetch<T = any, U extends Array<any> = any[]> (
     fetchData.apply(null, args).then()
   }, [])
   const trigger = useCallback((...args: U) => {
-    func.apply(null, args)
+    fetchData.apply(null, args)
   }, [])
   return [data, trigger, setData]
 }
