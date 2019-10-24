@@ -1,10 +1,11 @@
 import axiosInstance from '../index'
-import { store } from '../../App'
-import { loginAction } from '../../store/action/user'
 import { JWT_TOKEN } from '../../utils/shared'
+import { PostAPI } from '../../types/API'
 
 export async function login (username: string, password: string) {
-  return axiosInstance.post('/user/login', {
+  return axiosInstance.post<PostAPI<{
+    token: string
+  }>>('/user/login', {
     username,
     password
   }).then(response => {

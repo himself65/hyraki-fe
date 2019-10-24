@@ -1,6 +1,4 @@
-import { Optional } from '.'
-
-export interface WorkerBrief {
+export interface Worker {
   shop: string
   name: string
   id: number
@@ -11,13 +9,7 @@ export interface WorkerBrief {
   remark: string
 }
 
-export interface Worker extends Optional<WorkerBrief> {
-
-}
-
 export interface WorkerPosition {
   id: string,
   value: string
 }
-
-export type WorkerPositionAPI = WorkerPosition[]

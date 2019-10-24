@@ -1,15 +1,24 @@
 import axiosInstance from '../'
 import { ServeListAPI, ShopListAPI } from '../../types/Shop'
-import { WorkerPositionAPI } from '../../types/Worker'
+import { WorkerPosition } from '../../types/Worker'
+import { ListAPI } from '../../types/API'
 
-export async function getAllShopList () {
-  return axiosInstance.get<ShopListAPI>('/shop')
+export async function getShopList () {
+  return axiosInstance.get<ListAPI<ShopListAPI>>('/shop')
 }
 
-export async function getAllShopServe (shopId: string) {
-  return axiosInstance.get<ServeListAPI>('/shop/serve')
+export async function getShopServeList (shopID: string) {
+  return axiosInstance.get<ListAPI<ServeListAPI>>('/shop/serve', {
+    params: {
+      id: shopID
+    }
+  })
 }
 
 export async function getPositionList (shopID: string) {
-  return axiosInstance.get<WorkerPositionAPI>('/worker/position')
+  return axiosInstance.get<ListAPI<WorkerPosition[]>>('/worker/position', {
+    params: {
+      id: shopID
+    }
+  })
 }

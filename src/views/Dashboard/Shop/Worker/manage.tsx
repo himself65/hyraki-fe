@@ -1,4 +1,4 @@
-import React, { Fragment, useCallback, useEffect, useRef, useState } from 'react'
+import React, { Fragment, useCallback, useRef, useState } from 'react'
 import { Button, Col, Layout, Modal, Row, Card } from 'antd'
 import { Subject } from 'rxjs'
 import { Route, Switch } from 'react-router-dom'
@@ -7,26 +7,17 @@ import { getWorkerList } from '../../../../api/worker'
 import WorkerBriefList from '../../../../components/Worker/WorkerBriefList'
 import AddWorkerForm from '../../../../components/Worker/AddWorkerForm'
 import PositionContent from './position'
+import { useFetch } from '../../../../utils/hooks'
 
 const ManageContent: React.FC<DefaultProps> = (props) => {
   const addWorkerSubject = useRef(new Subject<boolean>())
-  const [workerData, setWorkerData] = useState([])
+  const [workerData] = useFetch(getWorkerList, [])
   const [showAddWorkerModal, setShowAddWorkerModal] = useState(false)
   const WorkerBrief: React.FC = useCallback(() => (
     <Card bordered={false}>
       <WorkerBriefList data={workerData} existData={false}/>
     </Card>
   ), [workerData])
-  useEffect(() => {
-    const fetchData = async () => {
-      await getWorkerList().then(res => {
-        if (res.status === 200) {
-          setWorkerData(res.data)
-        }
-      })
-    }
-    fetchData().then()
-  }, [])
   return (
     <Fragment>
       <Card bordered={false}>

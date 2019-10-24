@@ -1,27 +1,12 @@
-import React, { Fragment, useEffect, useState } from 'react'
-import { Card, Menu, Radio, Tabs } from 'antd'
+import React, { Fragment, useState } from 'react'
+import { Card, Tabs } from 'antd'
 import { DefaultProps } from '../../../../types'
-import { getAllShopList } from '../../../../api/shop'
-import { Shop } from '../../../../types/Shop'
+import { getShopList } from '../../../../api/shop'
+import { useFetch } from '../../../../utils/hooks'
 
 const DateSettingsContent: React.FC<DefaultProps> = () => {
   const [selected, setSelected] = useState('1')
-  const [selectedShop, setSelectedShop] = useState<Shop>()
-  useEffect(() => {
-    const fetchData = async () => {
-      await getAllShopList().then(res => {
-        if (res.status === 200) {
-          setSelectedShop(res.data[0])
-        }
-        return res
-      }).then(async (res) => {
-        if (res.status === 200) {
-
-        }
-      })
-    }
-    fetchData().then()
-  }, [])
+  const [selectedShop] = useFetch(getShopList, [])
 
   return (
     <Fragment>

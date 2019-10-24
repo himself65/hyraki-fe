@@ -26,30 +26,32 @@ app.use(expressJwt({ secret: secretKey })
 
 app.get('/dashboard', (req, res) => {
   res.json({
-    today: {
-      full_income: {
-        type: 'increase',
-        number: random(10000)
+    data: {
+      today: {
+        full_income: {
+          type: 'increase',
+          number: random(10000)
+        },
+        customer_cost: {
+          type: 'decrease',
+          number: random(10000)
+        },
+        all_customers: {
+          type: '',
+          number: random(10000)
+        }
       },
-      customer_cost: {
-        type: 'decrease',
-        number: random(10000)
+      trend: {
+        today: random(10000),
+        sales: Array.from({ length: 30 }).map(() => random(100)),
+        all_sales: random(10000)
       },
-      all_customers: {
-        type: '',
-        number: random(10000)
+      todo: {
+        serviced: random(100),
+        pay: random(100),
+        ship: random(100),
+        review: random(100)
       }
-    },
-    trend: {
-      today: random(10000),
-      sales: Array.from({ length: 30 }).map(() => random(100)),
-      all_sales: random(10000)
-    },
-    todo: {
-      serviced: random(100),
-      pay: random(100),
-      ship: random(100),
-      review: random(100)
     }
   })
   res.end()

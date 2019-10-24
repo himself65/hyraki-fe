@@ -1,12 +1,13 @@
 import axiosInstance from '../index'
-import { Worker, WorkerPositionAPI } from '../../types/Worker'
+import { Worker, WorkerPosition } from '../../types/Worker'
+import { ListAPI, PostAPI } from '../../types/API'
 
 export async function getWorkerList (shopID = 1) {
-  return axiosInstance.get('/worker')
+  return axiosInstance.get<ListAPI<Worker[]>>('/worker')
 }
 
 export async function postAddWorker (data: Worker) {
-  return axiosInstance.post('/worker', data)
+  return axiosInstance.post<PostAPI>('/worker', data)
 }
 
 export async function deleteWorker (id: string | number) {
@@ -17,8 +18,8 @@ export async function deleteWorker (id: string | number) {
   })
 }
 
-export async function getWorkerPositions (brief: boolean = true) {
-  return axiosInstance.get<WorkerPositionAPI>('/worker/position', {
+export async function getWorkerPositionList (brief: boolean = true) {
+  return axiosInstance.get<ListAPI<WorkerPosition[]>>('/worker/position', {
     params: {
       brief: brief
     }

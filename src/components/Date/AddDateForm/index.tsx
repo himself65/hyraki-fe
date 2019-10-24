@@ -3,7 +3,7 @@ import { Form, DatePicker, Input, Select } from 'antd'
 import { FormComponentProps } from 'antd/es/form'
 import { Subject } from 'rxjs'
 import { useFetch } from '../../../utils/hooks'
-import { getAllShopList, getAllShopServe } from '../../../api/shop'
+import { getShopList, getShopServeList } from '../../../api/shop'
 import { Serve, ServeListAPI, Shop } from '../../../types/Shop'
 import ServesTable from './ServesTable'
 import { Logger } from '../../../utils/debug'
@@ -21,7 +21,7 @@ declare module 'antd/lib/select' {
 const AddDateForm: React.FC<Props> = ({ form, subject }) => {
   const [selectedShop, setSelectedShop] = useState<boolean>(false) // 是否已经选择了 shop
   const [serves, setServes] = useState<Serve[]>([])
-  const [shops] = useFetch<Shop[]>(getAllShopList, [])
+  const [shops] = useFetch<Shop[]>(getShopList, [])
   const { getFieldDecorator, validateFields } = form
   useEffect(() => {
     // tip: 仅运行一次
@@ -69,9 +69,10 @@ const AddDateForm: React.FC<Props> = ({ form, subject }) => {
           ]
         })(
           <Select onSelect={async (v) => {
-            await getAllShopServe(v as string).then(res => {
+            await getShopServeList(v as string).then(res => {
               if (res.status === 200) {
-                setServes(res.data)
+                // fixme: refactor me
+                setServes(res.data.data)
                 !selectedShop && setSelectedShop(true)
               }
               // todo: add error logs

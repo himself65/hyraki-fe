@@ -1,30 +1,16 @@
-import React, { useCallback, useEffect, useState } from 'react'
+import React from 'react'
 import { Card, Layout, List, Select, Skeleton } from 'antd'
-import { getAllShopList, getPositionList } from '../../../../api/shop'
+import { getShopList, getPositionList } from '../../../../api/shop'
 import { Shop } from '../../../../types/Shop'
 import { WorkerPosition } from '../../../../types/Worker'
+import { useFetch } from '../../../../utils/hooks'
 
 const PositionContent: React.FC = () => {
-  const [shops, setShops] = useState<Shop[]>([])
-  const [positions, setPositions] = useState<WorkerPosition[]>([])
-  const fetchPositionList = useCallback(async (shopID: string) => {
-    await getPositionList(shopID).then(res => {
-      if (res.status === 200) {
-        setPositions(res.data)
-      }
-    })
-  }, [])
-  useEffect(() => {
-    const fetchData = async () => {
-      const shops = await getAllShopList().then(res => {
-        if (res.status === 200) {
-          setShops(res.data)
-        }
-        return res.data
-      })
-    }
-    fetchData().then()
-  }, [])
+  const [shops] = useFetch<Shop[]>(getShopList, [])
+  const [positions, fetchPositionList] = useFetch(getPositionList, [], {
+    defaultParams: ['1']
+  })
+
   return (
     <Layout>
       <Card title='选择门店'>

@@ -3,10 +3,9 @@ import { Form, Input, Radio, Select } from 'antd'
 import { FormComponentProps } from 'antd/es/form'
 import { Subject } from 'rxjs'
 import { Logger } from '../../utils/debug'
-import { getWorkerPositions } from '../../api/worker'
-import { WorkerPosition } from '../../types/Worker'
-import { getAllShopList } from '../../api/shop'
-import { Shop } from '../../types/Shop'
+import { getWorkerPositionList } from '../../api/worker'
+import { getShopList } from '../../api/shop'
+import { useFetch } from '../../utils/hooks'
 
 interface Props extends FormComponentProps {
   subject: MutableRefObject<Subject<boolean>>
@@ -14,8 +13,8 @@ interface Props extends FormComponentProps {
 
 const AddWorkerForm: React.FC<Props> = (props) => {
   const { getFieldDecorator, validateFields } = props.form
-  const [positionList, setPositionList] = useState<WorkerPosition[]>([])
-  const [shopList, setShopList] = useState<Shop[]>([])
+  const [positionList] = useFetch(getWorkerPositionList, [])
+  const [shopList] = useFetch(getShopList, [])
 
   const subscriber = useCallback((ok: boolean) => {
     if (ok) {
@@ -37,21 +36,6 @@ const AddWorkerForm: React.FC<Props> = (props) => {
     return function cleanup () {
       props.subject.current.unsubscribe()
     }
-  }, [])
-  useEffect(() => {
-    const fetchData = async () => {
-      await getWorkerPositions().then(res => {
-        if (res.status === 200) {
-          setPositionList(res.data)
-        }
-      })
-      await getAllShopList().then(res => {
-        if (res.status === 200) {
-          setShopList(res.data)
-        }
-      })
-    }
-    fetchData().then()
   }, [])
 
   // todo

@@ -1,32 +1,52 @@
-import { useState, useEffect, Dispatch, SetStateAction } from 'react'
+import { useState, useEffect, Dispatch, SetStateAction, useCallback } from 'react'
 import { AxiosPromise } from 'axios'
+import { BaseAPI } from '../types/API'
 
-export function useFetch<T = any> (
-  func: (...args: any[]) => AxiosPromise<T>,
+export type Trigger<T extends Array<any> = any[]> = (...args: T) => void
+
+export function useFetch<T = any, U extends Array<any> = any[]>(
+  func: (...args: U) => AxiosPromise<BaseAPI<T>>
+): [T | undefined, Trigger<U>, Dispatch<SetStateAction<T>>]
+export function useFetch<T = any, U extends Array<any> = any[]> (
+  func: (...args: U) => AxiosPromise<BaseAPI<T>>,
   defaultVal: T
-): [T, Dispatch<SetStateAction<T>>]
-export function useFetch<T = any> (
-  func: (...args: any[]) => AxiosPromise<T>,
+): [T, Trigger<U>, Dispatch<SetStateAction<T>>]
+export function useFetch<T = any, U extends Array<any> = any[]> (
+  func: (...args: U) => AxiosPromise<BaseAPI<T>>,
   defaultVal: T,
-  handle?: Function
-): [T, Dispatch<SetStateAction<T>>]
-export function useFetch<T = any> (
-  func: (...args: any[]) => AxiosPromise<T>,
-  defaultVal: T,
-  handle?: Function
-): [T, Dispatch<SetStateAction<T>>] {
-  const [data, setData] = useState<T>(defaultVal)
-  const fetchData = async () => {
-    await func().then(res => {
+  options?: {
+    defaultParams?: U,
+    handle?: Function
+  }
+): [T, Trigger<U>, Dispatch<SetStateAction<T>>]
+export function useFetch<T = any, U extends Array<any> = any[]> (
+  func: (...args: U) => AxiosPromise<BaseAPI<T>>,
+  defaultVal?: T,
+  options?: {
+    defaultParams?: U,
+    handle?: Function
+  }
+): [T | undefined, Trigger<U>, Dispatch<SetStateAction<T>>] {
+  const [data, setData] = useState()
+  if (defaultVal) {
+    setData(defaultVal)
+  }
+  const fetchData = async (...args: U) => {
+    await func(...args).then(res => {
       if (res.status === 200) {
-        setData(res.data)
+        setData(res.data.data)
       } else {
-        handle && handle(res)
+        options && options.handle && options.handle(res)
       }
     })
   }
   useEffect(() => {
-    fetchData().then()
+    // @ts-ignore
+    const args: U = (options && options.defaultParams) || []
+    fetchData.apply(null, args).then()
   }, [])
-  return [data, setData]
+  const trigger = useCallback((...args: U) => {
+    func.apply(null, args)
+  }, [])
+  return [data, trigger, setData]
 }
