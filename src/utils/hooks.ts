@@ -7,11 +7,11 @@ export type Trigger<T extends Array<any> = any[]> = (...args: T) => void
 export function useFetch<T = any, U extends Array<any> = any[]>(
   func: (...args: U) => AxiosPromise<BaseAPI<T>>
 ): [T | undefined, Trigger<U>, Dispatch<SetStateAction<T>>]
-export function useFetch<T = any, U extends Array<any> = any[]> (
+export function useFetch<T = any, U extends Array<any> = any[]>(
   func: (...args: U) => AxiosPromise<BaseAPI<T>>,
   defaultVal: T
 ): [T, Trigger<U>, Dispatch<SetStateAction<T>>]
-export function useFetch<T = any, U extends Array<any> = any[]> (
+export function useFetch<T = any, U extends Array<any> = any[]>(
   func: (...args: U) => AxiosPromise<BaseAPI<T>>,
   defaultVal: T,
   options?: {
@@ -28,13 +28,14 @@ export function useFetch<T = any, U extends Array<any> = any[]> (
   }
 ): [T | undefined, Trigger<U>, Dispatch<SetStateAction<T>>] {
   const [data, setData] = useState()
+  const [destroyed, destroy] = useState<boolean>(false)
   if (defaultVal) {
     setData(defaultVal)
   }
   const fetchData = async (...args: U) => {
     await func(...args).then(res => {
       if (res.status === 200) {
-        setData(res.data.data)
+        !destroyed && setData(res.data.data)
       } else {
         options && options.handle && options.handle(res)
       }
@@ -44,6 +45,9 @@ export function useFetch<T = any, U extends Array<any> = any[]> (
     // @ts-ignore
     const args: U = (options && options.defaultParams) || []
     fetchData.apply(null, args).then()
+    return () => {
+      destroy(true)
+    }
   }, [])
   const trigger = useCallback((...args: U) => {
     fetchData.apply(null, args)
