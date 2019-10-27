@@ -26,12 +26,9 @@ export function useFetch<T = any, U extends Array<any> = any[]> (
     defaultParams?: U,
     handle?: Function
   }
-): [T | undefined, Trigger<U>, Dispatch<SetStateAction<T>>] {
-  const [data, setData] = useState()
+): [T | undefined, Trigger<U>, Dispatch<SetStateAction<T | undefined>>] {
+  const [data, setData] = useState(defaultVal)
   const [destroyed, destroy] = useState<boolean>(false)
-  if (defaultVal) {
-    setData(defaultVal)
-  }
   const fetchData = async (...args: U) => {
     await func(...args).then(res => {
       if (res.status === 200) {
