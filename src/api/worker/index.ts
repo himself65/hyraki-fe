@@ -3,7 +3,11 @@ import { Worker, WorkerPosition } from '../../types/Worker'
 import { ListAPI, PostAPI } from '../../types/API'
 
 export async function getWorkerList (shopID = 1) {
-  return axiosInstance.get<ListAPI<Worker[]>>('/worker')
+  return axiosInstance.get<ListAPI<Worker[]>>('/worker', {
+    params: {
+      id: shopID
+    }
+  })
 }
 
 export async function postAddWorker (data: Worker) {
