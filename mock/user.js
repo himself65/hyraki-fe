@@ -24,7 +24,9 @@ module.exports = app => {
 
   app.get('/user/message', (req, res) => {
     res.json({
-      count: random(100)
+      data: {
+        count: random(100)
+      }
     })
     res.end()
   })
