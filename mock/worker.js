@@ -32,7 +32,7 @@ module.exports = app => {
   })
 
   app.get('/worker/position', (req, res) => {
-    if (req.query['brief']) {
+    if (!!req.query['brief']) {
       res.json({
         data: [
           { id: 1, value: '高级员工' },

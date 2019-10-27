@@ -1,12 +1,12 @@
 module.exports = app => {
   app.get('/goods', (req, res) => {
-    if (req.query['brief']) {
+    if (req.query['brief'] === 'true') {
       res.json({
         page: 10,
         data: [
-          { id: '1', name: '面包', sellingPrice: '' },
-          { id: '2', name: '甜筒', sellingPrice: '' },
-          { id: '3', name: '圣代', sellingPrice: '' }
+          { id: '1', name: '面包', sellingPrice: '2' },
+          { id: '2', name: '甜筒', sellingPrice: '3' },
+          { id: '3', name: '圣代', sellingPrice: '4' }
         ]
       })
     } else {

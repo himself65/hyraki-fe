@@ -9,7 +9,9 @@ import { getGoods } from '../../../api/good'
 import { Good } from '../../../types/Good'
 
 const GoodView: React.FC<DefaultProps> = () => {
-  const [goods] = useFetch<Good[]>(getGoods, [])
+  const [goods] = useFetch<Good[]>(getGoods, [], {
+    defaultParams: [false]
+  })
   return (
     <Fragment>
       <Card className='hy-card'>
