@@ -9,6 +9,9 @@ module.exports = {
   setupFiles: [
     'react-app-polyfill/jsdom'
   ],
+  globals: {
+    DEBUG: true
+  },
   setupFilesAfterEnv: ['<rootDir>/config/setupTests.js'],
   testMatch: [
     '<rootDir>/src/**/__tests__/**/*.{js,jsx,ts,tsx}',

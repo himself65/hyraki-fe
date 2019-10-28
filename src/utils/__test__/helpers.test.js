@@ -8,14 +8,14 @@ describe('helpers - function: defaultAxiosHandle', () => {
 
     axiosHandle(ref, {
       check: v => v.value++,
-      onCheckSuccessHandle: () => ref.value++
+      onFailed: () => ref.value++
     })
     expect(ref.value).toBe(2)
 
     ref.value = 0
     axiosHandle(ref, {
       check: v => v,
-      onCheckFailedHandle: () => ref.value++
+      onSuccess: () => ref.value++
     })
     expect(ref.value).toBe(1)
   })
