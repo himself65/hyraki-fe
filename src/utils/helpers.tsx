@@ -34,25 +34,32 @@ export function axiosHandle<T = any>(
 ): Promise<AxiosResponse<T>>
 export function axiosHandle<T = any>(req: AxiosResponse<T>,
                                      config: {
-                                        check?: (req: AxiosResponse<T>) => boolean,
-                                        onCheckFailedHandle?: Function,
-                                        onCheckSuccessHandle?: Function
-                                      }): Promise<AxiosResponse<T>>
+                                       check?: (req: AxiosResponse<T>) => boolean,
+                                       onCheckFailedHandleDebug?: Function,
+                                       onCheckSuccessHandleDebug?: Function,
+                                       onSuccess?: Function,
+                                       onFailed?: Function
+                                     }): Promise<AxiosResponse<T>>
 export function axiosHandle<T = any> (
   req: AxiosResponse<T>, {
     check = req => req.status === 200,
-    onCheckFailedHandle = () => message.error('失败'),
-    onCheckSuccessHandle = () => message.success('成功')
+    onCheckFailedHandleDebug = () => message.error('失败'),
+    onCheckSuccessHandleDebug = () => message.success('成功'),
+    onFailed, onSuccess
   }: {
     check?: (req: AxiosResponse<T>) => boolean,
-    onCheckFailedHandle?: Function,
-    onCheckSuccessHandle?: Function
+    onCheckFailedHandleDebug?: Function,
+    onCheckSuccessHandleDebug?: Function,
+    onSuccess?: Function,
+    onFailed?: Function
   } = {}
 ): Promise<AxiosResponse<T>> {
   if (check(req)) {
-    onCheckFailedHandle(req)
+    DEBUG && onCheckSuccessHandleDebug(req)
+    onSuccess && onSuccess()
   } else {
-    onCheckSuccessHandle(req)
+    DEBUG && onCheckFailedHandleDebug(req)
+    onFailed && onFailed()
   }
   return Promise.resolve(req)
 }
