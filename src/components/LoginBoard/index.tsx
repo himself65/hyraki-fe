@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react'
-import { Form, Icon, Input, Checkbox, Button, message } from 'antd'
-import { withRouter, RouteComponentProps } from 'react-router-dom'
+import { Button, Checkbox, Form, Icon, Input, message } from 'antd'
+import { RouteComponentProps, withRouter } from 'react-router-dom'
 import { FormComponentProps } from 'antd/es/form'
 import { login } from '../../api'
 import { Logger } from '../../utils/debug'

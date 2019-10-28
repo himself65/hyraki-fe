@@ -1,4 +1,4 @@
-import { booleanToString, axiosHandle } from '../helpers'
+import { axiosHandle, booleanToString } from '../helpers'
 
 describe('helpers - function: defaultAxiosHandle', () => {
   it('should pass', () => {

@@ -1,6 +1,6 @@
-import React, { useState, Fragment } from 'react'
+import React, { Fragment, useState } from 'react'
 import { DefaultProps } from '../../../types'
-import { Button, Menu, Card } from 'antd'
+import { Button, Card, Menu } from 'antd'
 import { HyContent, HyHeader, HyLayout } from '../../../components/Layout'
 import { Link, Route, Switch } from 'react-router-dom'
 import { GoodList } from '../../../components/Good/GoodList'

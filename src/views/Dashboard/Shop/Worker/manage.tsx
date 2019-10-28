@@ -1,5 +1,5 @@
 import React, { Fragment, useCallback, useRef, useState } from 'react'
-import { Button, Col, Layout, Modal, Row, Card } from 'antd'
+import { Button, Card, Col, Layout, Modal, Row } from 'antd'
 import { Subject } from 'rxjs'
 import { Route, Switch } from 'react-router-dom'
 import { DefaultProps } from '../../../../types'

@@ -1,6 +1,6 @@
 import React from 'react'
 import { Provider } from 'react-redux'
-import { asyncComponent, AsyncComponentProvider } from 'react-async-component'
+import { AsyncComponentProvider, asyncComponent } from 'react-async-component'
 import configStore from './store'
 import { Redirect, Route, Switch } from 'react-router'
 import { BrowserRouter } from 'react-router-dom'
