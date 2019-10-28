@@ -19,7 +19,7 @@
     "no-eval": "error",
     "no-var": "error",
     "prefer-const": "error",
-    "sort-imports": "error",
+    "sort-imports": "warn",
     "no-unused-vars": "off",
     "no-unused-expressions": "warn",
     "react/jsx-filename-extension": [
