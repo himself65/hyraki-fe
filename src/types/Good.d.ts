@@ -18,7 +18,6 @@ export interface Good extends GoodBrief {
   id: string
   name: string
   barCode?: string // 条码
-  image?: string // 图片
   unit?: string // 单位
   mainClass: string // 大类
   subClass: string // 小类
