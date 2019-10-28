@@ -15,6 +15,11 @@
     "jsx-a11y"
   ],
   "rules": {
+    "eqeqeq": "error",
+    "no-eval": "error",
+    "no-var": "error",
+    "prefer-const": "error",
+    "sort-imports": "error",
     "no-unused-vars": "off",
     "no-unused-expressions": "warn",
     "react/jsx-filename-extension": [
