@@ -1,25 +1,46 @@
-import React, { Fragment, useState } from 'react'
+import React, { Fragment, useRef, useState } from 'react'
 import { DefaultProps } from '../../../types'
-import { Button, Card, Menu } from 'antd'
+import { Button, Card, Menu, Modal } from 'antd'
 import { HyContent, HyHeader, HyLayout } from '../../../components/Layout'
 import { Link, Route, Switch } from 'react-router-dom'
 import { GoodList } from '../../../components/Good/GoodList'
 import { useFetch } from '../../../utils/hooks'
 import { getGoods } from '../../../api/good'
 import { Good } from '../../../types/Good'
+import { Subject } from 'rxjs'
+import AddGoodForm from '../../../components/Good/AddGoodForm'
 
 const GoodView: React.FC<DefaultProps> = () => {
+  const subject = useRef(new Subject<boolean>())
+  const [showAddGoodModal, setShowAddGoodModal] = useState<boolean>(false)
   const [goods] = useFetch<Good[]>(getGoods, [], {
     defaultParams: [false]
   })
   return (
     <Fragment>
       <Card className='hy-card'>
-        <Button type='primary'>添加</Button>
+        <Button
+          type='primary'
+          onClick={() => setShowAddGoodModal(true)}>
+          添加
+        </Button>
         <GoodList style={{
           marginTop: '1rem'
         }} items={goods} compact={true}/>
       </Card>
+      <Modal
+        title={'添加库存'}
+        visible={showAddGoodModal}
+        onOk={() => {
+          subject.current.next(true)
+        }}
+        onCancel={() => {
+          subject.current.next(false)
+          setShowAddGoodModal(false)
+        }}
+      >
+        <AddGoodForm subject={subject}/>
+      </Modal>
     </Fragment>
   )
 }

@@ -18,42 +18,78 @@ const AddGoodForm: React.FC<Props> = ({ form }) => {
               required: true,
               message: '请输入名称'
             }
-          ]
+          ],
+          validateFirst: true
         })(<Input/>)}
       </Form.Item>
       <Form.Item label={'单位'}>
         {getFieldDecorator('unit', {
-          // todo
+          rules: [
+            {
+              required: false,
+              message: '请输入单位'
+            }
+          ]
         })(<Input/>)}
       </Form.Item>
       <Form.Item label={'大类'}>
         {getFieldDecorator('mainClass', {
-          // todo
+          rules: [
+            {
+              required: false,
+              message: '请输入大类'
+            }
+          ]
         })(<Input/>)}
       </Form.Item>
       <Form.Item label={'小类'}>
         {getFieldDecorator('subClass', {
-          // todo
+          rules: [
+            {
+              required: false,
+              message: '请输入小类'
+            }
+          ]
         })(<Input/>)}
       </Form.Item>
       <Form.Item label={'是否非卖品'}>
         {getFieldDecorator('forSale', {
-          // todo
-        })(<Switch/>)}
+          rules: [
+            {
+              required: true,
+              message: '设置是否非卖品'
+            }
+          ]
+        })(<Switch checkedChildren={'是'} unCheckedChildren={'否'}/>)}
       </Form.Item>
       <Form.Item label={'成本价'}>
         {getFieldDecorator('costPrice', {
-          // todo
+          rules: [
+            {
+              required: false,
+              message: '请输入成本价'
+            }
+          ]
         })(<Input/>)}
       </Form.Item>
       <Form.Item label={'销售价'}>
         {getFieldDecorator('sellingPrice', {
-          // todo
+          rules: [
+            {
+              required: true,
+              message: '请输入售价'
+            }
+          ]
         })(<Input/>)}
       </Form.Item>
       <Form.Item label={'当前库存'}>
         {getFieldDecorator('currentStock', {
-          // todo
+          rules: [
+            {
+              required: true,
+              message: '请输入当前库存'
+            }
+          ]
         })(<Input/>)}
       </Form.Item>
       <Form.Item label={'最低库存'}>
