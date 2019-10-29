@@ -2,6 +2,8 @@ import React from 'react'
 import { Breadcrumb, message } from 'antd'
 import { AxiosResponse } from 'axios'
 
+export const noop = () => {}
+
 /***
  * @example
  * import { BreadCrumb } from 'antd'
@@ -43,23 +45,24 @@ export function axiosHandle<T = any>(req: AxiosResponse<T>,
 export function axiosHandle<T = any> (
   req: AxiosResponse<T>, {
     check = req => req.status === 200,
-    onCheckFailedHandleDebug = () => message.error('失败'),
-    onCheckSuccessHandleDebug = () => message.success('成功'),
-    onFailed, onSuccess
+    onSuccessDebug = (req: AxiosResponse<T>) => message.error('失败'),
+    onFailedDebug = (req: AxiosResponse<T>) => message.success('成功'),
+    onFailed = noop,
+    onSuccess = noop
   }: {
     check?: (req: AxiosResponse<T>) => boolean,
-    onCheckFailedHandleDebug?: Function,
-    onCheckSuccessHandleDebug?: Function,
+    onSuccessDebug?: Function,
+    onFailedDebug?: Function,
     onSuccess?: Function,
     onFailed?: Function
   } = {}
 ): Promise<AxiosResponse<T>> {
   if (check(req)) {
-    DEBUG && onCheckSuccessHandleDebug(req)
-    onSuccess && onSuccess()
+    DEBUG && onFailedDebug(req)
+    onSuccess(req)
   } else {
-    DEBUG && onCheckFailedHandleDebug(req)
-    onFailed && onFailed()
+    DEBUG && onSuccessDebug(req)
+    onFailed(req)
   }
   return Promise.resolve(req)
 }
