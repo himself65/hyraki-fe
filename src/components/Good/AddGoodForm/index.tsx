@@ -1,10 +1,12 @@
-import React, { MutableRefObject } from 'react'
-import { Form, Input, Switch } from 'antd'
+import React, { MutableRefObject, useCallback, useState } from 'react'
+import { Form, Input, InputNumber, Select, Switch } from 'antd'
 import { FormComponentProps } from 'antd/es/form'
 import { Subject } from 'rxjs'
 import { ListAPI } from '../../../types/API'
 import { Brand, Supplier } from '../../../types/Good'
 import { AxiosPromise } from 'axios'
+import { useFetch } from '../../../utils/hooks'
+import { numberFormatter } from '../../../utils/helpers'
 
 interface Props extends FormComponentProps {
   subject: MutableRefObject<Subject<boolean>>
@@ -14,8 +16,17 @@ interface Props extends FormComponentProps {
   }
 }
 
-const AddGoodForm: React.FC<Props> = ({ form }) => {
+const AddGoodForm: React.FC<Props> = ({ form, api }) => {
   const { getFieldDecorator } = form
+  const [brands] = useFetch(api.getBrands, [])
+  const [supplier] = useFetch(api.getSupplier, [])
+  const [unit, setUnit] = useState<string>('个')
+  form.validateFields(['unit'], (err, value) => {
+    if (err) {
+
+    }
+  })
+  const formatter = useCallback((value: number) => numberFormatter(value, unit), [])
   return (
     <Form layout={'vertical'}>
       <Form.Item label={'名称'}>
@@ -77,7 +88,7 @@ const AddGoodForm: React.FC<Props> = ({ form }) => {
               message: '请输入成本价'
             }
           ]
-        })(<Input/>)}
+        })(<InputNumber/>)}
       </Form.Item>
       <Form.Item label={'销售价'}>
         {getFieldDecorator('sellingPrice', {
@@ -87,7 +98,7 @@ const AddGoodForm: React.FC<Props> = ({ form }) => {
               message: '请输入售价'
             }
           ]
-        })(<Input/>)}
+        })(<InputNumber/>)}
       </Form.Item>
       <Form.Item label={'当前库存'}>
         {getFieldDecorator('currentStock', {
@@ -97,7 +108,7 @@ const AddGoodForm: React.FC<Props> = ({ form }) => {
               message: '请输入当前库存'
             }
           ]
-        })(<Input/>)}
+        })(<InputNumber/>)}
       </Form.Item>
       <Form.Item label={'最低库存'}>
         {getFieldDecorator('safeStock', {
@@ -106,7 +117,7 @@ const AddGoodForm: React.FC<Props> = ({ form }) => {
               required: false
             }
           ]
-        })(<Input/>)}
+        })(<InputNumber/>)}
       </Form.Item>
       <Form.Item label={'供应商'}>
         {getFieldDecorator('supplier', {
@@ -115,7 +126,9 @@ const AddGoodForm: React.FC<Props> = ({ form }) => {
               required: false
             }
           ]
-        })(<Input/>)}
+        })(<Select placeholder={''}>
+          {supplier.map(v => (<Select.Option key={v.id} value={v.id}>{v.name}</Select.Option>))}
+        </Select>)}
       </Form.Item>
       <Form.Item label={'品牌'}>
         {getFieldDecorator('brand', {
@@ -124,7 +137,9 @@ const AddGoodForm: React.FC<Props> = ({ form }) => {
               required: false
             }
           ]
-        })(<Input/>)}
+        })(<Select placeholder={''}>
+          {brands.map(v => (<Select.Option key={v.id} value={v.id}>{v.name}</Select.Option>))}
+        </Select>)}
       </Form.Item>
       <Form.Item label={'备注'}>
         {getFieldDecorator('remark', {

@@ -75,6 +75,8 @@ export const assert = DEBUG ? (judgement: boolean, message: string) => {
 
 export const booleanToString = (value: any): string => value ? '是' : '否'
 
+export const numberFormatter = (value: number, suffix: string[0]) => `${value} ${suffix}`
+
 export enum LoginState {
   Login,
   Logout,

@@ -1,4 +1,4 @@
-import { axiosHandle, booleanToString } from '../helpers'
+import { axiosHandle, booleanToString, numberFormatter } from '../helpers'
 
 describe('helpers - function: defaultAxiosHandle', () => {
   it('should pass', () => {
@@ -34,5 +34,12 @@ describe('helpers - function: booleanToString', () => {
     expect(booleanToString('')).toEqual('否')
     expect(booleanToString(0)).toEqual('否')
     expect(booleanToString(false)).toEqual('否')
+  })
+})
+
+describe('helpers - function: numberFormatter', () => {
+  it('should pass', () => {
+    expect(numberFormatter(1, '个')).toEqual('1 个')
+    expect(numberFormatter(1000, '个')).toEqual('1000 个')
   })
 })
