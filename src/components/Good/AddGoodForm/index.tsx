@@ -2,9 +2,16 @@ import React, { MutableRefObject } from 'react'
 import { Form, Input, Switch } from 'antd'
 import { FormComponentProps } from 'antd/es/form'
 import { Subject } from 'rxjs'
+import { ListAPI } from '../../../types/API'
+import { Brand, Supplier } from '../../../types/Good'
+import { AxiosResponse } from 'axios'
 
 interface Props extends FormComponentProps {
   subject: MutableRefObject<Subject<boolean>>
+  api: {
+    getBrands(id: string): Promise<AxiosResponse<ListAPI<Brand[]>>>
+    getSupplier(id: string): Promise<AxiosResponse<ListAPI<Supplier[]>>>
+  }
 }
 
 const AddGoodForm: React.FC<Props> = ({ form }) => {
@@ -94,17 +101,29 @@ const AddGoodForm: React.FC<Props> = ({ form }) => {
       </Form.Item>
       <Form.Item label={'最低库存'}>
         {getFieldDecorator('safeStock', {
-          // todo
+          rules: [
+            {
+              required: false
+            }
+          ]
         })(<Input/>)}
       </Form.Item>
       <Form.Item label={'供应商'}>
         {getFieldDecorator('supplier', {
-          // todo: 添加供应商相关部分
+          rules: [
+            {
+              required: false
+            }
+          ]
         })(<Input/>)}
       </Form.Item>
       <Form.Item label={'品牌'}>
         {getFieldDecorator('brand', {
-          // todo: 添加品牌相关部分
+          rules: [
+            {
+              required: false
+            }
+          ]
         })(<Input/>)}
       </Form.Item>
       <Form.Item label={'备注'}>

@@ -5,7 +5,7 @@ import { HyContent, HyHeader, HyLayout } from '../../../components/Layout'
 import { Link, Route, Switch } from 'react-router-dom'
 import { GoodList } from '../../../components/Good/GoodList'
 import { useFetch } from '../../../utils/hooks'
-import { getGoods } from '../../../api/good'
+import { getBrands, getGoods, getSupplier } from '../../../api/good'
 import { Good } from '../../../types/Good'
 import { Subject } from 'rxjs'
 import AddGoodForm from '../../../components/Good/AddGoodForm'
@@ -39,7 +39,10 @@ const GoodView: React.FC<DefaultProps> = () => {
           setShowAddGoodModal(false)
         }}
       >
-        <AddGoodForm subject={subject}/>
+        <AddGoodForm subject={subject} api={{
+          getBrands: getBrands,
+          getSupplier: getSupplier
+        }}/>
       </Modal>
     </Fragment>
   )

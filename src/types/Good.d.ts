@@ -4,6 +4,7 @@ export interface Supplier {
   name: string
 }
 
+// tip: 供应商和品牌是一个类型，但不使用一个接口
 export type Brand = Supplier
 
 export interface GoodBrief {

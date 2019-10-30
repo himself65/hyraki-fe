@@ -1,4 +1,26 @@
 module.exports = app => {
+  app.get('/brands', (req, res) => {
+    // 根据 req.query['id'] 来判断返回值
+    // id 指的是 shopID
+    res.json({
+      data: [
+        { id: 1, name: '面包新语' },
+        { id: 2, name: '星巴克' }
+      ]
+    })
+    res.end()
+  })
+
+  app.get('/supplier', (req, res) => {
+    res.json({
+      data: [
+        { id: 1, name: '隔壁' },
+        { id: 2, name: '楼下' }
+      ]
+    })
+    res.end()
+  })
+
   app.get('/goods', (req, res) => {
     if (req.query['brief'] === 'true') {
       res.json({
