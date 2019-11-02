@@ -11,6 +11,46 @@ export enum Permission {
 }
 ```
 
+## 基本API
+
+1. 所有请求的数据放到 `res.data.data` 中
+
+example:
+
+```json
+{
+  "data": [
+    // ...
+  ]
+}
+```
+
+```json
+{
+  "data": {
+    // ...
+  }
+}
+```
+
+2. 错误信息放到 `res.data.message` 中
+
+```json
+{
+  "message": "请求错误"
+}
+```
+3. 附加信息放到 `res.data.xxx` 中，`xxx`，例如：`page`
+
+```json
+{
+  "data": [
+    // ...
+  ],
+  "page": 100
+}
+```
+
 ## 货物
 
 ### /goods
