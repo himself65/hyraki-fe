@@ -1,10 +1,10 @@
 import axiosInstance from '../'
-import { ServeListAPI, ShopListAPI } from '../../types/Shop'
+import { ServeListAPI, Shop } from '../../types/Shop'
 import { WorkerPosition } from '../../types/Worker'
 import { ListAPI } from '../../types/API'
 
 export async function getShopList () {
-  return axiosInstance.get<ListAPI<ShopListAPI>>('/shop')
+  return axiosInstance.get<ListAPI<Shop[]>>('/shop')
 }
 
 export async function getShopServeList (shopID: string) {

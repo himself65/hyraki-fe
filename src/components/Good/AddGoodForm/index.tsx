@@ -4,13 +4,13 @@ import { FormComponentProps } from 'antd/es/form'
 import { Subject } from 'rxjs'
 import { ListAPI } from '../../../types/API'
 import { Brand, Supplier } from '../../../types/Good'
-import { AxiosResponse } from 'axios'
+import { AxiosPromise } from 'axios'
 
 interface Props extends FormComponentProps {
   subject: MutableRefObject<Subject<boolean>>
   api: {
-    getBrands(id: string): Promise<AxiosResponse<ListAPI<Brand[]>>>
-    getSupplier(id: string): Promise<AxiosResponse<ListAPI<Supplier[]>>>
+    getBrands (id: string): AxiosPromise<ListAPI<Brand[]>>
+    getSupplier (id: string): AxiosPromise<ListAPI<Supplier[]>>
   }
 }
 

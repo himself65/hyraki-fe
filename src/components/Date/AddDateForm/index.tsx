@@ -7,9 +7,15 @@ import { getShopList, getShopServeList } from '../../../api/shop'
 import { Serve, ServeListAPI, Shop } from '../../../types/Shop'
 import ServesTable from './ServesTable'
 import { Logger } from '../../../utils/debug'
+import { ListAPI } from '../../../types/API'
+import { AxiosPromise } from 'axios'
+import { assert } from '../../../utils/helpers'
 
 export interface Props extends FormComponentProps {
-  subject: MutableRefObject<Subject<boolean>>
+  subject: MutableRefObject<Subject<boolean>>,
+  api: {
+    getShopList(): AxiosPromise<ListAPI<Shop[]>>
+  }
 }
 
 declare module 'antd/lib/select' {
@@ -18,10 +24,11 @@ declare module 'antd/lib/select' {
   }
 }
 
-const AddDateForm: React.FC<Props> = ({ form, subject }) => {
+const AddDateForm: React.FC<Props> = ({ form, subject, api }) => {
   const [selectedShop, setSelectedShop] = useState<boolean>(false) // 是否已经选择了 shop
   const [serves, setServes] = useState<Serve[]>([])
-  const [shops] = useFetch<Shop[]>(getShopList, [])
+  const [shops] = useFetch<Shop[]>(api.getShopList, [])
+  assert(Array.isArray(shops), 'shops is not a Array')
   const { getFieldDecorator, validateFields } = form
   useEffect(() => {
     // tip: 仅运行一次

@@ -7,6 +7,7 @@ import AddDateForm from '../../../components/Date/AddDateForm'
 import { Subject } from 'rxjs'
 import DateSettingsContent from './settings'
 import DatingCalendar from '../../../components/Date/DatingCalendar'
+import { getShopList } from '../../../api/shop'
 
 const DateOverView: React.FC<DefaultProps> = (props) => {
   const subject = useRef(new Subject<boolean>())
@@ -30,7 +31,9 @@ const DateOverView: React.FC<DefaultProps> = (props) => {
           setShowAddDateModal(false)
         }}
       >
-        <AddDateForm subject={subject}/>
+        <AddDateForm subject={subject} api={{
+          getShopList: getShopList
+        }}/>
       </Modal>
     </Fragment>
   )

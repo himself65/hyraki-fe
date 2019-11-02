@@ -1,6 +1,7 @@
 import React from 'react'
 import { Breadcrumb, message } from 'antd'
 import { AxiosResponse } from 'axios'
+import { Logger } from './debug'
 
 export const noop = () => {}
 
@@ -66,6 +67,11 @@ export function axiosHandle<T = any> (
   }
   return Promise.resolve(req)
 }
+
+// only assert on LoggerMode
+export const assert = DEBUG ? (judgement: boolean, message: string) => {
+  !judgement && Logger(message)
+} : noop
 
 export const booleanToString = (value: any): string => value ? '是' : '否'
 

@@ -3,8 +3,6 @@ export interface Shop {
   name: string
 }
 
-export type ShopListAPI = Shop[]
-
 export interface Serve {
   id: string
   name: string
