@@ -5,6 +5,10 @@ const HappyPack = require('happypack')
 const { config: baseWebpackConfig, happyThreadPool } = require('./webpack.base.config')
 
 const useMock = !!process.env.MOCK
+const openDEBUG = !!process.env.DEBUG
+
+console.log('useMock: ', useMock)
+console.log('openDEBUG: ', openDEBUG)
 
 module.exports = merge(baseWebpackConfig, {
   entry: {
@@ -43,8 +47,9 @@ module.exports = merge(baseWebpackConfig, {
       ]
     }),
     new DefinePlugin({
-      DEBUG: false,
+      DEBUG: openDEBUG,
       MOCK: useMock
     })
-  ]
+  ],
+  devtool: openDEBUG ? 'source-map' : undefined
 })

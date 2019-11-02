@@ -1,0 +1,7 @@
+{
+  "globals": {
+    "fetch": true,
+    "DEBUG": true,
+    "MOCK": true
+  }
+}

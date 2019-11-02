@@ -40,10 +40,6 @@
     ],
     "camelcase": "off"
   },
-  "globals": {
-    "fetch": true,
-    "DEBUG": true
-  },
   "env": {
     "jest": true,
     "browser": true
