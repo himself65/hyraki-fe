@@ -5,7 +5,7 @@ import { JWT_TOKEN } from '../utils/shared'
 import { loginAction, logoutAction } from '../store/action/user'
 
 const AXIOS_URL = process.env.NODE_ENV === 'development'
-  ? 'http://localhost:3001'
+  ? 'http://192.168.1.124:3001'
   : process.env.NODE_ENV === 'production'
     ? 'https://api.jzmin.top/' // fixme: api.jzmin.top will be replaced
     : 'http://localhost:4000' // tip: 此处为线上 mock server 地址

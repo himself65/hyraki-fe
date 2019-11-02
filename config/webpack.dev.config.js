@@ -52,7 +52,7 @@ module.exports = merge(baseWebpackConfig, {
   devServer: {
     contentBase: resolve(__dirname, '..', 'dist'),
     publicPath: '/',
-    host: process.env.HOST || 'localhost',
+    host: process.env.HOST || '0.0.0.0',
     port: process.env.PORT || '3000',
     historyApiFallback: true,
     disableHostCheck: true
