@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { hot } from 'react-hot-loader/root'
+import { hot } from 'react-hot-loader'
 import * as Sentry from '@sentry/browser'
 import 'ant-design-pro/lib/Charts/style/index.less'
 import 'office-ui-fabric-react/dist/sass/Fabric.scss'
@@ -20,7 +20,7 @@ if (DEBUG) {
 if (process.env.NODE_ENV === 'production') {
   ReactDOM.render(<App/>, document.getElementById('root'))
 } else {
-  const HotApp = hot(App)
+  const HotApp = hot(module)(App)
   ReactDOM.render(<HotApp/>, document.getElementById('root'))
 }
 
