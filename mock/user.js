@@ -5,12 +5,14 @@ const { secretKey } = require('./utils/shared')
 module.exports = app => {
   app.post('/user/login', (req, res) => {
     const { username, password } = req.body
-    console.log(req.body)
     if (username && password) {
       // tip: hack code
-      const token = jwt.sign({ username: '123456', password: '123456' },
+      const token = jwt.sign({},
         secretKey, {
-          expiresIn: 60 * 60 * 24 // 授权时效24小时
+          expiresIn: 60 * 60 * 24, // 授权时效24小时,
+          algorithm: 'HS256',
+          issuer: 'hyraki-ba',
+          audience: 'himself65'
         })
       res.json({
         token
