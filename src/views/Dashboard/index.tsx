@@ -10,12 +10,15 @@ import DateContent from './Date'
 import ClientContent from './Client'
 import ShopContent from './Shop'
 import { GoodContent } from './Good'
+import { useFetch } from '../../utils/hooks'
+import { getMessagesCount } from '../../api/user'
 
 const DashboardView: React.FC<DefaultProps> = (props) => {
   let selectedKey = '/dashboard'
   if (props.location) {
     selectedKey = props.location.pathname
   }
+  const [{ count }] = useFetch(getMessagesCount, { count: 0 })
   Logger('Opened \'%s\'', props.location ? selectedKey : 'UNKNOWN')
   return (
     <HyLayout className='dashboard-view'>
@@ -26,7 +29,7 @@ const DashboardView: React.FC<DefaultProps> = (props) => {
       >
         <Row className='top-element' type='flex' justify='center'>
           {/* fixme: 需要API支持 */}
-          <Badge count={666}>
+          <Badge count={count}>
             <Avatar size={64}/>
           </Badge>
         </Row>

@@ -1,6 +1,7 @@
 import axiosInstance from '../index'
 import { JWT_TOKEN } from '../../utils/shared'
-import { PostAPI } from '../../types/API'
+import { BaseAPI, PostAPI } from '../../types/API'
+import { axiosHandle } from '../../utils/helpers'
 
 export async function login (username: string, password: string) {
   return axiosInstance.post<PostAPI<{
@@ -14,4 +15,11 @@ export async function login (username: string, password: string) {
     }
     return response
   })
+}
+
+export async function getMessagesCount () {
+  return axiosInstance.get<BaseAPI<{
+    count: number
+  }>>('/user/messages/count')
+    .then(response => axiosHandle(response))
 }
