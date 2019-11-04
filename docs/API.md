@@ -59,7 +59,7 @@ example:
 
 > type: GET 
 >
-> Permission: work
+> Permission: worker
 
 * `request.query`
     * `brief` {boolean} 是否返回简要信息
@@ -95,4 +95,23 @@ data.data
 //    { ... },
 //    { ... }
 //  ]
+```
+
+### /shop
+
+获取所有店铺信息
+
+> type: GET
+>
+> Permission: root | worker
+> （会对root返回全部的shop，而对worker返回他所在的shop）
+
+```js
+const { data } = await axios.get('/shop')
+
+data.data
+// 详细接口参考 'src/types/Shop.d.ts' 中 Shop 类型
+// [
+//   ...
+// ]
 ```
