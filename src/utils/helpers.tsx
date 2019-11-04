@@ -3,7 +3,7 @@ import { Breadcrumb, message } from 'antd'
 import { AxiosResponse } from 'axios'
 import { Logger } from './debug'
 
-export const noop = () => {}
+export const noop: (...args: any[]) => any = () => {}
 
 /***
  * @example
@@ -75,7 +75,8 @@ export const assert = DEBUG ? (judgement: boolean, message: string) => {
 
 export const booleanToString = (value: any): string => value ? '是' : '否'
 
-export const numberFormatter = (value: number, suffix: string[0]) => `${value} ${suffix}`
+export const numberFormatter = (value: string | number | undefined, suffix: string[0]) =>
+  `${value === undefined ? '' : value} ${suffix}`
 
 export enum LoginState {
   Login,

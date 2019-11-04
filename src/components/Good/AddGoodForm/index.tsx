@@ -1,14 +1,18 @@
-import React, { MutableRefObject, useCallback, useState } from 'react'
+import React, { MutableRefObject, useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { Form, Input, InputNumber, Select, Switch } from 'antd'
 import { FormComponentProps } from 'antd/es/form'
 import { Subject } from 'rxjs'
 import { ListAPI } from '../../../types/API'
-import { Brand, Supplier } from '../../../types/Good'
+import { Brand, Good, Supplier } from '../../../types/Good'
 import { AxiosPromise } from 'axios'
 import { useFetch } from '../../../utils/hooks'
 import { numberFormatter } from '../../../utils/helpers'
+import { Simulate } from 'react-dom/test-utils'
+import { Logger } from '../../../utils/debug'
+import { addGood } from '../../../api/good'
+import error = Simulate.error
 
-interface Props extends FormComponentProps {
+interface Props extends FormComponentProps<Required<Good>> {
   subject: MutableRefObject<Subject<boolean>>
   api: {
     getBrands (id: string): AxiosPromise<ListAPI<Brand[]>>
@@ -16,17 +20,25 @@ interface Props extends FormComponentProps {
   }
 }
 
-const AddGoodForm: React.FC<Props> = ({ form, api }) => {
-  const { getFieldDecorator } = form
+const AddGoodForm: React.FC<Props> = ({ subject, form, api }) => {
+  const { getFieldDecorator, validateFields } = form
   const [brands] = useFetch(api.getBrands, [])
   const [supplier] = useFetch(api.getSupplier, [])
-  const [unit, setUnit] = useState<string>('个')
-  form.validateFields(['unit'], (err, value) => {
-    if (err) {
-
-    }
-  })
-  const formatter = useCallback((value: number) => numberFormatter(value, unit), [])
+  const [unit, setUnit] = useState<string>('')
+  useEffect(() => {
+    // tip: 仅运行一次
+    subject.current.subscribe((submit: boolean) => {
+      if (submit) {
+        validateFields((error, value) => {
+          if (error) {
+            Logger(`%c${error}`, 'background: red')
+          } else {
+            addGood(value).then() // todo: 全局提醒添加成功
+          }
+        })
+      }
+    })
+  }, [])
   return (
     <Form layout={'vertical'}>
       <Form.Item label={'名称'}>
@@ -48,7 +60,13 @@ const AddGoodForm: React.FC<Props> = ({ form, api }) => {
               message: '请输入单位'
             }
           ]
-        })(<Input/>)}
+        })(
+          <Input
+            onBlur={(event) => setUnit(event.target.value)}
+            maxLength={1}
+            placeholder={'例如：“分”、“个”'}
+          />
+        )}
       </Form.Item>
       <Form.Item label={'大类'}>
         {getFieldDecorator('mainClass', {
@@ -72,6 +90,7 @@ const AddGoodForm: React.FC<Props> = ({ form, api }) => {
       </Form.Item>
       <Form.Item label={'是否非卖品'}>
         {getFieldDecorator('forSale', {
+          valuePropName: 'checked',
           rules: [
             {
               required: true,
@@ -88,7 +107,7 @@ const AddGoodForm: React.FC<Props> = ({ form, api }) => {
               message: '请输入成本价'
             }
           ]
-        })(<InputNumber/>)}
+        })(<InputNumber formatter={value => numberFormatter(value, unit)}/>)}
       </Form.Item>
       <Form.Item label={'销售价'}>
         {getFieldDecorator('sellingPrice', {
@@ -98,7 +117,7 @@ const AddGoodForm: React.FC<Props> = ({ form, api }) => {
               message: '请输入售价'
             }
           ]
-        })(<InputNumber/>)}
+        })(<InputNumber formatter={value => numberFormatter(value, unit)}/>)}
       </Form.Item>
       <Form.Item label={'当前库存'}>
         {getFieldDecorator('currentStock', {

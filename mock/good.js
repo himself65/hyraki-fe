@@ -24,6 +24,14 @@ module.exports = app => {
     res.end()
   })
 
+  app.delete('/goods', (req, res) => {
+    res.end()
+  })
+
+  app.post('/goods', (req, res) => {
+    res.end()
+  })
+
   app.get('/goods', (req, res) => {
     if (req.query['brief'] === 'true') {
       res.json({
