@@ -1,5 +1,5 @@
 module.exports = app => {
-  app.get('/shop', (req, res) => {
+  app.get('/shops', (req, res) => {
     res.json({
       data: [
         { id: 1, name: '面包店' },
@@ -9,7 +9,7 @@ module.exports = app => {
     res.end()
   })
 
-  app.get('/shop/serve', (req, res) => {
+  app.get('/shop/serves', (req, res) => {
     // 根据 query 中的 id 决定返回内容
     // '/shop/serve?id=10086'
     // 则查找店铺名称10086的服务（或者说商品）
