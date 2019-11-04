@@ -21,6 +21,7 @@ const columns: GoodColumn[] = [
     key: 'index',
     name: '编号',
     minWidth: 32,
+    maxWidth: 64,
     onRender: item => <div>{item.id}</div>
   },
   {

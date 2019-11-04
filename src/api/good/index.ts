@@ -18,7 +18,7 @@ export async function getGoods (
 }
 
 export async function getSupplier (shopID: string) {
-  return axiosInstance.get<ListAPI<Supplier[]>>('/supplier', {
+  return axiosInstance.get<ListAPI<Supplier[]>>('/suppliers', {
     params: {
       id: shopID
     }

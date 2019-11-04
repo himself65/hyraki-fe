@@ -1,4 +1,5 @@
 module.exports = app => {
+  // 品牌
   app.get('/brands', (req, res) => {
     // 根据 req.query['id'] 来判断返回值
     // id 指的是 shopID
@@ -11,7 +12,9 @@ module.exports = app => {
     res.end()
   })
 
-  app.get('/supplier', (req, res) => {
+  // 供货商
+  // fixme: 为什么我感觉这里和 '/brands' 重复了
+  app.get('/suppliers', (req, res) => {
     res.json({
       data: [
         { id: 1, name: '隔壁' },
@@ -51,7 +54,7 @@ module.exports = app => {
             currentStock: 1e5,
             unsalableWarningDays: 5,
 
-            supplier: { id: '1', name: '面包新语' },
+            supplier: { id: '1', name: '隔壁' },
             brand: { id: '1', name: '面包新语' },
 
             remark: '扩散性百万甜面包自己正在被卖'
@@ -70,7 +73,7 @@ module.exports = app => {
             currentStock: 1,
             unsalableWarningDays: 100,
 
-            supplier: { id: '1', name: '面包新语' },
+            supplier: { id: '1', name: '楼下' },
             brand: { id: '1', name: '面包新语' },
 
             remark: '圣代好吃'
