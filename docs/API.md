@@ -9,6 +9,14 @@ export enum Permission {
   worker = 1,   // 允许该商店工作人员访问
   root = 2  // 允许该商店顶级权限人员访问
 }
+
+example:
+
+Permission: worker
+表示需要worker权限，但是root权限一样可以
+
+Permission: worker | root
+表示需要worker权限及root权限，而且这两个权限返回内容有变化
 ```
 
 ## 基本API
@@ -97,7 +105,7 @@ data.data
 //  ]
 ```
 
-### /shop
+### /shops
 
 获取所有店铺信息
 
@@ -111,6 +119,32 @@ const { data } = await axios.get('/shop')
 
 data.data
 // 详细接口参考 'src/types/Shop.d.ts' 中 Shop 类型
+// [
+//   ...
+// ]
+
+// worker权限下
+data.data.length === 1
+// true
+
+// root 权限下
+data.data.length > 1
+// true
+```
+
+### /shop/serves
+
+获取所有的服务
+
+> type: GET
+>
+> Permission: worker
+
+```js
+const { data } = await axios.get('/shop/serves')
+
+data.data
+// 详细接口参考 'src/types/Shop.d.ts' 中 Serve 类型
 // [
 //   ...
 // ]

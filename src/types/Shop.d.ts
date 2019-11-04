@@ -8,5 +8,3 @@ export interface Serve {
   name: string
   price: number
 }
-
-export type ServeListAPI = Serve[]
