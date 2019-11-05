@@ -12,5 +12,6 @@
   "env": {
     "NODE_ENV": "production"
   },
+  "exec": "ts-node",
   "delay": 2500
 }
