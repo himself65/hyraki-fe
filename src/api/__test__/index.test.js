@@ -14,7 +14,7 @@ const token = jwt.sign({ username: '123456', password: '123456' },
 let stubExit
 const { axiosInstance } = API
 const unableAPI = [
-  API.postAddDate,
+  API.postAddReserve,
   API.login
 ]
 

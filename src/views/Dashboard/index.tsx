@@ -6,7 +6,7 @@ import { HyFooter, HyLayout, HySidebar } from '../../components/Layout'
 import { DefaultProps } from '../../types'
 import './DashboardView.less'
 import DashboardContent, { Footer } from './Dashboard'
-import DateContent from './Date'
+import ReserveContent from './Reserve'
 import ClientContent from './Client'
 import ShopContent from './Shop'
 import { GoodContent } from './Good'
@@ -43,8 +43,8 @@ const DashboardView: React.FC<DefaultProps> = (props) => {
             <Icon type='dashboard'/>
             <span className='nav-text'> 概览 </span>
           </Menu.Item>
-          <Menu.Item key='/dashboard/date'>
-            <Link to='/dashboard/date'/>
+          <Menu.Item key='/dashboard/reserve'>
+            <Link to='/dashboard/reserve'/>
             <Icon type='schedule'/>
             <span className='nav-text'> 预约 </span>
           </Menu.Item>
@@ -93,7 +93,7 @@ const DashboardView: React.FC<DefaultProps> = (props) => {
       <Layout>
         <Switch>
           <Route exact path='/dashboard' component={DashboardContent}/>
-          <Route path='/dashboard/date' component={DateContent}/>
+          <Route path='/dashboard/reserve' component={ReserveContent}/>
           <Route path='/dashboard/good' component={GoodContent}/>
           <Route path='/dashboard/client' component={ClientContent}/>
           <Route path='/dashboard/shop' component={ShopContent}/>

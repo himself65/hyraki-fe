@@ -3,15 +3,15 @@ import { DefaultProps } from '../../../types'
 import { HyContent, HyHeader, HyLayout } from '../../../components/Layout'
 import { Button, Card, Menu, Modal } from 'antd'
 import { Link, Route, Switch } from 'react-router-dom'
-import AddDateForm from '../../../components/Date/AddDateForm'
+import AddReserveForm from '../../../components/Reserve/AddReserveForm'
 import { Subject } from 'rxjs'
-import DateSettingsContent from './settings'
-import DatingCalendar from '../../../components/Date/DatingCalendar'
+import ReserveSettingsContent from './settings'
+import DatingCalendar from '../../../components/Reserve/ReserveCalendar'
 import { getShopList } from '../../../api/shop'
 
-const DateOverView: React.FC<DefaultProps> = (props) => {
+const ReserveOverView: React.FC<DefaultProps> = (props) => {
   const subject = useRef(new Subject<boolean>())
-  const [showAddDateModal, setShowAddDateModal] = useState<boolean>(false)
+  const [showAddReserveModal, setShowAddDateModal] = useState<boolean>(false)
   return (
     <Fragment>
       <Card className='hy-card'>
@@ -22,7 +22,7 @@ const DateOverView: React.FC<DefaultProps> = (props) => {
       </Card>
       <Modal
         title='新建预约'
-        visible={showAddDateModal}
+        visible={showAddReserveModal}
         onOk={() => {
           subject.current.next(true)
         }}
@@ -31,7 +31,7 @@ const DateOverView: React.FC<DefaultProps> = (props) => {
           setShowAddDateModal(false)
         }}
       >
-        <AddDateForm subject={subject} api={{
+        <AddReserveForm subject={subject} api={{
           getShopList: getShopList
         }}/>
       </Modal>
@@ -41,7 +41,7 @@ const DateOverView: React.FC<DefaultProps> = (props) => {
 
 const DateContent: React.FC<DefaultProps> = (props) => {
   const [selected, setSelected] = useState<string>(
-    props.location.pathname === '/dashboard/date' ? '1' : '2'
+    props.location.pathname === '/dashboard/reserve' ? '1' : '2'
   )
 
   return (
@@ -52,20 +52,20 @@ const DateContent: React.FC<DefaultProps> = (props) => {
           mode='horizontal'
         >
           <Menu.Item key='1'>
-            <Link to='/dashboard/date'/>
+            <Link to='/dashboard/reserve'/>
             概览
           </Menu.Item>
           <Menu.Item key='2'>
-            <Link to='/dashboard/date/settings'/>
+            <Link to='/dashboard/reserve/settings'/>
             设置
           </Menu.Item>
         </Menu>
       </HyHeader>
       <HyContent style={{ margin: '0.5rem 1rem' }}>
         <Switch>
-          <Route exact path='/dashboard/date' component={DateOverView}/>
+          <Route exact path='/dashboard/reserve' component={ReserveOverView}/>
           {/* fixme: 将此Route迁移到 'views/dashboard/Settings' 文件夹下 */}
-          <Route path='/dashboard/date/settings' component={DateSettingsContent}/>
+          <Route path='/dashboard/reserve/settings' component={ReserveSettingsContent}/>
         </Switch>
       </HyContent>
     </HyLayout>
