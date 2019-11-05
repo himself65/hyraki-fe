@@ -5,7 +5,7 @@
       "jsx": true
     },
     "useJSXTextNode": true,
-    "project": "./tsconfig.json"
+    "project": "./tsconfig.dev.json"
   },
   "extends": "standard",
   "plugins": [
@@ -19,7 +19,7 @@
     "no-eval": "error",
     "no-var": "error",
     "prefer-const": "error",
-    "sort-imports": "warn",
+    "sort-imports": "off",
     "no-unused-vars": "off",
     "no-unused-expressions": "warn",
     "react/jsx-filename-extension": [
