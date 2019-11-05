@@ -1,3 +1,3 @@
 yarn install
 cd mock
-node server.js
+ts-node server.ts
