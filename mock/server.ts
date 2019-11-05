@@ -1,9 +1,10 @@
-const express = require('express')
-const morgan = require('morgan')
-const bodyParser = require('body-parser')
-const expressJwt = require('express-jwt')
-const { random } = require('./utils')
-const { secretKey } = require('./utils/shared')
+import bodyParser from 'body-parser'
+import express from 'express'
+import expressJwt from 'express-jwt'
+import morgan from 'morgan'
+import Register from './router'
+import { random } from './utils'
+import { secretKey } from './utils/shared'
 
 const app = express()
 
@@ -71,9 +72,6 @@ app.get('/settings', (req, res) => {
   res.end()
 })
 
-require('./good')(app)
-require('./shop')(app)
-require('./user')(app)
-require('./worker')(app)
+Register(app)
 
-module.exports = app
+export default app

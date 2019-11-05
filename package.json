@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "concurrently \"yarn dev:app\" \"yarn dev:mock\"",
     "dev:app": "cross-env NODE_ENV=development webpack-dev-server --config config/webpack.dev.config.js --hot",
-    "dev:mock": "cross-env nodemon mock/index.js",
+    "dev:mock": "cross-env nodemon mock/index.ts",
     "build:test": "rimraf dist && cross-env NODE_ENV=production DEBUG=true MOCK=true PUBLIC_URL='' webpack --config config/webpack.build.config.js --progress --hide-modules",
     "build": "rimraf dist && cross-env NODE_ENV=production PUBLIC_URL='' webpack --config config/webpack.build.config.js --progress --hide-modules",
     "test": "cross-env node scripts/test.js",
@@ -50,6 +50,8 @@
     "@types/express": "^4.17.0",
     "@types/express-jwt": "^0.0.42",
     "@types/jest": "^24.0.17",
+    "@types/jsonwebtoken": "^8.3.5",
+    "@types/morgan": "^1.7.37",
     "@types/node": "^12.7.1",
     "@types/numeral": "^0.0.26",
     "@types/react": "^16.9.9",

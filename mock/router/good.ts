@@ -1,4 +1,5 @@
-module.exports = app => {
+import { Express } from 'express'
+export default function (app: Express) {
   // 品牌
   app.get('/brands', (req, res) => {
     // 根据 req.query['id'] 来判断返回值

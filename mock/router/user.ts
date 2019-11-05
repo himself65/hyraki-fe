@@ -1,8 +1,9 @@
-const jwt = require('jsonwebtoken')
-const { random } = require('./utils')
-const { secretKey } = require('./utils/shared')
+import jwt from 'jsonwebtoken'
+import { random } from '../utils'
+import { secretKey } from '../utils/shared'
+import { Express } from 'express'
 
-module.exports = app => {
+export default function (app: Express) {
   app.post('/user/login', (req, res) => {
     const { username, password } = req.body
     if (username && password) {
@@ -19,7 +20,6 @@ module.exports = app => {
       })
     } else {
       res.status(500)
-      res.statusText = '暂未开发完成'
     }
     res.end()
   })

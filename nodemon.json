@@ -12,6 +12,6 @@
   "env": {
     "NODE_ENV": "production"
   },
-  "exec": "ts-node",
+  "exec": "ts-node --project tsconfig.mock.json",
   "delay": 2500
 }

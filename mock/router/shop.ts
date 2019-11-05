@@ -1,4 +1,5 @@
-module.exports = app => {
+import { Express } from 'express'
+export default function (app: Express) {
   app.get('/shops', (req, res) => {
     res.json({
       data: [
