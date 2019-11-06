@@ -1,12 +1,13 @@
-import Worker from './worker'
-import User from './user'
-import Shop from './shop'
-import Good from './good'
 import { Express } from 'express'
+import { readdirSync } from 'fs'
+import { resolve } from 'path'
 
-export default function register (app: Express): void {
-  Worker(app)
-  User(app)
-  Shop(app)
-  Good(app)
-}
+export default (app: Express) => readdirSync(resolve(__dirname), { encoding: 'utf-8' })
+  .map(file => resolve(__dirname, file))
+  .filter(path => !/index/.test(path))
+  .forEach(path => {
+    console.log('Registering module: ', path)
+    import(path).then(response => {
+      response.default(app)
+    })
+  })
