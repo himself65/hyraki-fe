@@ -1,6 +1,6 @@
 import axiosInstance from '../index'
 import { JWT_TOKEN } from '../../utils/shared'
-import { BaseAPI, PostAPI } from '../../types/API'
+import { BaseAPI, PostAPI } from '../../../types/API'
 import { axiosHandle } from '../../utils/helpers'
 
 export async function login (username: string, password: string) {

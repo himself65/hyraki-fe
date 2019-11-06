@@ -1,20 +1,20 @@
-import React, { MutableRefObject, useCallback, useEffect, useMemo, useState } from 'react'
+import React, { MutableRefObject, useEffect, useState } from 'react'
 import { DatePicker, Form, Input, Select } from 'antd'
 import { FormComponentProps } from 'antd/es/form'
 import { Subject } from 'rxjs'
 import { useFetch } from '../../../utils/hooks'
-import { getShopList, getShopServeList } from '../../../api/shop'
-import { Serve, Shop } from '../../../types/Shop'
+import { getShopServeList } from '../../../api/shop'
+import { Serve, Shop } from '../../../../types/Shop'
 import ServesTable from './ServesTable'
 import { Logger } from '../../../utils/debug'
-import { ListAPI } from '../../../types/API'
+import { ListAPI } from '../../../../types/API'
 import { AxiosPromise } from 'axios'
 import { assert } from '../../../utils/helpers'
 
 export interface Props extends FormComponentProps {
   subject: MutableRefObject<Subject<boolean>>,
   api: {
-    getShopList(): AxiosPromise<ListAPI<Shop[]>>
+    getShopList(brandID: string | number): AxiosPromise<ListAPI<Shop[]>>
   }
 }
 
@@ -27,6 +27,7 @@ declare module 'antd/lib/select' {
 const AddDateForm: React.FC<Props> = ({ form, subject, api }) => {
   const [selectedShop, setSelectedShop] = useState<boolean>(false) // 是否已经选择了 shop
   const [serves, setServes] = useState<Serve[]>([])
+  // fixme: getShopList 需要参数
   const [shops] = useFetch<Shop[]>(api.getShopList, [])
   assert(Array.isArray(shops), 'shops is not a Array')
   const { getFieldDecorator, validateFields } = form

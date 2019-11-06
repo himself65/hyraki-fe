@@ -3,7 +3,7 @@ import { HyHeader } from '../../../components/Layout/Header'
 import { Breadcrumb } from 'antd'
 import { BreadcrumbFactory } from '../../../utils/helpers'
 import { HyContent } from '../../../components/Layout/Content'
-import { DefaultProps } from '../../../types'
+import { DefaultProps } from '../../../../types'
 
 const ClientContent: React.FC<DefaultProps> = (props) => {
   return (

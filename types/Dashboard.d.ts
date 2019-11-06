@@ -1,4 +1,4 @@
-import { TodoData } from '../components/Dashboard/TodoBoard'
+import { TodoData } from '../src/components/Dashboard/TodoBoard'
 
 export interface TodayData {
   full_income: {

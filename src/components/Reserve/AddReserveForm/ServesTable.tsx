@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import { Form, Popconfirm, Select, Table } from 'antd'
-import { Serve } from '../../../types/Shop'
+import { Serve } from '../../../../types/Shop'
 import { TableCell, TableRow } from './TableRow'
 import { FormComponentProps } from 'antd/es/form'
 import { Logger } from '../../../utils/debug'

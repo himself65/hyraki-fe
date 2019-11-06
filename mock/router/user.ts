@@ -4,6 +4,12 @@ import { secretKey } from '../utils/shared'
 import { Express } from 'express'
 
 export default function (app: Express) {
+  // 创建全站管理用户，需要最高权限
+  app.get('/create_admin', (req, res) => {
+    // tip: mock 服务器不做任何处理
+    res.status(200)
+  })
+
   app.post('/user/login', (req, res) => {
     const { username, password } = req.body
     if (username && password) {

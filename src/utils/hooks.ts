@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction, useCallback, useEffect, useState } from 'react'
 import { AxiosPromise } from 'axios'
-import { BaseAPI } from '../types/API'
+import { BaseAPI } from '../../types/API'
 
 export type Trigger<T extends Array<any> = any[]> = (...args: T) => void
 

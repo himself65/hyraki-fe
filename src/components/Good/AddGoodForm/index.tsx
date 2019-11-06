@@ -2,8 +2,8 @@ import React, { MutableRefObject, useCallback, useEffect, useMemo, useRef, useSt
 import { Form, Input, InputNumber, Select, Switch } from 'antd'
 import { FormComponentProps } from 'antd/es/form'
 import { Subject } from 'rxjs'
-import { ListAPI } from '../../../types/API'
-import { Brand, Good, Supplier } from '../../../types/Good'
+import { ListAPI } from '../../../../types/API'
+import { Good, Supplier } from '../../../../types/Good'
 import { AxiosPromise } from 'axios'
 import { useFetch } from '../../../utils/hooks'
 import { numberFormatter } from '../../../utils/helpers'
@@ -15,14 +15,12 @@ import error = Simulate.error
 interface Props extends FormComponentProps<Required<Good>> {
   subject: MutableRefObject<Subject<boolean>>
   api: {
-    getBrands (id: string): AxiosPromise<ListAPI<Brand[]>>
     getSupplier (id: string): AxiosPromise<ListAPI<Supplier[]>>
   }
 }
 
 const AddGoodForm: React.FC<Props> = ({ subject, form, api }) => {
   const { getFieldDecorator, validateFields } = form
-  const [brands] = useFetch(api.getBrands, [])
   const [supplier] = useFetch(api.getSupplier, [])
   const [unit, setUnit] = useState<string>('')
   useEffect(() => {
@@ -147,17 +145,6 @@ const AddGoodForm: React.FC<Props> = ({ subject, form, api }) => {
           ]
         })(<Select placeholder={''}>
           {supplier.map(v => (<Select.Option key={v.id} value={v.id}>{v.name}</Select.Option>))}
-        </Select>)}
-      </Form.Item>
-      <Form.Item label={'品牌'}>
-        {getFieldDecorator('brand', {
-          rules: [
-            {
-              required: false
-            }
-          ]
-        })(<Select placeholder={''}>
-          {brands.map(v => (<Select.Option key={v.id} value={v.id}>{v.name}</Select.Option>))}
         </Select>)}
       </Form.Item>
       <Form.Item label={'备注'}>

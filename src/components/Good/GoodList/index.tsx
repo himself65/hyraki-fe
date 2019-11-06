@@ -1,6 +1,6 @@
 import React, { ReactElement, useMemo } from 'react'
 import { DetailsList, DetailsListLayoutMode, IColumn, MarqueeSelection, Selection } from 'office-ui-fabric-react'
-import { Good } from '../../../types/Good'
+import { Good } from '../../../../types/Good'
 import { booleanToString } from '../../../utils/helpers'
 import './index.less'
 

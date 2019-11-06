@@ -1,6 +1,6 @@
 import React, { Fragment, useState } from 'react'
 import { Card, Tabs } from 'antd'
-import { DefaultProps } from '../../../../types'
+import { DefaultProps } from '../../../../../types'
 import { getShopList } from '../../../../api/shop'
 import { useFetch } from '../../../../utils/hooks'
 

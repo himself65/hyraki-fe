@@ -1,12 +1,12 @@
 import React, { Fragment, useRef, useState } from 'react'
-import { DefaultProps } from '../../../types'
+import { DefaultProps } from '../../../../types'
 import { Button, Card, Menu, Modal } from 'antd'
 import { HyContent, HyHeader, HyLayout } from '../../../components/Layout'
 import { Link, Route, Switch } from 'react-router-dom'
 import { GoodList } from '../../../components/Good/GoodList'
 import { useFetch } from '../../../utils/hooks'
-import { getBrands, getGoods, getSupplier } from '../../../api/good'
-import { Good } from '../../../types/Good'
+import { getGoods, getSupplier } from '../../../api/good'
+import { Good } from '../../../../types/Good'
 import { Subject } from 'rxjs'
 import AddGoodForm from '../../../components/Good/AddGoodForm'
 
@@ -40,7 +40,6 @@ const GoodView: React.FC<DefaultProps> = () => {
         }}
       >
         <AddGoodForm subject={subject} api={{
-          getBrands: getBrands,
           getSupplier: getSupplier
         }}/>
       </Modal>

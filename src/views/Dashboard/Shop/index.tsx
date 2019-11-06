@@ -3,7 +3,7 @@ import { HyContent, HyHeader, HyLayout } from '../../../components/Layout'
 import { Menu } from 'antd'
 import { Link, Route, Switch } from 'react-router-dom'
 import ManageContent from './Worker/manage'
-import { DefaultProps } from '../../../types'
+import { DefaultProps } from '../../../../types'
 
 const { SubMenu } = Menu
 

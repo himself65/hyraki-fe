@@ -6,7 +6,7 @@ import { HyContent, HyFooter, HyHeader, HyLayout, HySidebar } from '../../compon
 import LoginBoard from '../../components/LoginBoard'
 import { loginAction, logoutAction } from '../../store/action/user'
 import './LoginView.less'
-import { DefaultProps, IState } from '../../types'
+import { DefaultProps, IState } from '../../../types'
 
 interface LoginViewProps extends DefaultProps {
   loginMessage?: string

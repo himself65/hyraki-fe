@@ -1,5 +1,5 @@
-import { Good, GoodBrief, Supplier } from '../../src/types/Good'
-import { Optional } from '../../src/types'
+import { Good, GoodBrief, Supplier } from '../../types/Good'
+import { Optional } from '../../types'
 
 type PropertiesList<T extends object> = {
   [K in keyof T]-?: T[K][]
