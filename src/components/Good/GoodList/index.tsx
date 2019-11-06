@@ -62,24 +62,11 @@ const columns: GoodColumn[] = [
     onRender: item => <span>{item.currentStock || '未知'}</span>
   },
   {
-    key: 'unsalableWarningDays',
-    name: '滞销预警天数',
-    minWidth: 100,
-    onRender: item => <span>{item.unsalableWarningDays || '暂无'}</span>
-  },
-  {
     key: 'supplier',
     name: '供应商',
     minWidth: 64,
     // fixme: 这里应该是个 List
     onRender: item => <span>{(item.supplier && item.supplier.name) || '暂无'}</span>
-  },
-  {
-    key: 'brand',
-    name: '品牌',
-    minWidth: 64,
-    // fixme: 这里应该是个 List
-    onRender: item => <span>{(item.brand && item.brand.name) || '暂无'}</span>
   }
 ]
 
