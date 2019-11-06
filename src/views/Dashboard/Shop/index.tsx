@@ -17,7 +17,7 @@ const OverviewContent: React.FC = () => {
 
 const ShopContent: React.FC<DefaultProps> = (props) => {
   const [selected, setSelected] = useState(
-    props.location ? props.location.pathname === '/dashboard/shop' ? '1' : '2' : '1'
+    /^\/dashboard\/shop[^\\/\s]+/.test(props.location.pathname) ? '1' : '2'
   )
 
   return (

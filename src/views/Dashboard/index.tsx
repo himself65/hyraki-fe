@@ -14,12 +14,9 @@ import { useFetch } from '../../utils/hooks'
 import { getMessagesCount } from '../../api/user'
 
 const DashboardView: React.FC<DefaultProps> = (props) => {
-  let selectedKey = '/dashboard'
-  if (props.location) {
-    selectedKey = props.location.pathname
-  }
+  const selectedKey = props.location.pathname || '/dashboard'
   const [{ count }] = useFetch(getMessagesCount, { count: 0 })
-  Logger('Opened \'%s\'', props.location ? selectedKey : 'UNKNOWN')
+  Logger('Opened \'%s\'', selectedKey)
   return (
     <HyLayout className='dashboard-view'>
       <HySidebar

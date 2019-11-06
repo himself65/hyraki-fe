@@ -8,8 +8,6 @@ import { HyContent, HyFooter, HyHeader } from '../../../components/Layout'
 import { BreadcrumbFactory } from '../../../utils/helpers'
 import { CommonBoard, TodayBoard, TodoBoard } from '../../../components/Dashboard'
 import { getDashboardData } from '../../../api/dashboard'
-import { TodayData, TrendData } from '../../../../types/Dashboard'
-import { TodoData } from '../../../components/Dashboard/TodoBoard'
 import { Logger } from '../../../utils/debug'
 import './DashboardContent.less'
 import { useFetch } from '../../../utils/hooks'
@@ -17,12 +15,6 @@ import { useFetch } from '../../../utils/hooks'
 export const Footer: React.FC = () => <HyFooter/>
 
 export type TrendType = '' | 'decrease' | 'increase'
-
-export interface DashBoardData {
-  today?: TodayData,
-  trend?: TrendData,
-  todo?: TodoData
-}
 
 const DashboardContent: React.FC<DefaultProps> = (props) => {
   const [data] = useFetch(getDashboardData)
