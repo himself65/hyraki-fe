@@ -5,17 +5,17 @@ type PropertiesList<T extends object> = {
   [K in keyof T]-?: T[K][]
 }
 
-export const supplier1: Supplier = {
+export const supplier1: Required<Supplier> = {
   id: '1',
   name: '供货商1'
 }
 
-export const supplier2: Supplier = {
+export const supplier2: Required<Supplier> = {
   id: '2',
   name: '供货商2'
 }
 
-export const supplier3: Supplier = {
+export const supplier3: Required<Supplier> = {
   id: '3',
   name: '供货商3'
 }
@@ -94,7 +94,7 @@ const propertiesList = [] as unknown as PropertiesList<Good>
   }
 })
 
-function randomGood (options: Optional<Good>): Good {
+function randomGood (options: Optional<Good>): Required<Good> {
   const map = {}
   for (const key in propertiesList) {
     // @ts-ignore
@@ -103,5 +103,5 @@ function randomGood (options: Optional<Good>): Good {
   return {
     ...map,
     ...options
-  } as Good
+  } as Required<Good>
 }
