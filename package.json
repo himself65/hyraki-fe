@@ -127,7 +127,7 @@
     "sass-loader": "^8.0.0",
     "scss": "^0.2.4",
     "semver": "6.3.0",
-    "sinon": "^7.4.2",
+    "sinon": "^7.5.0",
     "style-loader": "^1.0.0",
     "stylelint": "^10.1.0",
     "stylelint-config-standard": "^18.3.0",
