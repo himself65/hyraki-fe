@@ -1,10 +1,9 @@
 import supertest from 'supertest'
 import * as API from '../'
 import * as sinon from 'sinon'
-
-const jwt = require('jsonwebtoken')
-const { secretKey } = require('../../../mock/utils/shared')
-const app = require('../../../mock/server')
+import jwt from 'jsonwebtoken'
+import { secretKey } from '../../../mock/utils/shared'
+import app from '../../../mock/server'
 
 const token = jwt.sign({ username: '123456', password: '123456' },
   secretKey, {
