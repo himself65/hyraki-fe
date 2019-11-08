@@ -32,34 +32,6 @@ beforeAll(() => {
   stubExit = sinon.stub(process, 'exit')
 })
 
-describe('api: base test', () => {
-  it('should all pass', async () => {
-    const promises = Object.keys(API).map(v => {
-      if (['default', 'axiosInstance'].indexOf(v) !== -1) {
-
-      } else {
-        return v
-      }
-    }).filter(v => v).map(v => {
-      // @ts-ignore
-      return API[v]
-    })
-    let ok = 0
-    for (const func of promises) {
-      if (unableAPI.includes(func)) {
-        console.warn('不支持的API: ', func)
-        ok++
-        continue
-      }
-      const res = await func()
-      if (res.status === 200) {
-        ok++
-      }
-    }
-    expect(ok).toBe(promises.length)
-  })
-})
-
 describe('api: api with defaultAxiosHandle', () => {
   it('should pass by manual control', (done) => {
     supertest(app).get('/goods').expect(200).end(() => done())
