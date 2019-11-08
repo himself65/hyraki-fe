@@ -19,7 +19,7 @@ const unableAPI = [
   API.login
 ]
 
-beforeEach(() => {
+beforeAll(() => {
   axiosInstance.defaults.baseURL = 'http://localhost:4000'
   axiosInstance.interceptors.request.use(config => {
     config.headers.Authorization = `Bearer ${token}`
@@ -28,7 +28,7 @@ beforeEach(() => {
   app.listen(4000)
 })
 
-beforeEach(() => {
+beforeAll(() => {
   // @ts-ignore
   stubExit = sinon.stub(process, 'exit')
 })
@@ -74,6 +74,6 @@ describe('api: api with defaultAxiosHandle', () => {
   })
 })
 
-afterEach(() => {
+afterAll(() => {
   stubExit.restore()
 })
