@@ -13,10 +13,6 @@ const token = jwt.sign({ username: '123456', password: '123456' },
 let stubExit: sinon.SinonStub
 
 const { axiosInstance } = API
-const unableAPI = [
-  API.postAddReserve,
-  API.login
-]
 
 beforeAll(() => {
   axiosInstance.defaults.baseURL = 'http://localhost:4000'
