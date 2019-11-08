@@ -1,8 +1,7 @@
 import Axios from 'axios'
-import { store } from '../App'
 import { Logger } from '../utils/debug'
 import { JWT_TOKEN } from '../utils/shared'
-import { logoutAction } from '../store/action/user'
+import { store } from '../store'
 
 const AXIOS_URL = process.env.NODE_ENV === 'development'
   ? 'http://localhost:3001'
@@ -21,7 +20,7 @@ axiosInstance.interceptors.request.use(config => {
   if (token) {
     config.headers.Authorization = `Bearer ${token}`
   } else {
-    store.dispatch(logoutAction('本地没有找到用户token'))
+    store.logout = true
   }
   return config
 }, error => Promise.reject(error))
@@ -32,7 +31,7 @@ axiosInstance.interceptors.response.use(
     if (error.response) {
       Logger('axios: %s', error.response)
       if (error.response.status === 401) {
-        store.dispatch(logoutAction('请求 401 错误'))
+        store.logout = true
         localStorage.removeItem(JWT_TOKEN)
       }
     } else {

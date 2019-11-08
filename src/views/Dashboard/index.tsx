@@ -101,4 +101,7 @@ const DashboardView: React.FC<DefaultProps> = (props) => {
   )
 }
 
+// todo
+const mapStateToProps = () => {}
+
 export default DashboardView

@@ -4,8 +4,8 @@ import { RouteComponentProps, withRouter } from 'react-router-dom'
 import { FormComponentProps } from 'antd/es/form'
 import { login } from '../../api'
 import { Logger } from '../../utils/debug'
-import { store } from '../../App'
-import { loginAction } from '../../store/action/user'
+import { observer } from 'mobx-react'
+import { store } from '../../store'
 
 const LoginBoard = (props: FormComponentProps & RouteComponentProps<any>) => {
   const { validateFields } = props.form
@@ -17,11 +17,15 @@ const LoginBoard = (props: FormComponentProps & RouteComponentProps<any>) => {
       }
       await login(value.username, value.password).then(res => {
         if (res.status === 200) {
-          Logger('登录成功')
-          store.dispatch(loginAction('登陆成功'))
+          const successMessage = '登陆成功'
+          Logger(successMessage)
+          store.logout = false
+          message.success(successMessage)
           props.history.push('/dashboard') // fixme: 返回时错误的显示
         } else {
-          store.dispatch(loginAction.error(res.statusText))
+          store.logout = true
+          message.error('登陆失败: ', res.status)
+          Logger(res)
         }
       })
     })
@@ -73,6 +77,6 @@ const LoginBoard = (props: FormComponentProps & RouteComponentProps<any>) => {
   )
 }
 
-export const WrappedLoginBoard = Form.create({ name: 'normal_login_board' })(withRouter(LoginBoard))
+export const WrappedLoginBoard = observer(Form.create({ name: 'normal_login_board' })(withRouter(LoginBoard)))
 
 export default WrappedLoginBoard

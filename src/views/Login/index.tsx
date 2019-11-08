@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { Button, Col, Icon, Layout, Menu, Row } from 'antd'
-import { connect } from 'react-redux'
-import PropTypes from 'prop-types'
 import { HyContent, HyFooter, HyHeader, HyLayout, HySidebar } from '../../components/Layout'
 import LoginBoard from '../../components/LoginBoard'
-import { loginAction, logoutAction } from '../../store/action/user'
 import './LoginView.less'
-import { DefaultProps, IState } from '../../../types'
+import { DefaultProps } from '../../../types'
+import { observer } from 'mobx-react'
+import { store } from '../../store'
 
 interface LoginViewProps extends DefaultProps {
   loginMessage?: string
@@ -15,7 +14,7 @@ interface LoginViewProps extends DefaultProps {
 
 const LoginView: React.FC<LoginViewProps> = (props) => {
   useEffect(() => {
-    if (!props.logout) {
+    if (!store.logout) {
       props.history.push('/dashboard')
     }
   }, [])
@@ -86,11 +85,4 @@ const LoginView: React.FC<LoginViewProps> = (props) => {
   )
 }
 
-LoginView.propTypes = {
-  loginMessage: PropTypes.string
-}
-
-const mapStateToProps = (state: IState) => ({ logout: state.user.logout, loginMessage: state.user.loginMessage })
-const mapDispatchToProps = { loginAction, logoutAction }
-
-export default connect(mapStateToProps, mapDispatchToProps)(LoginView)
+export default observer(LoginView)
