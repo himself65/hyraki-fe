@@ -1,4 +1,5 @@
 import { Express } from 'express'
+import { shop1, shop2, shop3 } from '../data/shop'
 export default function (app: Express) {
   // 在 Brand 创建shop，需要对此 Brand 的管理权限。
   app.post('/brand/:brand_id/shop', (req, res) => {
@@ -8,10 +9,7 @@ export default function (app: Express) {
   // 获取 Brand 下所有 shop，需要对此 Brand 的管理权限。
   app.get('/brand/:brand_id/shops', (req, res) => {
     res.json({
-      data: [
-        { id: 1, name: '面包店' },
-        { id: 2, name: '超市' }
-      ]
+      data: [shop1, shop2, shop3]
     })
     res.end()
   })
