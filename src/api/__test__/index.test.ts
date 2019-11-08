@@ -1,8 +1,6 @@
 import supertest from 'supertest'
 import * as API from '../'
 import * as sinon from 'sinon'
-import { SinonStubStatic } from 'sinon'
-import { SinonStub } from 'sinon'
 
 const jwt = require('jsonwebtoken')
 const { secretKey } = require('../../../mock/utils/shared')
@@ -13,7 +11,7 @@ const token = jwt.sign({ username: '123456', password: '123456' },
     expiresIn: 60 * 60 * 24
   })
 
-let stubExit: SinonStub
+let stubExit: sinon.SinonStub
 
 const { axiosInstance } = API
 const unableAPI = [
