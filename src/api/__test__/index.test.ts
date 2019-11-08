@@ -1,6 +1,8 @@
 import supertest from 'supertest'
 import * as API from '../'
 import * as sinon from 'sinon'
+import { SinonStubStatic } from 'sinon'
+import { SinonStub } from 'sinon'
 
 const jwt = require('jsonwebtoken')
 const { secretKey } = require('../../../mock/utils/shared')
@@ -11,37 +13,40 @@ const token = jwt.sign({ username: '123456', password: '123456' },
     expiresIn: 60 * 60 * 24
   })
 
-let stubExit
+let stubExit: SinonStub
+
 const { axiosInstance } = API
 const unableAPI = [
   API.postAddReserve,
   API.login
 ]
 
-beforeAll(() => {
+beforeEach(() => {
   axiosInstance.defaults.baseURL = 'http://localhost:4000'
   axiosInstance.interceptors.request.use(config => {
     config.headers.Authorization = `Bearer ${token}`
     return config
   })
   app.listen(4000)
+})
+
+beforeEach(() => {
+  // @ts-ignore
   stubExit = sinon.stub(process, 'exit')
 })
 
 describe('api: base test', () => {
   it('should all pass', async () => {
-    const promises = Object.keys(API)
-      .map(v => {
-        if (['default', 'axiosInstance'].indexOf(v) !== -1) {
+    const promises = Object.keys(API).map(v => {
+      if (['default', 'axiosInstance'].indexOf(v) !== -1) {
 
-        } else {
-          return v
-        }
-      })
-      .filter(v => v)
-      .map(v => {
-        return API[v]
-      })
+      } else {
+        return v
+      }
+    }).filter(v => v).map(v => {
+      // @ts-ignore
+      return API[v]
+    })
     let ok = 0
     for (const func of promises) {
       if (unableAPI.includes(func)) {
@@ -60,20 +65,17 @@ describe('api: base test', () => {
 
 describe('api: api with defaultAxiosHandle', () => {
   it('should pass by manual control', (done) => {
-    supertest(app)
-      .get('/goods')
-      .expect(200)
-      .end(() => done())
+    supertest(app).get('/goods').expect(200).end(() => done())
   })
 
   it('should pass', (done) => {
-    API.getGoods().then(res => {
+    API.getGoods(false).then(res => {
       expect(typeof res.data).toBe('object')
       done()
     })
   })
 })
 
-afterAll(() => {
+afterEach(() => {
   stubExit.restore()
 })

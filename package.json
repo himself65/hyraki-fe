@@ -56,6 +56,8 @@
     "@types/react-redux": "^7.1.5",
     "@types/react-router-dom": "^5.1.0",
     "@types/react-test-renderer": "^16.9.1",
+    "@types/sinon": "^7.5.0",
+    "@types/supertest": "^2.0.8",
     "@typescript-eslint/eslint-plugin": "^2.6.0",
     "@typescript-eslint/parser": "^2.6.0",
     "autoprefixer": "^9.6.5",
