@@ -1,36 +1,24 @@
 @import '../../style/theme';
 
 .login-view {
-  .hy-sider {
-    .hy-sider-nav {
-      color: #222;
-      border-bottom: none;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  background-color: @layout-header-background;
 
-      .hy-sider-nav-item {
-        color: #222;
-        border-bottom: none
-      }
-    }
+  .login-card {
+    overflow: hidden;
+    padding: 65px 55px 54px 55px;
+    background-color: #fff;
 
-    .hy-menu {
-      height: calc(100% - 64px);
-
-      .login {
-        height: calc(100% - 61.8%)
-      }
-
-      .login-board {
-        height: 61.8%;
-
-        .away {
-          margin: 0 1rem;
-
-          > * {
-            margin-top: 0.1rem;
-            margin-bottom: 0.1rem
-          }
-        }
-      }
+    .title {
+      font-size: 39px;
+      color: #333;
+      line-height: 1.2;
+      text-align: center
     }
   }
 }
