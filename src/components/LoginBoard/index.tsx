@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react'
 import { Button, Checkbox, Form, Icon, Input, message } from 'antd'
-import { RouteComponentProps, withRouter } from 'react-router-dom'
+import { Link, RouteComponentProps, withRouter } from 'react-router-dom'
 import { FormComponentProps } from 'antd/es/form'
 import { login } from '../../api'
 import { Logger } from '../../utils/debug'
@@ -64,14 +64,14 @@ const LoginBoard = (props: FormComponentProps & RouteComponentProps<any>) => {
           })(<Checkbox>七天内自动登录</Checkbox>)
         }
         {/* fixme: forget password href */}
-        <a className='login-form-forgot'>
+        <Link className='login-form-forgot' to='/forget'>
           {/* todo: 忘记密码的处理 */}
           忘记密码
-        </a>
+        </Link>
         <Button type='primary' onClick={handleSubmit} htmlType='submit' style={{ width: '100%' }}>
           登录
         </Button>
-        <a href=''>现在注册</a>
+        <Link to='/register'>注册</Link>
       </Form.Item>
     </Form>
   )
