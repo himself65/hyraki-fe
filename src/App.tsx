@@ -19,6 +19,7 @@ const asyncComponentFactory = (resolve: () => Promise<React.ComponentType<any> |
 const DashboardView = asyncComponentFactory(() => import('./views/Dashboard'))
 const StartView = asyncComponentFactory(() => import('./views/Start'))
 const RegisterView = asyncComponentFactory(() => import('./views/Register'))
+const ForgetView = asyncComponentFactory(() => import('./views/Forget'))
 
 const App: React.FC = () => {
   return (
@@ -30,6 +31,7 @@ const App: React.FC = () => {
             <Route path='/login' component={StartView}/>
             <Route path='/dashboard' component={DashboardView}/>
             <Route path='/register' component={RegisterView}/>
+            <Route path='/forget' component={ForgetView} />
             <Route path='/error' component={ErrorView}/>
             <Redirect from='/*' to='/error'/>
           </Switch>
