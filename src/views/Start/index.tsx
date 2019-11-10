@@ -2,17 +2,17 @@ import React, { useEffect, useState } from 'react'
 import { Button, Col, Icon, Layout, Menu, Row } from 'antd'
 import { HyContent, HyFooter, HyHeader, HyLayout, HySidebar } from '../../components/Layout'
 import LoginBoard from '../../components/LoginBoard'
-import './LoginView.less'
+import './index.less'
 import { DefaultProps } from '../../../types'
 import { observer } from 'mobx-react'
 import { store } from '../../store'
 
-interface LoginViewProps extends DefaultProps {
+interface StartViewProps extends DefaultProps {
   loginMessage?: string
   logout: boolean
 }
 
-const LoginView: React.FC<LoginViewProps> = (props) => {
+const StartView: React.FC<StartViewProps> = (props) => {
   useEffect(() => {
     if (!store.logout) {
       props.history.push('/dashboard')
@@ -85,4 +85,4 @@ const LoginView: React.FC<LoginViewProps> = (props) => {
   )
 }
 
-export default observer(LoginView)
+export default observer(StartView)

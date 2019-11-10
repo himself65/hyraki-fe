@@ -15,7 +15,7 @@ const asyncComponentFactory = (resolve: () => Promise<React.ComponentType<any> |
   })
 
 const DashboardView = asyncComponentFactory(() => import('./views/Dashboard'))
-const LoginView = asyncComponentFactory(() => import('./views/Login'))
+const LoginView = asyncComponentFactory(() => import('./views/Start'))
 const RegisterView = asyncComponentFactory(() => import('./views/Register'))
 
 const App: React.FC = () => {
