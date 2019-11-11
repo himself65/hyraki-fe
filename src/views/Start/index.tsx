@@ -9,15 +9,12 @@ import LoginBoard from '../../components/LoginBoard'
 import { Panel } from 'office-ui-fabric-react'
 import { HyLayout } from '../../components/Layout/Layout'
 import { useInView } from 'react-intersection-observer'
+import { Menu } from 'antd'
+import { HyHeader } from '../../components/Layout/Header'
 
 interface StartViewProps extends DefaultProps {
   loginMessage?: string
   logout: boolean
-}
-
-const loginCardTokens: ICardTokens = {
-  minWidth: 500,
-  childrenGap: '5rem'
 }
 
 const startCardTokens: ICardTokens = {
@@ -28,15 +25,50 @@ const startCardTokens: ICardTokens = {
 
 const StartView: React.FC<StartViewProps> = (props) => {
   const bodyHeight = useMemo(() => document.body.clientHeight, [])
-  const [ref, inView, entry] = useInView()
+  const [panelRef, panelInView] = useInView()
+  const [topRef, topInView] = useInView()
   useEffect(() => {
     if (!store.logout) {
       props.history.push('/dashboard')
     }
   }, [])
+  useEffect(() => {
+    if (!panelInView) {
+      setOpenPanel(false)
+    } else {
+      setOpenPanel(true)
+    }
+  }, [panelInView])
   const [isOpenPanel, setOpenPanel] = useState(true)
   return (
     <HyLayout style={{ height: 'auto' }} className='login-view'>
+      <div style={{
+        lineHeight: '64px',
+        position: 'absolute',
+        top: '1rem'
+      }} ref={topRef}/>
+      {/* todo: 添加过渡动画 */}
+      <HyHeader style={{
+        position: 'fixed',
+        visibility: topInView ? 'hidden' : 'visible',
+        top: '0',
+        width: '100%',
+        height: '90px',
+        backgroundColor: 'transport',
+        padding: 0
+      }}>
+        <Menu style={{
+          padding: '0 1rem',
+          lineHeight: '90px'
+        }} mode='horizontal'>
+          <Menu.Item key='home'>
+            主页
+          </Menu.Item>
+          <Menu.Item key='about'>
+            关于
+          </Menu.Item>
+        </Menu>
+      </HyHeader>
       <Card
         tokens={startCardTokens}
         className='hello-card'
@@ -53,7 +85,7 @@ const StartView: React.FC<StartViewProps> = (props) => {
           <div style={{
             position: 'absolute',
             bottom: '0'
-          }} ref={ref}/>
+          }} ref={panelRef}/>
         </Card.Section>
         <Card.Section styles={{
           root: {
