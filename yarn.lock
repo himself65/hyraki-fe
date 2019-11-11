@@ -1751,14 +1751,6 @@
   resolved "https://registry.npm.taobao.org/@types/history/download/@types/history-4.7.2.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2F%40types%2Fhistory%2Fdownload%2F%40types%2Fhistory-4.7.2.tgz#0e670ea254d559241b6eeb3894f8754991e73220"
   integrity sha1-DmcOolTVWSQbbus4lPh1SZHnMiA=
 
-"@types/hoist-non-react-statics@^3.3.0":
-  version "3.3.1"
-  resolved "https://registry.npm.taobao.org/@types/hoist-non-react-statics/download/@types/hoist-non-react-statics-3.3.1.tgz#1124aafe5118cb591977aeb1ceaaed1070eb039f"
-  integrity sha1-ESSq/lEYy1kZd66xzqrtEHDrA58=
-  dependencies:
-    "@types/react" "*"
-    hoist-non-react-statics "^3.3.0"
-
 "@types/istanbul-lib-coverage@*", "@types/istanbul-lib-coverage@^2.0.0":
   version "2.0.1"
   resolved "https://registry.npm.taobao.org/@types/istanbul-lib-coverage/download/@types/istanbul-lib-coverage-2.0.1.tgz#42995b446db9a48a11a07ec083499a860e9138ff"
@@ -1851,16 +1843,6 @@
   integrity sha1-kPnmwWGFC+H+sx0vRIEhvipPO0c=
   dependencies:
     "@types/react" "*"
-
-"@types/react-redux@^7.1.5":
-  version "7.1.5"
-  resolved "https://registry.npm.taobao.org/@types/react-redux/download/@types/react-redux-7.1.5.tgz#c7a528d538969250347aa53c52241051cf886bd3"
-  integrity sha1-x6Uo1TiWklA0eqU8UiQQUc+Ia9M=
-  dependencies:
-    "@types/hoist-non-react-statics" "^3.3.0"
-    "@types/react" "*"
-    hoist-non-react-statics "^3.3.0"
-    redux "^4.0.0"
 
 "@types/react-router-dom@^5.1.0":
   version "5.1.0"
@@ -2059,6 +2041,17 @@
     "@uifabric/utilities" "^7.4.0"
     tslib "^1.7.1"
 
+"@uifabric/foundation@^7.5.0":
+  version "7.5.0"
+  resolved "https://registry.yarnpkg.com/@uifabric/foundation/-/foundation-7.5.0.tgz#d36f15ef59edeaa8219f2b7d34f74c6d756f6622"
+  integrity sha512-eymMyV3e+MFCkcfC1AFIAzVP/h6/QvDcYb1l6K3IaG1QG47ZwijJJXseEvNDjimfUiJhez9H7cSsRZPIIJ5MaQ==
+  dependencies:
+    "@uifabric/merge-styles" "^7.8.0"
+    "@uifabric/set-version" "^7.0.2"
+    "@uifabric/styling" "^7.7.2"
+    "@uifabric/utilities" "^7.5.0"
+    tslib "^1.7.1"
+
 "@uifabric/icons@^7.3.0":
   version "7.3.0"
   resolved "https://registry.npm.taobao.org/@uifabric/icons/download/@uifabric/icons-7.3.0.tgz#db5b418d1db1e3f05e92d71f2dc829aa6e239bdb"
@@ -2072,6 +2065,14 @@
   version "7.7.0"
   resolved "https://registry.npm.taobao.org/@uifabric/merge-styles/download/@uifabric/merge-styles-7.7.0.tgz#10caa72dd5fb9c63e22214f3a53856aa049bdb10"
   integrity sha1-EMqnLdX7nGPiIhTzpThWqgSb2xA=
+  dependencies:
+    "@uifabric/set-version" "^7.0.2"
+    tslib "^1.7.1"
+
+"@uifabric/merge-styles@^7.8.0", "@uifabric/merge-styles@^7.8.1":
+  version "7.8.1"
+  resolved "https://registry.yarnpkg.com/@uifabric/merge-styles/-/merge-styles-7.8.1.tgz#b3973eb6942bf5fd1653fb8c2ae349343bacd30d"
+  integrity sha512-DJBXNsYfrYQ3wCjOE197JqXTkqwfPlGJhQkhYMBwO76ovKBQyJxT8m6NL8og5F9blnIBdCJPrvRUz/21/WlUGg==
   dependencies:
     "@uifabric/set-version" "^7.0.2"
     tslib "^1.7.1"
@@ -9809,7 +9810,7 @@ obuf@^1.0.0, obuf@^1.1.2:
   resolved "https://registry.npm.taobao.org/obuf/download/obuf-1.1.2.tgz#09bea3343d41859ebd446292d11c9d4db619084e"
   integrity sha1-Cb6jND1BhZ69RGKS0RydTbYZCE4=
 
-office-ui-fabric-react@^7.29.2, office-ui-fabric-react@^7.31.3, office-ui-fabric-react@^7.51.0, office-ui-fabric-react@^7.53.0:
+office-ui-fabric-react@^7.29.2, office-ui-fabric-react@^7.31.3, office-ui-fabric-react@^7.51.0:
   version "7.53.0"
   resolved "https://registry.npm.taobao.org/office-ui-fabric-react/download/office-ui-fabric-react-7.53.0.tgz#2c2006a04260e05ac603d37eeed1c604960957a3"
   integrity sha1-LCAGoEJg4FrGA9N+7tHGBJYJV6M=
@@ -9819,6 +9820,22 @@ office-ui-fabric-react@^7.29.2, office-ui-fabric-react@^7.31.3, office-ui-fabric
     "@uifabric/foundation" "^7.4.4"
     "@uifabric/icons" "^7.3.0"
     "@uifabric/merge-styles" "^7.7.0"
+    "@uifabric/react-hooks" "^7.0.1"
+    "@uifabric/set-version" "^7.0.2"
+    "@uifabric/styling" "^7.7.2"
+    "@uifabric/utilities" "^7.5.0"
+    prop-types "^15.5.10"
+    tslib "^1.7.1"
+
+office-ui-fabric-react@^7.59.3:
+  version "7.59.3"
+  resolved "https://registry.yarnpkg.com/office-ui-fabric-react/-/office-ui-fabric-react-7.59.3.tgz#f9441a102db3d3cc334ecc335628fe0348c4d968"
+  integrity sha512-Hx/UWHJAREv6dUpLiwJjY/dKvI7CLnzftltim24Ar33AX5quR3Cbw+AIAn8iT/BIwf4JCh+T9d1EK9VQ1jn1nA==
+  dependencies:
+    "@microsoft/load-themed-styles" "^1.7.13"
+    "@uifabric/foundation" "^7.5.0"
+    "@uifabric/icons" "^7.3.0"
+    "@uifabric/merge-styles" "^7.8.1"
     "@uifabric/react-hooks" "^7.0.1"
     "@uifabric/set-version" "^7.0.2"
     "@uifabric/styling" "^7.7.2"
@@ -12252,14 +12269,6 @@ redent@^2.0.0:
     indent-string "^3.0.0"
     strip-indent "^2.0.0"
 
-redux@^4.0.0:
-  version "4.0.4"
-  resolved "https://registry.npm.taobao.org/redux/download/redux-4.0.4.tgz#4ee1aeb164b63d6a1bcc57ae4aa0b6e6fa7a3796"
-  integrity sha1-TuGusWS2PWobzFeuSqC25vp6N5Y=
-  dependencies:
-    loose-envify "^1.4.0"
-    symbol-observable "^1.2.0"
-
 reflect.ownkeys@^0.2.0:
   version "0.2.0"
   resolved "https://registry.npm.taobao.org/reflect.ownkeys/download/reflect.ownkeys-0.2.0.tgz#749aceec7f3fdf8b63f927a04809e90c5c0b3460"
@@ -13786,11 +13795,6 @@ svgo@^1.0.0, svgo@^1.2.2:
     stable "^0.1.8"
     unquote "~1.1.1"
     util.promisify "~1.0.0"
-
-symbol-observable@^1.2.0:
-  version "1.2.0"
-  resolved "https://registry.npm.taobao.org/symbol-observable/download/symbol-observable-1.2.0.tgz#c22688aed4eab3cdc2dfeacbb561660560a00804"
-  integrity sha1-wiaIrtTqs83C3+rLtWFmBWCgCAQ=
 
 symbol-tree@^3.2.2:
   version "3.2.4"
