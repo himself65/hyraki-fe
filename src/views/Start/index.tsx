@@ -6,6 +6,7 @@ import { DefaultProps } from '../../../types'
 import { observer } from 'mobx-react'
 import { store } from '../../store'
 import LoginBoard from '../../components/LoginBoard'
+import { Affix } from 'antd'
 
 interface StartViewProps extends DefaultProps {
   loginMessage?: string
@@ -27,12 +28,17 @@ const StartView: React.FC<StartViewProps> = (props) => {
       <div>
         <Card
           tokens={cardTokens}
-          className={'login-card'}
+          className='login-card'
         >
           <h1 className='title'>登录</h1>
           <LoginBoard/>
         </Card>
       </div>
+      <Affix style={{ position: 'absolute', bottom: '0', left: '1.5rem' }}>
+        <Card className='ad-card'>
+          这里是广告位，TODO
+        </Card>
+      </Affix>
     </HyLayout>
   )
 }
