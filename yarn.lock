@@ -2062,8 +2062,8 @@
 
 "@uifabric/icons@^7.3.0":
   version "7.3.0"
-  resolved "https://registry.npm.taobao.org/@uifabric/icons/download/@uifabric/icons-7.3.0.tgz#db5b418d1db1e3f05e92d71f2dc829aa6e239bdb"
-  integrity sha1-21tBjR2x4/BektcfLcgpqm4jm9s=
+  resolved "https://registry.yarnpkg.com/@uifabric/icons/-/icons-7.3.0.tgz#db5b418d1db1e3f05e92d71f2dc829aa6e239bdb"
+  integrity sha512-wbcR8fJce20sPjsK2bbTC/cAZfAOFuE4dd4LHw194+8H+/dqotsowrQVp5Lu8aaHGQk+fXoiZmUy30WA9cAG4Q==
   dependencies:
     "@uifabric/set-version" "^7.0.2"
     "@uifabric/styling" "^7.7.1"
