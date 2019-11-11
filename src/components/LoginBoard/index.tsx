@@ -32,7 +32,7 @@ const LoginBoard = (props: FormComponentProps & RouteComponentProps<any>) => {
   }, [])
   const { getFieldDecorator } = props.form! // tip: props.form must exists
   return (
-    <Form style={{ padding: '0 0.5rem', marginTop: '5rem' }} className='hy-login-board'>
+    <Form style={{ padding: '0 0.5rem' }} className='hy-login-board'>
       <Form.Item>
         {
           getFieldDecorator('username', {
