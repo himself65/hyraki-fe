@@ -1,7 +1,8 @@
 import React, { ReactElement, useMemo } from 'react'
-import { Client } from '../../../../types/Client'
 import { DetailsList, DetailsListLayoutMode, IColumn, MarqueeSelection, Selection } from 'office-ui-fabric-react'
+import { Client } from '~types/Client'
 import PropTypes from 'prop-types'
+import { Gender } from '~types/index'
 
 export interface ClientListProps {
   items: Client[]
@@ -25,6 +26,51 @@ const columns: ClientColumn[] = [
     name: '姓名',
     minWidth: 200,
     onRender: item => <div>{item.name}</div>
+  },
+  {
+    key: 'phone',
+    name: '电话号',
+    minWidth: 200,
+    onRender: item => <div>{item.phone}</div>
+  },
+  {
+    key: 'gender',
+    name: '性别',
+    minWidth: 64,
+    onRender: item => <div>{item.gender === Gender.man ? '男' : '女'}</div>
+  },
+  {
+    key: 'created_date',
+    name: '注册日期',
+    minWidth: 200,
+    onRender: item => <div>{item.created_date}</div>
+  },
+  {
+    key: 'last_appear',
+    name: '回访日期',
+    minWidth: 200,
+    onRender: item => <div>{item.last_appear}</div>
+  },
+  {
+    key: 'cards',
+    name: '卡账户',
+    minWidth: 400,
+    // todo
+    onRender: item => <div>{item.cards}</div>
+  },
+  {
+    key: 'times',
+    name: '消费次数',
+    minWidth: 64,
+    // todo
+    onRender: item => <div>{item.times}</div>
+  },
+  {
+    key: 'integration',
+    name: '积分',
+    minWidth: 72,
+    // todo
+    onRender: item => <div>{item.integration}</div>
   }
 ]
 
