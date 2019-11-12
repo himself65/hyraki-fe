@@ -70,7 +70,7 @@ const AddWorkerForm: React.FC<Props> = (props) => {
         })(<Input/>)}
       </Form.Item>
       <Form.Item label='性别'>
-        {getFieldDecorator('sex')(
+        {getFieldDecorator('gender')(
           <Radio.Group>
             <Radio value='1'>男</Radio>
             <Radio value='2'>女</Radio>
