@@ -1,6 +1,6 @@
 import axiosInstance from '../index'
-import { Worker, WorkerPosition } from '~types/Worker'
-import { ListAPI, PostAPI } from '~types/API'
+import { Worker, WorkerPosition } from '~type/Worker'
+import { ListAPI, PostAPI } from '~type/API'
 
 export async function getWorkerList (shopID = 1) {
   return axiosInstance.get<ListAPI<Worker[]>>('/worker', {

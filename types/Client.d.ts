@@ -1,4 +1,4 @@
-import { Gender } from './index'
+import { Gender } from '~util/shared'
 
 export interface Card {
   id: string

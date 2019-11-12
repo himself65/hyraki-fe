@@ -1,4 +1,4 @@
-import { Gender } from './index'
+import { Gender } from '~util/shared'
 
 export interface Worker {
   shop: string
@@ -12,6 +12,6 @@ export interface Worker {
 }
 
 export interface WorkerPosition {
-  id: string,
+  id: string
   value: string
 }

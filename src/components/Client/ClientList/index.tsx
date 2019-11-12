@@ -1,8 +1,8 @@
 import React, { ReactElement, useMemo } from 'react'
 import { DetailsList, DetailsListLayoutMode, IColumn, MarqueeSelection, Selection } from 'office-ui-fabric-react'
-import { Client } from '~types/Client'
+import { Client } from '~type/Client'
 import PropTypes from 'prop-types'
-import { Gender } from '~types/index'
+import { Gender } from '~util/shared'
 
 export interface ClientListProps {
   items: Client[]

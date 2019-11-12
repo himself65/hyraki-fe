@@ -1,7 +1,7 @@
 import axiosInstance from '../index'
 import { axiosHandle } from '~util/helpers'
-import { BaseAPI } from '~types/API'
-import { DashBoardData } from '~types/Dashboard'
+import { BaseAPI } from '~type/API'
+import { DashBoardData } from '~type/Dashboard'
 
 export async function getDashboardData (detail = false) {
   return axiosInstance.get<BaseAPI<DashBoardData>>('/dashboard', {

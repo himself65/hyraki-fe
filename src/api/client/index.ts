@@ -1,6 +1,6 @@
 import axiosInstance from '../index'
-import { ListAPI } from '~types/API'
-import { Client } from '~types/Client'
+import { ListAPI } from '~type/API'
+import { Client } from '~type/Client'
 import { axiosHandle } from '~util/helpers'
 
 export async function getClients (page = 0) {

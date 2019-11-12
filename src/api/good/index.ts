@@ -1,8 +1,8 @@
 import axiosInstance from '../index'
 import { axiosHandle } from '~util/helpers'
-import { Good, GoodBrief, Supplier } from '~types/Good'
+import { Good, GoodBrief, Supplier } from '~type/Good'
 import { AxiosResponse } from 'axios'
-import { ListAPI, MessageAPI } from '~types/API'
+import { ListAPI, MessageAPI } from '~type/API'
 
 export async function getGoods (brief: true): Promise<AxiosResponse<ListAPI<GoodBrief[]>>>
 export async function getGoods (brief: false): Promise<AxiosResponse<ListAPI<Good[]>>>

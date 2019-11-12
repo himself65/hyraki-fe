@@ -32,7 +32,7 @@ module.exports = {
   moduleNameMapper: {
     '^react-native$': 'react-native-web',
     '^.+\\.module\\.(css|sass|scss)$': 'identity-obj-proxy',
-    '^~types/(.*)': '<rootDir>/types/$1',
+    '^~type/(.*)': '<rootDir>/types/$1',
     '^~api/(.*)': '<rootDir>/src/api/$1',
     '^~component/(.*)': '<rootDir>/src/components/$1',
     '^~store/(.*)': '<rootDir>/src/store/$1',

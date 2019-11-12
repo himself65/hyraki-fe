@@ -54,7 +54,13 @@ exports.config = {
   resolve: {
     extensions: ['*', '.js', '.json', '.ts', '.tsx'],
     alias: {
-      '@': resolve(__dirname, '..', 'src')
+      '~type': resolve(__dirname, '..', 'types'),
+      '~api': resolve(__dirname, '..', 'src', 'api'),
+      '~component': resolve(__dirname, '..', 'src', 'components'),
+      '~store': resolve(__dirname, '..', 'src', 'store'),
+      '~style': resolve(__dirname, '..', 'src', 'style'),
+      '~util': resolve(__dirname, '..', 'src', 'utils'),
+      '~view': resolve(__dirname, '..', 'src', 'views')
     }
   },
   node: {
