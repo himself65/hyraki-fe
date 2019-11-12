@@ -1,6 +1,6 @@
 import Axios from 'axios'
-import { Logger } from '../utils/debug'
-import { JWT_TOKEN } from '../utils/shared'
+import { Logger } from '~util/debug'
+import { JWT_TOKEN } from '~util/shared'
 import { store } from '../store'
 
 const AXIOS_URL = process.env.NODE_ENV === 'development'

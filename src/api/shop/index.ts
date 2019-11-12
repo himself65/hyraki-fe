@@ -1,7 +1,7 @@
 import axiosInstance from '../'
-import { Serve, Shop } from '../../../types/Shop'
-import { WorkerPosition } from '../../../types/Worker'
-import { ListAPI } from '../../../types/API'
+import { Serve, Shop } from '~types/Shop'
+import { WorkerPosition } from '~types/Worker'
+import { ListAPI } from '~types/API'
 
 // fixme
 export async function getShopList (brandID: string | number) {
