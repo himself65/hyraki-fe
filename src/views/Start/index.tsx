@@ -11,6 +11,7 @@ import { useInView } from 'react-intersection-observer'
 import { Menu } from 'antd'
 import { HyHeader } from '../../components/Layout/Header'
 import './index.less'
+import { Link } from 'react-router-dom'
 
 interface StartViewProps extends DefaultProps {
   loginMessage?: string
@@ -23,8 +24,10 @@ const startCardTokens: ICardTokens = {
   width: '90%'
 }
 
+const navHeight: number = 90
+
 const StartView: React.FC<StartViewProps> = (props) => {
-  const bodyHeight = useMemo(() => document.body.clientHeight, [])
+  const bodyHeight = useMemo(() => document.body.clientHeight - navHeight, [])
   const [panelRef, panelInView] = useInView()
   const [topRef, topInView] = useInView()
   useEffect(() => {
@@ -43,7 +46,6 @@ const StartView: React.FC<StartViewProps> = (props) => {
   return (
     <HyLayout style={{ height: 'auto' }} className='login-view'>
       <div style={{
-        lineHeight: '64px',
         position: 'absolute',
         top: '1rem'
       }} ref={topRef}/>
@@ -53,7 +55,7 @@ const StartView: React.FC<StartViewProps> = (props) => {
         visibility: topInView ? 'hidden' : 'visible',
         top: '0',
         width: '100%',
-        height: '90px',
+        height: navHeight,
         backgroundColor: 'transport',
         padding: 0
       }}>
@@ -68,7 +70,9 @@ const StartView: React.FC<StartViewProps> = (props) => {
             关于
           </Menu.Item>
           <Menu.Item style={{ float: 'right' }} key='register'>
-            注册
+            <Link to='/register'>
+              注册
+            </Link>
           </Menu.Item>
           <Menu.Item style={{ float: 'right' }} onClick={() => setOpenPanel(true)} key='login'>
             登录
