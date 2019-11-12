@@ -19,10 +19,9 @@ export type TrendType = '' | 'decrease' | 'increase'
 const DashboardContent: React.FC<DefaultProps> = (props) => {
   const [data] = useFetch(getDashboardData)
   const trendData = useMemo<{ x: string, y: number }[]>(() => {
-    let value: { x: string, y: number }[] = []
     if (data) {
       const today = new Date().getTime()
-      value = data.trend.sales
+      return data.trend.sales
         .map((v, i, arr) => {
           const offsetDay = (arr.length - i) * 24 * 60 * 60 * 1000
           return ({
@@ -30,9 +29,8 @@ const DashboardContent: React.FC<DefaultProps> = (props) => {
             y: v
           })
         })
-      Logger(value)
     }
-    return value
+    return []
   }, [data])
 
   return (
