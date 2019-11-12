@@ -1,7 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react'
 import { Card, ICardTokens } from '@uifabric/react-cards'
 import { Text } from 'office-ui-fabric-react/lib/Text'
-import './index.less'
 import { DefaultProps } from '../../../types'
 import { observer } from 'mobx-react'
 import { store } from '../../store'
@@ -11,6 +10,7 @@ import { HyLayout } from '../../components/Layout/Layout'
 import { useInView } from 'react-intersection-observer'
 import { Menu } from 'antd'
 import { HyHeader } from '../../components/Layout/Header'
+import './index.less'
 
 interface StartViewProps extends DefaultProps {
   loginMessage?: string
@@ -66,6 +66,12 @@ const StartView: React.FC<StartViewProps> = (props) => {
           </Menu.Item>
           <Menu.Item key='about'>
             关于
+          </Menu.Item>
+          <Menu.Item style={{ float: 'right' }} key='register'>
+            注册
+          </Menu.Item>
+          <Menu.Item style={{ float: 'right' }} onClick={() => setOpenPanel(true)} key='login'>
+            登录
           </Menu.Item>
         </Menu>
       </HyHeader>
