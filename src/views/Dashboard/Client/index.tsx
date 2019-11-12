@@ -6,15 +6,22 @@ import { DefaultProps } from '~types/index'
 import PropTypes from 'prop-types'
 import { Route, Switch } from 'react-router'
 import ClientList from '~component/Client/ClientList'
+import { useFetch } from '~util/hooks'
+import { getClients } from '~api/client'
+import { Client } from '~types/Client'
+import './ClientContent.less'
 
 const ClientView: React.FC<DefaultProps> = (props) => {
+  const [clients] = useFetch<Client[]>(getClients, [], {
+    defaultParams: [0]
+  })
   return (
     <Fragment>
       <Breadcrumb className='top-element hy-top-breadcrumb'>
         {...BreadcrumbFactory(props.location.pathname)}
       </Breadcrumb>
       <Card className='hy-card'>
-        <ClientList items={[]}/>
+        <ClientList items={clients}/>
       </Card>
     </Fragment>
   )
