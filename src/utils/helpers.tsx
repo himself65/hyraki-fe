@@ -37,10 +37,10 @@ export function axiosHandle<T = any>(
 ): Promise<AxiosResponse<T>>
 export function axiosHandle<T = any>(req: AxiosResponse<T>,
                                      config: {
-                                       check?: (req: AxiosResponse<T>) => boolean,
-                                       onCheckFailedHandleDebug?: Function,
-                                       onCheckSuccessHandleDebug?: Function,
-                                       onSuccess?: Function,
+                                       check?: (req: AxiosResponse<T>) => boolean
+                                       onCheckFailedHandleDebug?: Function
+                                       onCheckSuccessHandleDebug?: Function
+                                       onSuccess?: Function
                                        onFailed?: Function
                                      }): Promise<AxiosResponse<T>>
 export function axiosHandle<T = any> (
@@ -51,10 +51,10 @@ export function axiosHandle<T = any> (
     onFailed = noop,
     onSuccess = noop
   }: {
-    check?: (req: AxiosResponse<T>) => boolean,
-    onSuccessDebug?: Function,
-    onFailedDebug?: Function,
-    onSuccess?: Function,
+    check?: (req: AxiosResponse<T>) => boolean
+    onSuccessDebug?: Function
+    onFailedDebug?: Function
+    onSuccess?: Function
     onFailed?: Function
   } = {}
 ): Promise<AxiosResponse<T>> {

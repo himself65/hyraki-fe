@@ -17,9 +17,9 @@ const WorkerBriefList: React.FC<Props> = (props) => {
       renderItem={item => (
         <List.Item key={item.id}
           actions={[
-            <span>性别：{item.gender}</span>,
-            <span>电话：{item.phone}</span>,
-            <span>职位：{item.position}</span>
+            <span key='gender'>性别：{item.gender}</span>,
+            <span key='phone'>电话：{item.phone}</span>,
+            <span key='position'>职位：{item.position}</span>
           ]}
         >
           <List.Item.Meta

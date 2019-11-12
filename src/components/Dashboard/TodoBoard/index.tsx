@@ -12,9 +12,9 @@ const todoGridStyle = {
 }
 
 export interface TodoData {
-  serviced: number,
-  pay: number,
-  ship: number,
+  serviced: number
+  pay: number
+  ship: number
   review: number
 }
 

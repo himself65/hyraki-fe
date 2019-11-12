@@ -4,7 +4,9 @@ import { PopoverProps } from 'antd/lib/popover'
 
 const HoverCard: React.FC<PropsWithChildren<PopoverProps>> = (props) => {
   return (
-    <Popover children={props.children}/>
+    <Popover>
+      {props?.children || null}
+    </Popover>
   )
 }
 

@@ -8,7 +8,7 @@ export async function getGoods (brief: true): Promise<AxiosResponse<ListAPI<Good
 export async function getGoods (brief: false): Promise<AxiosResponse<ListAPI<Good[]>>>
 // implement
 export async function getGoods (
-  brief: boolean = false
+  brief = false
 ): Promise<AxiosResponse<ListAPI<(Good | GoodBrief)[]>>> {
   return axiosInstance.get<ListAPI<(Good | GoodBrief)[]>>('/goods', {
     params: {

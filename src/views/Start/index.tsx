@@ -19,9 +19,10 @@ const startCardTokens: ICardTokens = {
   width: '90%'
 }
 
-const navHeight: number = 90
+const navHeight = 90
 
 const StartView: React.FC<DefaultProps> = (props) => {
+  const [isOpenPanel, setOpenPanel] = useState(true)
   const bodyHeight = useMemo(() => document.body.clientHeight - navHeight, [])
   const [panelRef, panelInView] = useInView()
   const [topRef, topInView] = useInView()
@@ -37,7 +38,6 @@ const StartView: React.FC<DefaultProps> = (props) => {
       setOpenPanel(true)
     }
   }, [panelInView])
-  const [isOpenPanel, setOpenPanel] = useState(true)
   return (
     <HyLayout style={{ height: 'auto' }} className='login-view'>
       <div style={{

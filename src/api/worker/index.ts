@@ -22,7 +22,7 @@ export async function deleteWorker (id: string | number) {
   })
 }
 
-export async function getWorkerPositionList (brief: boolean = true) {
+export async function getWorkerPositionList (brief = true) {
   return axiosInstance.get<ListAPI<WorkerPosition[]>>('/worker/position', {
     params: {
       brief: brief

@@ -15,8 +15,8 @@ interface Props extends FormComponentProps {
 }
 
 export interface ServeDetail extends Serve {
-  key: string,
-  count: number,
+  key: string
+  count: number
   cost: (this: ServeDetail) => number
 }
 
@@ -65,14 +65,16 @@ const ServesTable: React.FC<Props> = (props) => {
     {
       title: '操作',
       dataIndex: 'operation',
-      render: (_: any, __: ServeDetail, idx: number) => dataSources.length >= 1 ? (
-        <Popconfirm
-          title='确认删除吗？'
-          onConfirm={() => handleDeleteDataSource(idx)}
-        >
-          <a>删除</a>
-        </Popconfirm>
-      ) : null
+      render: function Operation (_: any, __: ServeDetail, idx: number): React.ReactElement | null {
+        return dataSources.length >= 1 ? (
+          <Popconfirm
+            title='确认删除吗？'
+            onConfirm={() => handleDeleteDataSource(idx)}
+          >
+            <a>删除</a>
+          </Popconfirm>
+        ) : null
+      }
     }
   ].map(col => ({
     ...col,

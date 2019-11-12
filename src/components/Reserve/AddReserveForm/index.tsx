@@ -12,7 +12,7 @@ import { AxiosPromise } from 'axios'
 import { assert } from '../../../utils/helpers'
 
 export interface Props extends FormComponentProps {
-  subject: MutableRefObject<Subject<boolean>>,
+  subject: MutableRefObject<Subject<boolean>>
   api: {
     getShopList(brandID: string | number): AxiosPromise<ListAPI<Shop[]>>
   }
@@ -20,7 +20,7 @@ export interface Props extends FormComponentProps {
 
 declare module 'antd/lib/select' {
   export interface OptionProps {
-    label?: string;
+    label?: string
   }
 }
 

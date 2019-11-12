@@ -1,21 +1,51 @@
 import React, { Fragment } from 'react'
-import { HyHeader } from '../../../components/Layout/Header'
-import { Breadcrumb } from 'antd'
-import { BreadcrumbFactory } from '../../../utils/helpers'
-import { HyContent } from '../../../components/Layout/Content'
-import { DefaultProps } from '../../../../types'
+import { HyHeader, HyContent } from '~component/Layout'
+import { Breadcrumb, Card, Menu } from 'antd'
+import { BreadcrumbFactory } from '~util/helpers'
+import { DefaultProps } from '~types/index'
+import PropTypes from 'prop-types'
+import { Route, Switch } from 'react-router'
+import ClientList from '~component/Client/ClientList'
 
-const ClientContent: React.FC<DefaultProps> = (props) => {
+const ClientView: React.FC<DefaultProps> = (props) => {
   return (
     <Fragment>
-      <HyHeader/>
-      <HyContent>
-        <Breadcrumb className='top-element hy-top-breadcrumb'>
-          {...BreadcrumbFactory(props.location!.pathname)}
-        </Breadcrumb>
+      <Breadcrumb className='top-element hy-top-breadcrumb'>
+        {...BreadcrumbFactory(props.location.pathname)}
+      </Breadcrumb>
+      <Card className='hy-card'>
+        <ClientList items={[]}/>
+      </Card>
+    </Fragment>
+  )
+}
+
+ClientView.propTypes = {
+  location: PropTypes.any
+}
+
+const ClientContent: React.FC<DefaultProps> = () => {
+  return (
+    <Fragment>
+      <HyHeader>
+        <Menu style={{ lineHeight: '64px' }}
+          selectedKeys={['1']}
+          mode='horizontal'
+        >
+          <Menu.Item key='1'>预览</Menu.Item>
+        </Menu>
+      </HyHeader>
+      <HyContent style={{ margin: '0.5rem 1rem' }}>
+        <Switch>
+          <Route exact path='/dashboard/client' component={ClientView}/>
+        </Switch>
       </HyContent>
     </Fragment>
   )
+}
+
+ClientContent.propTypes = {
+  location: PropTypes.any
 }
 
 export default ClientContent

@@ -10,6 +10,4 @@ export enum Gender {
 export type Optional<T> = T extends object ?
   { [K in keyof T]: T[K] | undefined } : T | undefined
 
-export interface DefaultProps extends RouteChildrenProps<{}, LocationState> {
-
-}
+export type DefaultProps = RouteChildrenProps<{}, LocationState>

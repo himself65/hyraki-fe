@@ -18,7 +18,7 @@ export type TrendType = '' | 'decrease' | 'increase'
 
 const DashboardContent: React.FC<DefaultProps> = (props) => {
   const [data] = useFetch(getDashboardData)
-  const trendData = useMemo<{ x: string, y: number }[]>(() => {
+  const trendData = useMemo<{ x: string; y: number }[]>(() => {
     if (data) {
       const today = new Date().getTime()
       return data.trend.sales

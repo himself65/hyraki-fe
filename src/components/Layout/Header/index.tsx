@@ -10,7 +10,7 @@ export const HyHeader: React.FC<BasicProps> = (props) => {
 }
 
 export interface MainHeaderProps {
-  items?: MenuItem[],
+  items?: MenuItem[]
   selectedKey?: string
 }
 
@@ -21,8 +21,9 @@ export const MainHeader: React.FC<MainHeaderProps> = ({ items = [], selectedKey 
         style={{ lineHeight: '64px' }}
         selectedKeys={[selectedKey]}
         mode='horizontal'
-        children={items}
-      />
+      >
+        {items}
+      </Menu>
     </HyHeader>
   )
 }

@@ -7,7 +7,11 @@
     "useJSXTextNode": true,
     "project": "./tsconfig.dev.json"
   },
-  "extends": "standard",
+  "extends": [
+    "plugin:@typescript-eslint/recommended",
+    "plugin:react/recommended",
+    "standard"
+  ],
   "plugins": [
     "@typescript-eslint",
     "react",
@@ -38,7 +42,25 @@
       "error",
       "prefer-single"
     ],
-    "camelcase": "off"
+    "camelcase": "off",
+    "react/prop-types": "warn",
+    "react/display-name": "off",
+    "@typescript-eslint/camelcase": "off",
+    "@typescript-eslint/ban-ts-ignore": "off",
+    "@typescript-eslint/member-delimiter-style": [
+      "error",
+      {
+        "multiline": {
+          "delimiter": "none",
+          "requireLast": true
+        },
+        "singleline": {
+          "delimiter": "semi",
+          "requireLast": false
+        }
+      }
+    ],
+    "@typescript-eslint/explicit-function-return-type": "off"
   },
   "env": {
     "jest": true,

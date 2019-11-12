@@ -5,14 +5,14 @@ import { booleanToString } from '../../../utils/helpers'
 import './index.less'
 
 export interface GoodListProps {
-  items: Good[],
-  style?: React.CSSProperties,
+  items: Good[]
+  style?: React.CSSProperties
   compact?: boolean
   className?: string
 }
 
 interface GoodColumn extends IColumn {
-  key: string,
+  key: string
   onRender: (item: Good) => ReactElement | null
 }
 

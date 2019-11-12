@@ -15,12 +15,6 @@ const AddWorkerForm: React.FC<Props> = (props) => {
   const { getFieldDecorator, validateFields } = props.form
   const [positionList] = useFetch(getWorkerPositionList, [])
   const [shopList] = useFetch(getShopList, [])
-
-  const subscriber = useCallback((ok: boolean) => {
-    if (ok) {
-      checkFinished()
-    }
-  }, [])
   const checkFinished = useCallback(() => {
     validateFields((err, val) => {
       if (err) {
@@ -29,6 +23,11 @@ const AddWorkerForm: React.FC<Props> = (props) => {
         Logger(val)
       }
     })
+  }, [])
+  const subscriber = useCallback((ok: boolean) => {
+    if (ok) {
+      checkFinished()
+    }
   }, [])
 
   useEffect(() => {

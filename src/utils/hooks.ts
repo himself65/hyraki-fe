@@ -15,7 +15,7 @@ export function useFetch<T = any, U extends Array<any> = any[]>(
   func: (...args: U) => AxiosPromise<BaseAPI<T>>,
   defaultVal: T,
   options?: {
-    defaultParams?: U,
+    defaultParams?: U
     handle?: Function
   }
 ): [T, Trigger<U>, Dispatch<SetStateAction<T>>]
@@ -23,7 +23,7 @@ export function useFetch<T = any, U extends Array<any> = any[]> (
   func: (...args: U) => AxiosPromise<BaseAPI<T>>,
   defaultVal?: T,
   options?: {
-    defaultParams?: U,
+    defaultParams?: U
     handle?: Function
   }
 ): [T | undefined, Trigger<U>, Dispatch<SetStateAction<T | undefined>>] {
@@ -39,15 +39,16 @@ export function useFetch<T = any, U extends Array<any> = any[]> (
     })
   }
   useEffect(() => {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
     // @ts-ignore
     const args: U = (options && options.defaultParams) || []
-    fetchData.apply(null, args).then()
+    fetchData(...args).then()
     return () => {
       destroy(true)
     }
   }, [])
   const trigger = useCallback((...args: U) => {
-    fetchData.apply(null, args)
+    fetchData(...args).then()
   }, [])
   return [data, trigger, setData]
 }

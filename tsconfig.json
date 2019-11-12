@@ -7,6 +7,15 @@
       "dom.iterable",
       "esnext"
     ],
+    "paths": {
+      "~types/*": ["../types/*"],
+      "~api/*": ["./api/*"],
+      "~component/*": ["./components/*"],
+      "~store/*": ["./store/*"],
+      "~style/*": ["./style/*"],
+      "~util/*": ["./utils/*"],
+      "~view/*": ["./views/*"]
+    },
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,

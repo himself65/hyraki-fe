@@ -1,15 +1,15 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
-    "baseUrl": "."
+    "baseUrl": "src"
   },
   "include": [
-    "config",
-    "src",
-    "mock",
-    "scripts"
+    "../config",
+    "./",
+    "../mock",
+    "../scripts"
   ],
   "exclude": [
-    "node_modules"
+    "../node_modules"
   ]
 }
