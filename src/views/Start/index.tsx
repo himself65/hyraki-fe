@@ -13,11 +13,6 @@ import { HyHeader } from '../../components/Layout/Header'
 import './index.less'
 import { Link } from 'react-router-dom'
 
-interface StartViewProps extends DefaultProps {
-  loginMessage?: string
-  logout: boolean
-}
-
 const startCardTokens: ICardTokens = {
   height: 'auto',
   minWidth: '90%',
@@ -26,7 +21,7 @@ const startCardTokens: ICardTokens = {
 
 const navHeight: number = 90
 
-const StartView: React.FC<StartViewProps> = (props) => {
+const StartView: React.FC<DefaultProps> = (props) => {
   const bodyHeight = useMemo(() => document.body.clientHeight - navHeight, [])
   const [panelRef, panelInView] = useInView()
   const [topRef, topInView] = useInView()
