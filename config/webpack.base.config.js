@@ -16,7 +16,8 @@ const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin')
 const InterpolateHtmlPlugin = require('react-dev-utils/InterpolateHtmlPlugin')
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
 const ModuleNotFoundPlugin = require('react-dev-utils/ModuleNotFoundPlugin')
-const WatchMissingNodeModulesPlugin = require('react-dev-utils/WatchMissingNodeModulesPlugin')
+const WatchMissingNodeModulesPlugin = require(
+  'react-dev-utils/WatchMissingNodeModulesPlugin')
 
 const isProd = process.env.NODE_ENV === 'production'
 const extractCSS = isProd || process.env.TARGET === 'development'
@@ -37,6 +38,15 @@ const lessLoaders = [
     loader: 'less-loader',
     options: {
       javascriptEnabled: true
+    }
+  }
+]
+
+const sassLoaders = [
+  ...cssLoaders, {
+    loader: 'sass-loader',
+    options: {
+      sourceMap: !isProd
     }
   }
 ]
@@ -89,10 +99,7 @@ exports.config = {
       },
       {
         test: /\.s[ac]ss$/,
-        use: [
-          ...cssLoaders,
-          'sass-loader'
-        ]
+        use: sassLoaders
       }
     ]
   },
@@ -134,7 +141,8 @@ exports.config = {
     // tip: remove HotModuleReplacementPlugin from webpack.config.
     // because "--hot" option for webpack-dev-server is doing the same.
     !isProd && new CaseSensitivePathsPlugin(),
-    !isProd && new WatchMissingNodeModulesPlugin(resolve(__dirname, '..', 'node_modules')),
+    !isProd &&
+    new WatchMissingNodeModulesPlugin(resolve(__dirname, '..', 'node_modules')),
     isProd &&
     new MiniCssExtractPlugin({
       // Options similar to the same options in webpackOptions.output
@@ -165,11 +173,12 @@ exports.config = {
       fileName: 'manifest.json',
       publicPath: '/'
     }),
-    new CopyPlugin([{
-      from: resolve(__dirname, '..', 'public'),
-      to: resolve(__dirname, '..', 'dist'),
-      ignore: ['index.html', 'manifest.json']
-    }])
+    new CopyPlugin([
+      {
+        from: resolve(__dirname, '..', 'public'),
+        to: resolve(__dirname, '..', 'dist'),
+        ignore: ['index.html', 'manifest.json']
+      }])
   ].filter(Boolean),
   performance: {
     hints: false
