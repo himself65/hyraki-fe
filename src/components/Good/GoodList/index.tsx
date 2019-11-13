@@ -1,4 +1,4 @@
-import React, { ReactElement, useMemo } from 'react'
+import React, { ReactElement, useMemo, useState } from 'react'
 import { DetailsList, DetailsListLayoutMode, IColumn, MarqueeSelection, Selection } from 'office-ui-fabric-react'
 import { Good } from '../../../../types/Good'
 import { booleanToString } from '../../../utils/helpers'
@@ -75,15 +75,16 @@ export const GoodList: React.FC<GoodListProps> = ({ style, className, items = []
     onSelectionChanged: () => 'Selection'
   })), [])
   return (
-    <div style={style} className={`${className} hy-marquee-selection`}>
-      <MarqueeSelection selection={selection}>
-        <DetailsList
-          items={items}
-          columns={columns}
-          layoutMode={DetailsListLayoutMode.justified}
-          {...restProps}
-        />
-      </MarqueeSelection>
-    </div>
+    <MarqueeSelection selection={selection}>
+      <DetailsList
+        items={items}
+        columns={columns}
+        styles={{
+          root: { paddingTop: 0 }
+        }}
+        layoutMode={DetailsListLayoutMode.justified}
+        {...restProps}
+      />
+    </MarqueeSelection>
   )
 }

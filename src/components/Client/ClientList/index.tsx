@@ -24,13 +24,13 @@ const columns: ClientColumn[] = [
   {
     key: 'name',
     name: '姓名',
-    minWidth: 200,
+    minWidth: 72,
     onRender: item => <div>{item.name}</div>
   },
   {
     key: 'phone',
     name: '电话号',
-    minWidth: 200,
+    minWidth: 100,
     onRender: item => <div>{item.phone}</div>
   },
   {
@@ -42,13 +42,13 @@ const columns: ClientColumn[] = [
   {
     key: 'created_date',
     name: '注册日期',
-    minWidth: 200,
+    minWidth: 100,
     onRender: item => <div>{item.created_date}</div>
   },
   {
     key: 'last_appear',
     name: '回访日期',
-    minWidth: 200,
+    minWidth: 100,
     onRender: item => <div>{item.last_appear}</div>
   },
   {
@@ -56,20 +56,18 @@ const columns: ClientColumn[] = [
     name: '卡账户',
     minWidth: 400,
     // todo
-    onRender: item => <div>{item.cards}</div>
+    onRender: item => <div>{item.cards[0].name}</div>
   },
   {
     key: 'times',
     name: '消费次数',
-    minWidth: 64,
-    // todo
+    minWidth: 42,
     onRender: item => <div>{item.times}</div>
   },
   {
     key: 'integration',
     name: '积分',
     minWidth: 72,
-    // todo
     onRender: item => <div>{item.integration}</div>
   }
 ]
@@ -83,6 +81,9 @@ const ClientList: React.FC<ClientListProps> = ({ items }) => {
       <DetailsList
         items={items}
         columns={columns}
+        styles={{
+          root: { paddingTop: 0 }
+        }}
         layoutMode={DetailsListLayoutMode.justified}
       />
     </MarqueeSelection>
