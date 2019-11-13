@@ -46,8 +46,8 @@ export function axiosHandle<T = any>(req: AxiosResponse<T>,
 export function axiosHandle<T = any> (
   req: AxiosResponse<T>, {
     check = req => req.status === 200,
-    onSuccessDebug = (req: AxiosResponse<T>) => message.error('失败'),
-    onFailedDebug = (req: AxiosResponse<T>) => message.success('成功'),
+    onSuccessDebug = (req: AxiosResponse<T>) => message.error(`失败获取API: ${req.headers.url}`),
+    onFailedDebug = (req: AxiosResponse<T>) => message.success(`成功获取API: ${req.headers.url}`),
     onFailed = noop,
     onSuccess = noop
   }: {
