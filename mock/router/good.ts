@@ -19,7 +19,7 @@ export default function (app: Express) {
   })
 
   app.get('/goods', (req, res) => {
-    if (req.query['brief'] === 'true') {
+    if (req.query.brief === 'true') {
       res.json({
         page: 10,
         data: [goodBrief1, goodBrief2, goodBrief3]

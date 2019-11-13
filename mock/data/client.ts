@@ -1,5 +1,4 @@
 import { Card, Client } from '~type/Client'
-import { Gender } from '~util/shared'
 
 export const card1: Card = {
   id: '1',
@@ -29,7 +28,7 @@ export const client1: Required<Client> = {
   id: '1',
   name: '王面包',
   phone: '13133441356',
-  gender: Gender.man,
+  gender: 1,
   remark: '此人很强',
   created_date: Date.now() - 1000 * 10,
   last_appear: Date.now(),
@@ -38,11 +37,11 @@ export const client1: Required<Client> = {
   integration: 100
 }
 
-export const client12: Required<Client> = {
+export const client2: Required<Client> = {
   id: '2',
   name: '杨面包',
   phone: '13143451356',
-  gender: Gender.woman,
+  gender: 2,
   remark: '此人很弱',
   created_date: Date.now() - 1000 * 20,
   last_appear: Date.now() - 1000 * 5,
