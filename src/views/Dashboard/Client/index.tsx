@@ -22,7 +22,7 @@ const ClientView: React.FC<DefaultProps> = (props) => {
         {...BreadcrumbFactory(props.location.pathname)}
       </Breadcrumb>
       <Card className='hy-card'>
-        <Text>Shit</Text>
+        <Text variant='large'>会员资料</Text>
         <ClientList items={clients}/>
       </Card>
     </Fragment>
