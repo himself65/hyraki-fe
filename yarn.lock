@@ -10207,10 +10207,10 @@ office-ui-fabric-react@^7.29.2, office-ui-fabric-react@^7.31.3, office-ui-fabric
     prop-types "^15.5.10"
     tslib "^1.7.1"
 
-office-ui-fabric-react@^7.59.3:
-  version "7.59.3"
-  resolved "https://registry.yarnpkg.com/office-ui-fabric-react/-/office-ui-fabric-react-7.59.3.tgz#f9441a102db3d3cc334ecc335628fe0348c4d968"
-  integrity sha512-Hx/UWHJAREv6dUpLiwJjY/dKvI7CLnzftltim24Ar33AX5quR3Cbw+AIAn8iT/BIwf4JCh+T9d1EK9VQ1jn1nA==
+office-ui-fabric-react@^7.60.0:
+  version "7.60.0"
+  resolved "https://registry.yarnpkg.com/office-ui-fabric-react/-/office-ui-fabric-react-7.60.0.tgz#ea656b7cb91e06bb3cb06f372d790a4d6add35b3"
+  integrity sha512-PB7ldInms4oVuPh03XDNRuyjGlQCLuT9ULnfYxstrD8351ty8SMf23FQNyTOaV61QZ1g6Af3MbA5x5En7vlr1Q==
   dependencies:
     "@microsoft/load-themed-styles" "^1.7.13"
     "@uifabric/foundation" "^7.5.0"

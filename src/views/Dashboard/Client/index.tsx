@@ -10,6 +10,7 @@ import { useFetch } from '~util/hooks'
 import { getClients } from '~api/client'
 import { Client } from '~type/Client'
 import './ClientContent.less'
+import { Text } from 'office-ui-fabric-react'
 
 const ClientView: React.FC<DefaultProps> = (props) => {
   const [clients] = useFetch<Client[]>(getClients, [], {
@@ -21,6 +22,7 @@ const ClientView: React.FC<DefaultProps> = (props) => {
         {...BreadcrumbFactory(props.location.pathname)}
       </Breadcrumb>
       <Card className='hy-card'>
+        <Text>Shit</Text>
         <ClientList items={clients}/>
       </Card>
     </Fragment>

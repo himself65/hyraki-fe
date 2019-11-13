@@ -81,9 +81,6 @@ const ClientList: React.FC<ClientListProps> = ({ items }) => {
       <DetailsList
         items={items}
         columns={columns}
-        styles={{
-          root: { paddingTop: 0 }
-        }}
         layoutMode={DetailsListLayoutMode.justified}
       />
     </MarqueeSelection>

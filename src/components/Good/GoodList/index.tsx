@@ -79,9 +79,6 @@ export const GoodList: React.FC<GoodListProps> = ({ style, className, items = []
       <DetailsList
         items={items}
         columns={columns}
-        styles={{
-          root: { paddingTop: 0 }
-        }}
         layoutMode={DetailsListLayoutMode.justified}
         {...restProps}
       />
