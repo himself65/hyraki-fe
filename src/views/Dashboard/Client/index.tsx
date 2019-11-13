@@ -23,7 +23,9 @@ const ClientView: React.FC<DefaultProps> = (props) => {
       </Breadcrumb>
       <Card className='hy-card'>
         <Text variant='large'>会员资料</Text>
-        <ClientList items={clients}/>
+        <ClientList style={{
+          marginTop: '1rem'
+        }} items={clients}/>
       </Card>
     </Fragment>
   )

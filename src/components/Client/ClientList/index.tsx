@@ -1,11 +1,20 @@
-import React, { ReactElement, useMemo } from 'react'
-import { DetailsList, DetailsListLayoutMode, IColumn, MarqueeSelection, Selection } from 'office-ui-fabric-react'
+import React, { CSSProperties, ReactElement, useMemo } from 'react'
+import {
+  Button,
+  DetailsList,
+  DetailsListLayoutMode,
+  IColumn,
+  MarqueeSelection,
+  Selection,
+  Fabric
+} from 'office-ui-fabric-react'
 import { Client } from '~type/Client'
 import PropTypes from 'prop-types'
 import { Gender } from '~util/shared'
 
 export interface ClientListProps {
   items: Client[]
+  style?: CSSProperties
 }
 
 interface ClientColumn extends IColumn {
@@ -54,8 +63,8 @@ const columns: ClientColumn[] = [
   {
     key: 'cards',
     name: '卡账户',
-    minWidth: 400,
-    // todo
+    minWidth: 200,
+    // todo: 这里做一个 HoverCard
     onRender: item => <div>{item.cards[0].name}</div>
   },
   {
@@ -72,18 +81,24 @@ const columns: ClientColumn[] = [
   }
 ]
 
-const ClientList: React.FC<ClientListProps> = ({ items }) => {
+const ClientList: React.FC<ClientListProps> = ({ items, style, ...props }) => {
   const selection = useMemo(() => new Selection({
     onSelectionChanged: () => 'Selection'
   }), [])
   return (
-    <MarqueeSelection selection={selection}>
-      <DetailsList
-        items={items}
-        columns={columns}
-        layoutMode={DetailsListLayoutMode.justified}
-      />
-    </MarqueeSelection>
+    <Fabric style={style}>
+      {/* todo: 删除功能 */}
+      <Button>
+        删除
+      </Button>
+      <MarqueeSelection selection={selection}>
+        <DetailsList
+          items={items}
+          columns={columns}
+          layoutMode={DetailsListLayoutMode.justified}
+        />
+      </MarqueeSelection>
+    </Fabric>
   )
 }
 
