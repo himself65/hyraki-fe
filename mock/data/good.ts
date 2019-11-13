@@ -1,4 +1,4 @@
-import { Good, GoodBrief, Supplier } from '../../types/Good'
+import { Good, GoodBrief, Supplier } from '~type/Good'
 import { Optional } from '../../types'
 
 type PropertiesList<T extends object> = {

@@ -18,8 +18,8 @@ export interface Client {
   phone: string
   gender: Gender
   remark: string
-  created_date: string // 创建日期
-  last_appear: string // 上一次到店日期
+  created_date: number // 创建日期
+  last_appear: number // 上一次到店日期
   cards: Card[] // 卡
   times: number // 消费次数
   integration: number // 积分

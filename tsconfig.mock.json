@@ -1,4 +1,5 @@
 {
+  "extends": "./tsconfig.json",
   "compileOnSave": true,
   "compilerOptions": {
     "target": "esnext",

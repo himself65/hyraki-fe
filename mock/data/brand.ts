@@ -1,4 +1,4 @@
-import { Brand } from '../../types/Brand'
+import { Brand } from '~type/Brand'
 
 export const brand1: Required<Brand> = {
   id: '1',

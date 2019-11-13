@@ -1,4 +1,4 @@
-import { Shop } from '../../types/Shop'
+import { Shop } from '~type/Shop'
 
 export const shop1: Required<Shop> = {
   id: '1',
