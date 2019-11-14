@@ -11,6 +11,7 @@ import {
 import { Client } from '~type/Client'
 import PropTypes from 'prop-types'
 import { Gender } from '~util/shared'
+import ClientCardHover from '~component/Client/ClientCardHover'
 
 export interface ClientListProps {
   items: Client[]
@@ -19,7 +20,7 @@ export interface ClientListProps {
 
 interface ClientColumn extends IColumn {
   key: string
-  onRender: (item: Client) => ReactElement | null
+  onRender: (item: Client, index?: number, column?: IColumn) => ReactElement | null
 }
 
 const columns: ClientColumn[] = [
@@ -65,7 +66,7 @@ const columns: ClientColumn[] = [
     name: '卡账户',
     minWidth: 200,
     // todo: 这里做一个 HoverCard
-    onRender: item => <div>{item.cards[0].name}</div>
+    onRender: item => (<ClientCardHover item={item}/>)
   },
   {
     key: 'times',
@@ -103,7 +104,8 @@ const ClientList: React.FC<ClientListProps> = ({ items, style, ...props }) => {
 }
 
 ClientList.propTypes = {
-  items: PropTypes.array.isRequired
+  items: PropTypes.array.isRequired,
+  style: PropTypes.object
 }
 
 export default ClientList
