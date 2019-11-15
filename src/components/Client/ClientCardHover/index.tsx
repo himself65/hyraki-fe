@@ -1,6 +1,7 @@
 import React from 'react'
 import { Client } from '~type/Client'
 import { HoverCard } from 'office-ui-fabric-react'
+import PropTypes from 'prop-types'
 
 interface ClientCardHoverProps {
   item: Client
@@ -21,9 +22,13 @@ const ClientCardHover: React.FC<ClientCardHoverProps> = ({ item }) => {
       },
       renderData: item
     }} instantOpenOnClick={true}>
-      <div>todo 1</div>
+      <a>有 {item.cards.length } 张卡 </a>
     </HoverCard>
   )
+}
+
+ClientCardHover.propTypes = {
+  item: PropTypes.any
 }
 
 export default ClientCardHover

@@ -35,49 +35,55 @@ const columns: ClientColumn[] = [
     key: 'name',
     name: '姓名',
     minWidth: 72,
+    maxWidth: 100,
     onRender: item => <div>{item.name}</div>
   },
   {
     key: 'phone',
     name: '电话号',
     minWidth: 100,
+    maxWidth: 120,
     onRender: item => <div>{item.phone}</div>
   },
   {
     key: 'gender',
     name: '性别',
     minWidth: 64,
+    maxWidth: 72,
     onRender: item => <div>{item.gender === Gender.man ? '男' : '女'}</div>
   },
   {
     key: 'created_date',
     name: '注册日期',
     minWidth: 100,
+    maxWidth: 120,
     onRender: item => <div>{item.created_date}</div>
   },
   {
     key: 'last_appear',
     name: '回访日期',
     minWidth: 100,
+    maxWidth: 120,
     onRender: item => <div>{item.last_appear}</div>
   },
   {
     key: 'cards',
     name: '卡账户',
     minWidth: 200,
-    // todo: 这里做一个 HoverCard
     onRender: item => (<ClientCardHover item={item}/>)
   },
   {
     key: 'times',
     name: '消费次数',
-    minWidth: 42,
+    minWidth: 72,
+    maxWidth: 100,
     onRender: item => <div>{item.times}</div>
   },
   {
     key: 'integration',
     name: '积分',
     minWidth: 72,
+    maxWidth: 100,
     onRender: item => <div>{item.integration}</div>
   }
 ]
