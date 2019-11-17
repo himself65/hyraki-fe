@@ -24,9 +24,7 @@ const GoodView: React.FC<DefaultProps> = () => {
           onClick={() => setShowAddGoodModal(true)}>
           添加
         </Button>
-        <GoodList style={{
-          marginTop: '1rem'
-        }} items={goods} compact={true}/>
+        <GoodList items={goods} compact={true}/>
       </Card>
       <Modal
         title={'添加库存'}

@@ -68,6 +68,8 @@ export function axiosHandle<T = any> (
   return Promise.resolve(req)
 }
 
+export const filterItems = (items: any[] = [], indexes: number[] = []) => indexes.map(idx => items[idx])
+
 // only assert on LoggerMode
 export const assert = DEBUG ? (judgement: boolean, message: string) => {
   !judgement && Logger(message)

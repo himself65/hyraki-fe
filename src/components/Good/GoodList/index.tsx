@@ -1,14 +1,12 @@
-import React, { ReactElement, useMemo, useState } from 'react'
+import React, { ReactElement, useMemo } from 'react'
 import { DetailsList, DetailsListLayoutMode, IColumn, MarqueeSelection, Selection } from 'office-ui-fabric-react'
 import { Good } from '../../../../types/Good'
-import { booleanToString } from '../../../utils/helpers'
+import { booleanToString, filterItems } from '../../../utils/helpers'
 import './index.less'
 
 export interface GoodListProps {
   items: Good[]
-  style?: React.CSSProperties
-  compact?: boolean
-  className?: string
+  compact: boolean
 }
 
 interface GoodColumn extends IColumn {
@@ -70,17 +68,21 @@ const columns: GoodColumn[] = [
   }
 ]
 
-export const GoodList: React.FC<GoodListProps> = ({ style, className, items = [], ...restProps }) => {
+export const GoodList: React.FC<GoodListProps> = ({ items = [], compact }) => {
   const selection = useMemo(() => (new Selection({
-    onSelectionChanged: () => 'Selection'
+    onSelectionChanged: () => {
+      // tip: 已经找到了选中的keys
+      const selectedKeys = filterItems(selection.getItems(), selection.getSelectedIndices()).map(v => v.id)
+    }
   })), [])
   return (
     <MarqueeSelection selection={selection}>
       <DetailsList
         items={items}
         columns={columns}
+        compact={compact}
         layoutMode={DetailsListLayoutMode.justified}
-        {...restProps}
+        selection={selection}
       />
     </MarqueeSelection>
   )

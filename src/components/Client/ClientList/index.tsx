@@ -12,6 +12,7 @@ import { Client } from '~type/Client'
 import PropTypes from 'prop-types'
 import { Gender } from '~util/shared'
 import ClientCardHover from '~component/Client/ClientCardHover'
+import { filterItems } from '~util/helpers'
 
 export interface ClientListProps {
   items: Client[]
@@ -90,7 +91,10 @@ const columns: ClientColumn[] = [
 
 const ClientList: React.FC<ClientListProps> = ({ items, style, ...props }) => {
   const selection = useMemo(() => new Selection({
-    onSelectionChanged: () => 'Selection'
+    onSelectionChanged: () => {
+      // tip: 已经找到了选中的keys
+      const selectedKeys = filterItems(selection.getItems(), selection.getSelectedIndices()).map(v => v.id)
+    }
   }), [])
   return (
     <Fabric style={style}>

@@ -1,4 +1,9 @@
-import { axiosHandle, booleanToString, numberFormatter } from '../helpers'
+import {
+  axiosHandle,
+  booleanToString,
+  filterItems,
+  numberFormatter
+} from '../helpers'
 
 describe('helpers - function: defaultAxiosHandle', () => {
   it('should pass', () => {
@@ -41,5 +46,14 @@ describe('helpers - function: numberFormatter', () => {
   it('should pass', () => {
     expect(numberFormatter(1, '个')).toEqual('1 个')
     expect(numberFormatter(1000, '个')).toEqual('1000 个')
+  })
+})
+
+describe('helpers - function: filterItems', () => {
+  it('should pass', () => {
+    expect(filterItems([], [0, 1, 2]))
+      .toEqual([undefined, undefined, undefined])
+    expect(filterItems([2, 3, 4], [0, 1, 2])).toEqual([2, 3, 4])
+    expect(filterItems([2, 3, 4], [0, 2, 1])).toEqual([2, 4, 3])
   })
 })
