@@ -1,6 +1,6 @@
 import React from 'react'
 import { Client } from '~type/Client'
-import { HoverCard } from 'office-ui-fabric-react'
+import { Fabric, HoverCard } from 'office-ui-fabric-react'
 import PropTypes from 'prop-types'
 
 interface ClientCardHoverProps {
@@ -11,14 +11,10 @@ const ClientCardHover: React.FC<ClientCardHoverProps> = ({ item }) => {
   return (
     <HoverCard expandingCardProps={{
       onRenderCompactCard: (item: Client) => {
-        // 紧凑
-        // todo
-        return (<div>todo 2</div>)
+        return (<Fabric>todo 2</Fabric>)
       },
       onRenderExpandedCard: (item: Client) => {
-        // 展开
-        // todo
-        return (<div>todo 3</div>)
+        return (<Fabric>todo 3</Fabric>)
       },
       renderData: item
     }} instantOpenOnClick={true}>
