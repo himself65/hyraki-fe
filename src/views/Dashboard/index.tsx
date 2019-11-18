@@ -50,11 +50,6 @@ const DashboardView: React.FC<DefaultProps> = (props) => {
             <Icon type='upload'/>
             <span className='nav-text'> 库存 </span>
           </Menu.Item>
-          <Menu.Item key='/dashboard/order'>
-            <Link to='/dashboard/order'/>
-            <Icon type='profile'/>
-            <span className='nav-text'> 订单 </span>
-          </Menu.Item>
           <Menu.Item key='/dashboard/client'>
             <Link to='/dashboard/client'/>
             <Icon type='user'/>
