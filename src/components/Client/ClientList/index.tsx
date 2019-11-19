@@ -1,12 +1,13 @@
 import React, { CSSProperties, ReactElement, useMemo } from 'react'
 import {
-  Button,
+  Stack,
+  DefaultButton,
   DetailsList,
   DetailsListLayoutMode,
   IColumn,
   MarqueeSelection,
   Selection,
-  Fabric
+  Fabric, IStackTokens
 } from 'office-ui-fabric-react'
 import { Client } from '~type/Client'
 import PropTypes from 'prop-types'
@@ -18,6 +19,8 @@ export interface ClientListProps {
   items: Client[]
   style?: CSSProperties
 }
+
+const stackTokens: IStackTokens = { childrenGap: 20 }
 
 interface ClientColumn extends IColumn {
   key: string
@@ -99,9 +102,11 @@ const ClientList: React.FC<ClientListProps> = ({ items, style, ...props }) => {
   return (
     <Fabric style={style}>
       {/* todo: 删除功能 */}
-      <Button>
-        删除
-      </Button>
+      <Stack horizontal tokens={stackTokens}>
+        <DefaultButton>
+          删除
+        </DefaultButton>
+      </Stack>
       <MarqueeSelection selection={selection}>
         <DetailsList
           items={items}
