@@ -41,7 +41,7 @@ const ReserveOverView: React.FC<DefaultProps> = (props) => {
 
 const DateContent: React.FC<DefaultProps> = (props) => {
   const [selected, setSelected] = useState<string>(
-    /^\/dashboard\/reserve[^\\/\s]+/.test(props.location.pathname) ? '1' : '2'
+    props.location.pathname === '/dashboard/reserve' ? '1' : '2'
   )
 
   return (
