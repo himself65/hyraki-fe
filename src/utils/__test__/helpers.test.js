@@ -13,14 +13,18 @@ describe('helpers - function: defaultAxiosHandle', () => {
 
     axiosHandle(ref, {
       check: v => v.value++,
-      onFailed: () => ref.value++
+      onFailed: () => ref.value++,
+      onSuccessDebug: jest.fn(),
+      onFailedDebug: jest.fn()
     })
     expect(ref.value).toBe(2)
 
     ref.value = 0
     axiosHandle(ref, {
       check: v => v,
-      onSuccess: () => ref.value++
+      onSuccess: () => ref.value++,
+      onSuccessDebug: jest.fn(),
+      onFailedDebug: jest.fn()
     })
     expect(ref.value).toBe(1)
   })

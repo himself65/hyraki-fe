@@ -38,16 +38,16 @@ export function axiosHandle<T = any>(
 export function axiosHandle<T = any>(req: AxiosResponse<T>,
                                      config: {
                                        check?: (req: AxiosResponse<T>) => boolean
-                                       onCheckFailedHandleDebug?: Function
-                                       onCheckSuccessHandleDebug?: Function
+                                       onSuccessDebug?: Function
+                                       onFailedDebug?: Function
                                        onSuccess?: Function
                                        onFailed?: Function
                                      }): Promise<AxiosResponse<T>>
 export function axiosHandle<T = any> (
   req: AxiosResponse<T>, {
     check = req => req.status === 200,
-    onSuccessDebug = (req: AxiosResponse<T>) => message.error(`失败获取API: ${req.headers.url}`),
-    onFailedDebug = (req: AxiosResponse<T>) => message.success(`成功获取API: ${req.headers.url}`),
+    onSuccessDebug = (req: AxiosResponse<T>) => message.error(`失败获取API: ${req.config.url}`),
+    onFailedDebug = (req: AxiosResponse<T>) => message.success(`成功获取API: ${req.config.url}`),
     onFailed = noop,
     onSuccess = noop
   }: {
