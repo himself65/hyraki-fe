@@ -38,4 +38,10 @@ export default function (app: Express) {
     })
     res.end()
   })
+
+  app.get('/user/messages', (req, res) => {
+    res.json({
+      data: []
+    })
+  })
 }
