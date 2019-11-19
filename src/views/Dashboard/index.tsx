@@ -1,21 +1,20 @@
 import React from 'react'
-import { Avatar, Badge, Icon, Layout, Menu, Row } from 'antd'
-import { Logger } from '../../utils/debug'
+import { Icon, Layout, Menu, Row } from 'antd'
+import { Logger } from '~util/debug'
 import { Link, Route, Switch } from 'react-router-dom'
 import { HyFooter, HyLayout, HySidebar } from '../../components/Layout'
-import { DefaultProps } from '../../../types'
+import { DefaultProps } from '~type/index'
 import './DashboardView.less'
 import DashboardContent, { Footer } from './Dashboard'
 import ReserveContent from './Reserve'
 import ClientContent from './Client'
 import ShopContent from './Shop'
 import { GoodContent } from './Good'
-import { useFetch } from '../../utils/hooks'
-import { getMessagesCount } from '../../api/user'
+import { getMessagesCount } from '~api/user'
+import NoticeAvatar from '~component/Message/NoticeAvatar'
 
 const DashboardView: React.FC<DefaultProps> = (props) => {
   const selectedKey = props.location.pathname || '/dashboard'
-  const [{ count }] = useFetch(getMessagesCount, { count: 0 })
   Logger('Opened \'%s\'', selectedKey)
   return (
     <HyLayout className='dashboard-view'>
@@ -26,9 +25,9 @@ const DashboardView: React.FC<DefaultProps> = (props) => {
       >
         <Row className='top-element' type='flex' justify='center'>
           {/* fixme: 需要API支持 */}
-          <Badge count={count}>
-            <Avatar size={64}/>
-          </Badge>
+          <NoticeAvatar api={{
+            getMessageCount: getMessagesCount
+          }}/>
         </Row>
         <Menu style={{ backgroundColor: 'transparent' }}
           theme='light'
