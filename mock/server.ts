@@ -61,7 +61,7 @@ app.get('/dashboard', (req, res) => {
 // 全局设置获取，根据 query['type'] 来返回值
 app.get('/settings', (req, res) => {
   // 查询预约（Reserve）的相关设置
-  if (req.query['type'] === 'date') {
+  if (req.query.type === 'date') {
     // 通过 shop 字段查询
     // 例如 POST /settings?type=reserve&shop=10086
     // 则查询key为10086的店铺设置
