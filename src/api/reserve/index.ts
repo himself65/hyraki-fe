@@ -1,7 +1,7 @@
 import axiosInstance from '../'
-import { ReserveForm } from '~type/Reserve'
+import { Reserve } from '~type/Reserve'
 
-export function postAddReserve (data: ReserveForm) {
+export function postAddReserve (data: Reserve) {
   return axiosInstance.post('/reserve', {
     ...data
   })

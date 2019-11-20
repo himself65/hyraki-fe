@@ -2,17 +2,20 @@ import React, { MutableRefObject, useEffect, useState } from 'react'
 import { DatePicker, Form, Input, Select } from 'antd'
 import { FormComponentProps } from 'antd/es/form'
 import { Subject } from 'rxjs'
-import { useFetch } from '../../../utils/hooks'
-import { getShopServeList } from '../../../api/shop'
-import { Serve, Shop } from '../../../../types/Shop'
-import ServesTable from './ServesTable'
-import { Logger } from '../../../utils/debug'
-import { ListAPI } from '../../../../types/API'
+import { useFetch } from '~util/hooks'
+import { getShopServeList } from '~api/shop'
+import { Serve, Shop } from '~type/Shop'
+import { Logger } from '~util/debug'
+import { ListAPI } from '~type/API'
 import { AxiosPromise } from 'axios'
-import { assert } from '../../../utils/helpers'
+import { assert } from '~util/helpers'
+import { Reserve } from '~type/Reserve'
+import { Optional } from '~type/index'
+import ServesTable from './ServesTable'
 
 export interface Props extends FormComponentProps {
   subject: MutableRefObject<Subject<boolean>>
+  item?: Optional<Reserve>
   api: {
     getShopList(brandID: string | number): AxiosPromise<ListAPI<Shop[]>>
   }
@@ -24,13 +27,13 @@ declare module 'antd/lib/select' {
   }
 }
 
-const AddDateForm: React.FC<Props> = ({ form, subject, api }) => {
+const AddDateForm: React.FC<Props> = ({ form, subject, api, item = {} }) => {
   const [selectedShop, setSelectedShop] = useState<boolean>(false) // 是否已经选择了 shop
   const [serves, setServes] = useState<Serve[]>([])
   // fixme: getShopList 需要参数
   const [shops] = useFetch<Shop[]>(api.getShopList, [])
   assert(Array.isArray(shops), 'shops is not a Array')
-  const { getFieldDecorator, validateFields } = form
+  const { getFieldDecorator, validateFields, setFieldsValue } = form
   useEffect(() => {
     // tip: 仅运行一次
     subject.current.subscribe((submit: boolean) => {
@@ -45,6 +48,10 @@ const AddDateForm: React.FC<Props> = ({ form, subject, api }) => {
       }
     })
   }, [])
+  useEffect(() => {
+    // todo: 处理一下 callback
+    setFieldsValue(item)
+  }, [item])
   return (
     <Form layout='vertical'>
       <Form.Item label='手机号'>
