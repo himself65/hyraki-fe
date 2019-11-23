@@ -1,5 +1,5 @@
 import React from 'react'
-import { AsyncComponentProvider, asyncComponent } from 'react-async-component'
+import importedComponent from 'react-imported-component'
 import { Redirect, Route, Switch } from 'react-router'
 import { BrowserRouter } from 'react-router-dom'
 import LoadingView from './views/Loading'
@@ -8,11 +8,8 @@ import { Provider } from 'mobx-react'
 import { store } from './store'
 
 const asyncComponentFactory = (resolve: () => Promise<React.ComponentType<any> | { default: React.ComponentType<any> }>) =>
-  asyncComponent({
-    resolve,
-    // @ts-ignore
+  importedComponent(resolve, {
     LoadingComponent: LoadingView,
-    // @ts-ignore
     ErrorComponent: ErrorView
   })
 
@@ -23,21 +20,19 @@ const ForgetView = asyncComponentFactory(() => import('./views/Forget'))
 
 const App: React.FC = () => {
   return (
-    <AsyncComponentProvider>
-      <Provider store={store}>
-        <BrowserRouter>
-          <Switch>
-            <Route exact path='/' component={StartView}/>
-            <Route path='/login' component={StartView}/>
-            <Route path='/dashboard' component={DashboardView}/>
-            <Route path='/register' component={RegisterView}/>
-            <Route path='/forget' component={ForgetView} />
-            <Route path='/error' component={ErrorView}/>
-            <Redirect from='/*' to='/error'/>
-          </Switch>
-        </BrowserRouter>
-      </Provider>
-    </AsyncComponentProvider>
+    <Provider store={store}>
+      <BrowserRouter>
+        <Switch>
+          <Route exact path='/' component={StartView}/>
+          <Route path='/login' component={StartView}/>
+          <Route path='/dashboard' component={DashboardView}/>
+          <Route path='/register' component={RegisterView}/>
+          <Route path='/forget' component={ForgetView} />
+          <Route path='/error' component={ErrorView}/>
+          <Redirect from='/*' to='/error'/>
+        </Switch>
+      </BrowserRouter>
+    </Provider>
   )
 }
 

@@ -1,6 +1,6 @@
+import { hot } from 'react-hot-loader'
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { hot } from 'react-hot-loader'
 import * as Sentry from '@sentry/browser'
 import { initializeIcons } from '@uifabric/icons'
 import 'ant-design-pro/lib/Charts/style/index.less'
