@@ -10,10 +10,16 @@ import ReserveCalendar from '~component/Reserve/ReserveCalendar'
 import ReserveSettingsContent from './settings'
 import { getShopList } from '~api/shop'
 import ReserveList from '~component/Reserve/ReserveList'
+import { useFetch } from '~util/hooks'
+import { getReserves } from '~api/reserve'
+import { Reserve } from '~type/Reserve'
 
 const ReserveOverView: React.FC<DefaultProps> = (props) => {
   const subject = useRef(new Subject<boolean>())
   const [showAddReserveModal, setShowAddDateModal] = useState<boolean>(false)
+  const [reserves] = useFetch<Reserve[]>(getReserves, [], {
+    defaultParams: [0]
+  })
   return (
     <Fragment>
       <Card className='hy-card'>
@@ -22,10 +28,10 @@ const ReserveOverView: React.FC<DefaultProps> = (props) => {
       <Card className='hy-card' style={{ marginTop: '1rem' }}>
         <Pivot>
           <PivotItem headerText='预览图'>
-            <ReserveCalendar items={[]}/>
+            <ReserveCalendar items={reserves}/>
           </PivotItem>
           <PivotItem headerText='详细列表'>
-            <ReserveList items={[]}/>
+            <ReserveList items={reserves}/>
           </PivotItem>
         </Pivot>
       </Card>
