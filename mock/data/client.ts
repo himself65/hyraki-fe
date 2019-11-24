@@ -30,8 +30,8 @@ export const client1: Required<Client> = {
   phone: '13133441356',
   gender: 1,
   remark: '此人很强',
-  created_date: Date.now() - 1000 * 10,
-  last_appear: Date.now(),
+  created_date: Math.floor(Date.now() / 1000) / 1000 - 1000 * 10,
+  last_appear: Math.floor(Date.now() / 1000),
   cards: [card1],
   times: 1,
   integration: 100
@@ -43,8 +43,8 @@ export const client2: Required<Client> = {
   phone: '13143451356',
   gender: 2,
   remark: '此人很弱',
-  created_date: Date.now() - 1000 * 20,
-  last_appear: Date.now() - 1000 * 5,
+  created_date: Math.floor(Date.now() / 1000) - 1000 * 20,
+  last_appear: Math.floor(Date.now() / 1000) - 1000 * 5,
   cards: [card1, card2],
   times: 10,
   integration: 10
