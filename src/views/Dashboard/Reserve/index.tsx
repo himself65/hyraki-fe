@@ -1,13 +1,15 @@
 import React, { Fragment, useRef, useState } from 'react'
-import { DefaultProps } from '../../../../types'
-import { HyContent, HyHeader, HyLayout } from '../../../components/Layout'
 import { Button, Card, Menu, Modal } from 'antd'
 import { Link, Route, Switch } from 'react-router-dom'
-import AddReserveForm from '../../../components/Reserve/AddReserveForm'
+import { Pivot, PivotItem } from 'office-ui-fabric-react'
 import { Subject } from 'rxjs'
+import { DefaultProps } from '~type/index'
+import { HyContent, HyHeader, HyLayout } from '~component/Layout'
+import AddReserveForm from '~component/Reserve/AddReserveForm'
+import ReserveCalendar from '~component/Reserve/ReserveCalendar'
 import ReserveSettingsContent from './settings'
-import DatingCalendar from '../../../components/Reserve/ReserveCalendar'
-import { getShopList } from '../../../api/shop'
+import { getShopList } from '~api/shop'
+import ReserveList from '~component/Reserve/ReserveList'
 
 const ReserveOverView: React.FC<DefaultProps> = (props) => {
   const subject = useRef(new Subject<boolean>())
@@ -17,8 +19,15 @@ const ReserveOverView: React.FC<DefaultProps> = (props) => {
       <Card className='hy-card'>
         <Button type='primary' onClick={() => setShowAddDateModal(true)}>添加预约</Button>
       </Card>
-      <Card className='hy-card' style={{ marginTop: '1rem' }} title='预览图'>
-        <DatingCalendar/>
+      <Card className='hy-card' style={{ marginTop: '1rem' }}>
+        <Pivot>
+          <PivotItem headerText='预览图'>
+            <ReserveCalendar items={[]}/>
+          </PivotItem>
+          <PivotItem headerText='详细列表'>
+            <ReserveList items={[]}/>
+          </PivotItem>
+        </Pivot>
       </Card>
       <Modal
         title='新建预约'
