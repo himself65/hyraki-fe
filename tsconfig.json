@@ -8,13 +8,46 @@
       "esnext"
     ],
     "paths": {
-      "~type/*": ["../types/*"],
       "~api/*": ["./api/*"],
-      "~component/*": ["./components/*"],
-      "~store/*": ["./store/*"],
-      "~style/*": ["./style/*"],
-      "~util/*": ["./utils/*"],
-      "~view/*": ["./views/*"]
+      "~type": [
+        "../types"
+      ],
+      "~type/*": [
+        "../types/*"
+      ],
+      "~component": [
+        "./components"
+      ],
+      "~component/*": [
+        "./components/*"
+      ],
+      "~data/*": [
+        "./data/*"
+      ],
+      "~store": [
+        "./store"
+      ],
+      "~store/*": [
+        "./store/*"
+      ],
+      "~style": [
+        "./style"
+      ],
+      "~style/*": [
+        "./style/*"
+      ],
+      "~util": [
+        "./utils"
+      ],
+      "~util/*": [
+        "./utils/*"
+      ],
+      "~view": [
+        "./views"
+      ],
+      "~view/*": [
+        "./views/*"
+      ]
     },
     "allowJs": true,
     "skipLibCheck": true,
