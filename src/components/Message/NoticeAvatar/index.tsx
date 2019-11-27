@@ -1,8 +1,7 @@
 import React from 'react'
-import { Fabric, HoverCard, HoverCardType, Text } from 'office-ui-fabric-react'
-import { Avatar, Badge } from 'antd'
+import { Fabric, HoverCard, HoverCardType, Persona, PersonaPresence, PersonaSize, Text } from 'office-ui-fabric-react'
 import { useFetch } from '~util/hooks'
-import { getMessagesCount } from '~api/user'
+import { getMessagesCount, getUserInfo } from '~api/user'
 import { TODO } from '~type/index'
 
 type MessageListProps = {
@@ -22,6 +21,7 @@ const MessageList: React.FC<MessageListProps> = ({ api }) => {
 type NoticeAvatarProps = {
   api: {
     getMessageCount: typeof getMessagesCount
+    getUserInfo: typeof getUserInfo
   }
 }
 
@@ -41,13 +41,16 @@ const NoticeAvatar: React.FC<NoticeAvatarProps> = ({ api: { getMessageCount } })
         }
       }}
       instantOpenOnClick={true}
-      cardDismissDelay={2000}
+      cardDismissDelay={500}
       cardOpenDelay={0}
       type={HoverCardType.plain}
     >
-      <Badge count={count}>
-        <Avatar size={64}/>
-      </Badge>
+      <Persona
+        imageUrl=''
+        text='himself65'
+        presence={PersonaPresence.online}
+        size={PersonaSize.size32}
+      />
     </HoverCard>
   )
 }

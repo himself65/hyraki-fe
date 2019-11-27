@@ -23,3 +23,9 @@ export async function getMessagesCount () {
   }>>('/user/messages/count')
     .then(response => axiosHandle(response))
 }
+
+// tip: 需要登陆后才能正常返回
+export async function getUserInfo () {
+  return axiosInstance.get<BaseAPI<{}>>('/user/info')
+    .then(response => axiosHandle(response))
+}
