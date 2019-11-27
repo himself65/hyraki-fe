@@ -1,7 +1,15 @@
 import React from 'react'
 import { Client } from '~type/Client'
-import { Fabric, HoverCard } from 'office-ui-fabric-react'
-import PropTypes from 'prop-types'
+import { Fabric, HoverCard, Text, Stack, mergeStyleSets } from 'office-ui-fabric-react'
+import { store } from '~store'
+
+const classNames = mergeStyleSets({
+  compactCard: {
+    backgroundColor: '#252525',
+    color: '#fff',
+    height: '100%'
+  }
+})
 
 interface ClientCardHoverProps {
   item: Client
@@ -11,7 +19,19 @@ const ClientCardHover: React.FC<ClientCardHoverProps> = ({ item }) => {
   return (
     <HoverCard expandingCardProps={{
       onRenderCompactCard: (item: Client) => {
-        return (<Fabric>todo 2</Fabric>)
+        return (
+          <Stack padding='0.5rem 0.7rem' className={classNames.compactCard}>
+            <Stack.Item >
+              <Text variant='xLargePlus'>
+                {store.currentStoreName} {item.name}的会员卡
+              </Text>
+            </Stack.Item>
+            {/* todo: unfinished this part */}
+            <Stack.Item>
+              <Text variant='xxLarge'/>
+            </Stack.Item>
+          </Stack>
+        )
       },
       onRenderExpandedCard: (item: Client) => {
         return (<Fabric>todo 3</Fabric>)
@@ -21,10 +41,6 @@ const ClientCardHover: React.FC<ClientCardHoverProps> = ({ item }) => {
       <a>有 {item.cards.length } 张卡 </a>
     </HoverCard>
   )
-}
-
-ClientCardHover.propTypes = {
-  item: PropTypes.any
 }
 
 export default ClientCardHover
