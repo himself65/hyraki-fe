@@ -1,9 +1,9 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import { Form, Popconfirm, Select, Table } from 'antd'
-import { Serve } from '../../../../types/Shop'
+import { Serve } from '~type/Shop'
 import { TableCell, TableRow } from './TableRow'
 import { FormComponentProps } from 'antd/es/form'
-import { Logger } from '../../../utils/debug'
+import { Logger } from '~util/debug'
 import { ColumnProps } from 'antd/lib/table'
 
 interface Props extends FormComponentProps {

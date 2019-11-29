@@ -2,10 +2,10 @@ import React, { useCallback } from 'react'
 import { Button, Checkbox, Form, Icon, Input, message } from 'antd'
 import { Link, RouteComponentProps, withRouter } from 'react-router-dom'
 import { FormComponentProps } from 'antd/es/form'
-import { login } from '../../api'
-import { Logger } from '../../utils/debug'
+import { login } from '~api/user'
+import { Logger } from '~util/debug'
 import { observer } from 'mobx-react'
-import { store } from '../../store'
+import { store } from '~store'
 
 const LoginBoard = (props: FormComponentProps & RouteComponentProps<any>) => {
   const { validateFields } = props.form

@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { HyContent, HyLayout } from '../../components/Layout'
 import './ErrorView.less'
-import { DefaultProps } from '../../../types'
-import { StateMap } from '../../utils/helpers'
-import { Logger } from '../../utils/debug'
-import { USER_ERROR_LAST_STATE } from '../../utils/shared'
+import { DefaultProps } from '~type/index'
+import { StateMap } from '~util/helpers'
+import { Logger } from '~util/debug'
+import { USER_ERROR_LAST_STATE } from '~util/shared'
 
 const ErrorView: React.FC<DefaultProps> = (props) => {
   const [userState, setUserState] = useState<string>('')

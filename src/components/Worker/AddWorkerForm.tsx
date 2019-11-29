@@ -2,10 +2,10 @@ import React, { MutableRefObject, useCallback, useEffect, useState } from 'react
 import { Form, Input, Radio, Select } from 'antd'
 import { FormComponentProps } from 'antd/es/form'
 import { Subject } from 'rxjs'
-import { Logger } from '../../utils/debug'
-import { getWorkerPositionList } from '../../api/worker'
-import { getShopList } from '../../api/shop'
-import { useFetch } from '../../utils/hooks'
+import { Logger } from '~util/debug'
+import { getWorkerPositionList } from '~api/worker'
+import { getShopList } from '~api/shop'
+import { useFetch } from '~util/hooks'
 
 interface Props extends FormComponentProps {
   subject: MutableRefObject<Subject<boolean>>

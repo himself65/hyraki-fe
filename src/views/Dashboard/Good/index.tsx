@@ -1,14 +1,14 @@
 import React, { Fragment, useRef, useState } from 'react'
-import { DefaultProps } from '../../../../types'
+import { DefaultProps } from '~type/index'
 import { Button, Card, Menu, Modal } from 'antd'
-import { HyContent, HyHeader, HyLayout } from '../../../components/Layout'
+import { HyContent, HyHeader, HyLayout } from '~component/Layout'
 import { Link, Route, Switch } from 'react-router-dom'
-import { GoodList } from '../../../components/Good/GoodList'
-import { useFetch } from '../../../utils/hooks'
+import { GoodList } from '~component/Good/GoodList'
+import { useFetch } from '~util/hooks'
 import { getGoods, getSupplier } from '../../../api/good'
-import { Good } from '../../../../types/Good'
+import { Good } from '~type/Good'
 import { Subject } from 'rxjs'
-import AddGoodForm from '../../../components/Good/AddGoodForm'
+import AddGoodForm from '~component/Good/AddGoodForm'
 
 const GoodView: React.FC<DefaultProps> = () => {
   const subject = useRef(new Subject<boolean>())

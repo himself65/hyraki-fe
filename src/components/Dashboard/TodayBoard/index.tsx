@@ -1,7 +1,7 @@
 import React from 'react'
 import { Card, Icon, Statistic } from 'antd'
-import { TrendType } from '../../../views/Dashboard/Dashboard'
-import { TodayData } from '../../../../types/Dashboard'
+import { TrendType } from '~view/Dashboard/Dashboard'
+import { TodayData } from '~type/Dashboard'
 
 export const todayGridStyle = {
   width: '33.33%',

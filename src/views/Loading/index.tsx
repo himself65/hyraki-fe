@@ -1,5 +1,5 @@
 import React from 'react'
-import { HyContent, HyLayout } from '../../components/Layout'
+import { HyContent, HyLayout } from '~component/Layout'
 import './LoadingView.less'
 import { Spin } from 'antd'
 

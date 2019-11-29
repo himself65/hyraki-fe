@@ -3,14 +3,13 @@ import { Breadcrumb, Icon, Menu, Tooltip } from 'antd'
 import { ChartCard, Field, MiniBar } from 'ant-design-pro/lib/Charts'
 import numeral from 'numeral'
 import moment from 'moment'
-import { DefaultProps } from '../../../../types'
+import { DefaultProps } from '~type/index'
 import { HyContent, HyFooter, HyHeader } from '../../../components/Layout'
-import { BreadcrumbFactory } from '../../../utils/helpers'
+import { BreadcrumbFactory } from '~util/helpers'
 import { CommonBoard, TodayBoard, TodoBoard } from '../../../components/Dashboard'
-import { getDashboardData } from '../../../api/dashboard'
-import { Logger } from '../../../utils/debug'
+import { getDashboardData } from '~api/dashboard'
 import './DashboardContent.less'
-import { useFetch } from '../../../utils/hooks'
+import { useFetch } from '~util/hooks'
 
 export const Footer: React.FC = () => <HyFooter/>
 

@@ -21,7 +21,7 @@ const MessageList: React.FC<MessageListProps> = ({ api }) => {
 type NoticeAvatarProps = {
   api: {
     getMessageCount: typeof getMessagesCount
-    getUserInfo: typeof getUserInfo
+    getUserInfo?: typeof getUserInfo
   }
 }
 

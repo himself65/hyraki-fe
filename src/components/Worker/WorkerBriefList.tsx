@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Avatar, List, Spin } from 'antd'
-import { Worker } from '../../../types/Worker'
+import { Worker } from '~type/Worker'
 
 export interface Props {
   data: Worker[]

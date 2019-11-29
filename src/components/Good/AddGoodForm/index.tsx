@@ -1,15 +1,15 @@
-import React, { MutableRefObject, useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import React, { MutableRefObject, useEffect, useState } from 'react'
 import { Form, Input, InputNumber, Select, Switch } from 'antd'
 import { FormComponentProps } from 'antd/es/form'
 import { Subject } from 'rxjs'
-import { ListAPI } from '../../../../types/API'
-import { Good, Supplier } from '../../../../types/Good'
+import { ListAPI } from '~type/API'
+import { Good, Supplier } from '~type/Good'
 import { AxiosPromise } from 'axios'
-import { useFetch } from '../../../utils/hooks'
-import { numberFormatter } from '../../../utils/helpers'
+import { useFetch } from '~util/hooks'
+import { numberFormatter } from '~util/helpers'
 import { Simulate } from 'react-dom/test-utils'
-import { Logger } from '../../../utils/debug'
-import { addGood } from '../../../api/good'
+import { Logger } from '~util/debug'
+import { addGood } from '~api/good'
 import error = Simulate.error
 
 interface Props extends FormComponentProps<Required<Good>> {
