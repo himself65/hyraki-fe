@@ -11,6 +11,7 @@ import { useInView } from 'react-intersection-observer'
 import { Menu } from 'antd'
 import './index.less'
 import { Link } from 'react-router-dom'
+import { fromEvent } from 'rxjs'
 
 const startCardTokens: ICardTokens = {
   height: 'auto',
@@ -22,13 +23,18 @@ const navHeight = 90
 
 const StartView: React.FC<DefaultProps> = (props) => {
   const [isOpenPanel, setOpenPanel] = useState(true)
-  const bodyHeight = useMemo(() => document.body.clientHeight - navHeight, [])
+  const [bodyHeight, setBodyHeight] = useState(800)
   const [panelRef, panelInView] = useInView()
   const [topRef, topInView] = useInView()
   useEffect(() => {
     if (!store.logout) {
       props.history.push('/dashboard')
     }
+  }, [])
+  useEffect(() => {
+    fromEvent(window, 'resize').subscribe(() => {
+      setBodyHeight(window.document.body.clientHeight - navHeight)
+    })
   }, [])
   useEffect(() => {
     if (!panelInView) {
