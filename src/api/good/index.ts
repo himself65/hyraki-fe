@@ -21,7 +21,7 @@ export async function addGood (good: Good | GoodBrief) {
   return axiosInstance.post<MessageAPI>('/goods').then(value => axiosHandle(value))
 }
 
-export async function deleteGood (id: string | number) {
+export async function deleteGoods (id: string | number | (string | number)[]) {
   return axiosInstance.delete<MessageAPI>('/goods', {
     params: {
       id: id

@@ -1,10 +1,18 @@
-import React, { ReactElement, useMemo } from 'react'
+import React, { ReactElement, useMemo, useRef, useState } from 'react'
 import { DetailsList, DetailsListLayoutMode, IColumn, MarqueeSelection, Selection } from 'office-ui-fabric-react'
-import { Good } from '../../../../types/Good'
-import { booleanToString, filterItems } from '../../../utils/helpers'
+import { Good } from '~type/Good'
+import { booleanToString, filterItems } from '~util/helpers'
 import './index.less'
+import { Subject } from 'rxjs'
+import { Button, Modal } from 'antd'
+import AddGoodForm from '~component/Good/AddGoodForm'
+import { deleteGoods, getSupplier } from '~api/good'
 
 export interface GoodListProps {
+  api: {
+    getSupplier: typeof getSupplier
+    deleteGoods: typeof deleteGoods
+  }
   items: Good[]
   compact: boolean
 }
@@ -68,15 +76,37 @@ const columns: GoodColumn[] = [
   }
 ]
 
-export const GoodList: React.FC<GoodListProps> = ({ items = [], compact }) => {
+export const GoodList: React.FC<GoodListProps> = ({ items = [], compact, api: { getSupplier } }) => {
+  const subject = useRef(new Subject<boolean>())
+  const [showAddGoodModal, setShowAddGoodModal] = useState<boolean>(false)
+  const [selectedItemKeys, setSelectedItemKeys] = useState<string[]>([])
   const selection = useMemo(() => (new Selection({
     onSelectionChanged: () => {
       // tip: 已经找到了选中的keys
-      const selectedKeys = filterItems(selection.getItems(), selection.getSelectedIndices()).map(v => v.id)
+      setSelectedItemKeys(
+        filterItems(selection.getItems(), selection.getSelectedIndices()).map(v => v.id)
+      )
     }
   })), [])
   return (
     <MarqueeSelection selection={selection}>
+      <Button
+        type='primary'
+        onClick={() => setShowAddGoodModal(true)}>
+        添加
+      </Button>
+      <Button
+        type='primary'
+        onClick={() => {
+          deleteGoods(selectedItemKeys).then(
+            () => {
+              // todo
+            }
+          )
+        }}
+      >
+        删除
+      </Button>
       <DetailsList
         items={items}
         columns={columns}
@@ -84,6 +114,24 @@ export const GoodList: React.FC<GoodListProps> = ({ items = [], compact }) => {
         layoutMode={DetailsListLayoutMode.justified}
         selection={selection}
       />
+      <Modal
+        title={'添加库存'}
+        visible={showAddGoodModal}
+        onOk={() => {
+          subject.current.next(true)
+        }}
+        onCancel={() => {
+          subject.current.next(false)
+          setShowAddGoodModal(false)
+        }}
+      >
+        <AddGoodForm
+          subject={subject}
+          api={{
+            getSupplier
+          }}
+        />
+      </Modal>
     </MarqueeSelection>
   )
 }
