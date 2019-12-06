@@ -6,10 +6,11 @@ import { Link, Route, Switch } from 'react-router-dom'
 import { GoodList } from '~component/Good/GoodList'
 import { useFetch } from '~util/hooks'
 import { getGoods, getSupplier, deleteGoods } from '~api/good'
+import { observer } from 'mobx-react'
 import { Good } from '~type/Good'
 import { store } from '~store/index'
 
-const GoodView: React.FC<DefaultProps> = () => {
+const GoodView: React.FC<DefaultProps> = observer(() => {
   const [goods] = useFetch<Good[]>(getGoods, [], {
     defaultParams: [store.currentBrandID, store.currentShopID, false]
   })
@@ -24,7 +25,7 @@ const GoodView: React.FC<DefaultProps> = () => {
       </Card>
     </Fragment>
   )
-}
+})
 
 export const GoodContent: React.FC<DefaultProps> = (props) => {
   const [selected, setSelected] = useState<string>('1')

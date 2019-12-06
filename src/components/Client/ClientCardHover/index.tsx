@@ -2,6 +2,7 @@ import React from 'react'
 import { Client } from '~type/Client'
 import { Fabric, HoverCard, Text, Stack, mergeStyleSets } from 'office-ui-fabric-react'
 import { store } from '~store'
+import { observer } from 'mobx-react'
 
 const classNames = mergeStyleSets({
   compactCard: {
@@ -15,15 +16,15 @@ interface ClientCardHoverProps {
   item: Client
 }
 
-const ClientCardHover: React.FC<ClientCardHoverProps> = ({ item }) => {
+const ClientCardHover: React.FC<ClientCardHoverProps> = observer(({ item }) => {
   return (
     <HoverCard expandingCardProps={{
       onRenderCompactCard: (item: Client) => {
         return (
           <Stack padding='0.5rem 0.7rem' className={classNames.compactCard}>
-            <Stack.Item >
+            <Stack.Item>
               <Text variant='xLargePlus'>
-                {store.currentStoreName} {item.name}的会员卡
+                {store.currentBrandName} {item.name}的会员卡
               </Text>
             </Stack.Item>
             {/* todo: unfinished this part */}
@@ -38,9 +39,9 @@ const ClientCardHover: React.FC<ClientCardHoverProps> = ({ item }) => {
       },
       renderData: item
     }} instantOpenOnClick={true}>
-      <a>有 {item.cards.length } 张卡 </a>
+      <a>有 {item.cards.length} 张卡 </a>
     </HoverCard>
   )
-}
+})
 
 export default ClientCardHover
