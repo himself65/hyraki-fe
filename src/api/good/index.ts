@@ -4,13 +4,15 @@ import { Good, GoodBrief, Supplier } from '~type/Good'
 import { AxiosResponse } from 'axios'
 import { ListAPI, MessageAPI } from '~type/API'
 
-export async function getGoods (brief: true): Promise<AxiosResponse<ListAPI<GoodBrief[]>>>
-export async function getGoods (brief: false): Promise<AxiosResponse<ListAPI<Good[]>>>
+export async function getGoods (brandID: string, shopID: string, brief: true): Promise<AxiosResponse<ListAPI<GoodBrief[]>>>
+export async function getGoods (brandID: string, shopID: string, brief: false): Promise<AxiosResponse<ListAPI<Good[]>>>
 // implement
 export async function getGoods (
+  brandID: string,
+  shopID: string,
   brief = false
 ): Promise<AxiosResponse<ListAPI<(Good | GoodBrief)[]>>> {
-  return axiosInstance.get<ListAPI<(Good | GoodBrief)[]>>('/goods', {
+  return axiosInstance.get<ListAPI<(Good | GoodBrief)[]>>(`/brand/${brandID}/shop/${shopID}/goods`, {
     params: {
       brief: brief
     }

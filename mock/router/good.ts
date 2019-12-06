@@ -10,15 +10,15 @@ export default function (app: Express) {
     res.end()
   })
 
-  app.delete('/goods', (req, res) => {
+  app.delete('/brand/:brand_id/shop/:shop_id/goods', (req, res) => {
     res.end()
   })
 
-  app.post('/goods', (req, res) => {
+  app.post('/brand/:brand_id/shop/:shop_id/goods', (req, res) => {
     res.end()
   })
 
-  app.get('/goods', (req, res) => {
+  app.get('/brand/:brand_id/shop/:shop_id/goods', (req, res) => {
     if (req.query.brief === 'true') {
       res.json({
         page: 10,

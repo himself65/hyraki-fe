@@ -7,11 +7,13 @@ import { GoodList } from '~component/Good/GoodList'
 import { useFetch } from '~util/hooks'
 import { getGoods, getSupplier, deleteGoods } from '~api/good'
 import { Good } from '~type/Good'
+import { store } from '~store/index'
 
 const GoodView: React.FC<DefaultProps> = () => {
   const [goods] = useFetch<Good[]>(getGoods, [], {
-    defaultParams: [false]
+    defaultParams: [store.currentBrandID, store.currentShopID, false]
   })
+
   return (
     <Fragment>
       <Card className='hy-card'>
