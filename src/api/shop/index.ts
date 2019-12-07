@@ -3,7 +3,7 @@ import { Serve, Shop } from '~type/Shop'
 import { WorkerPosition } from '~type/Worker'
 import { ListAPI } from '~type/API'
 
-// fixme
+// fixme: 后端尚未支持
 export async function getShopList (brandID: string | number) {
   return axiosInstance.get<ListAPI<Shop[]>>(`/brand/${brandID}/shop`)
 }
