@@ -2,16 +2,20 @@ import React, { Fragment, useCallback, useRef, useState } from 'react'
 import { Button, Card, Col, Layout, Modal, Row } from 'antd'
 import { Subject } from 'rxjs'
 import { Route, Switch } from 'react-router-dom'
-import { DefaultProps } from '../../../../../types'
-import { getWorkerList } from '../../../../api/worker'
-import WorkerBriefList from '../../../../components/Worker/WorkerBriefList'
-import AddWorkerForm from '../../../../components/Worker/AddWorkerForm'
+import { observer } from 'mobx-react'
+import { DefaultProps } from '~type/index'
+import { getWorkerList } from '~api/worker'
+import WorkerBriefList from '~component/Worker/WorkerBriefList'
+import AddWorkerForm from '~component/Worker/AddWorkerForm'
 import PositionContent from './position'
-import { useFetch } from '../../../../utils/hooks'
+import { useFetch } from '~util/hooks'
+import { store } from '~store/index'
 
-const ManageContent: React.FC<DefaultProps> = (props) => {
+const ManageContent: React.FC<DefaultProps> = observer((props) => {
   const addWorkerSubject = useRef(new Subject<boolean>())
-  const [workerData] = useFetch(getWorkerList, [])
+  const [workerData] = useFetch(getWorkerList, [], {
+    defaultParams: [store.currentBrandID, store.currentShopID]
+  })
   const [showAddWorkerModal, setShowAddWorkerModal] = useState(false)
   const WorkerBrief: React.FC = useCallback(() => (
     <Card bordered={false}>
@@ -64,6 +68,6 @@ const ManageContent: React.FC<DefaultProps> = (props) => {
       </Modal>
     </Fragment>
   )
-}
+})
 
 export default ManageContent

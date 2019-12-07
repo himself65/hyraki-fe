@@ -1,6 +1,6 @@
 import { Express } from 'express'
 export default function (app: Express) {
-  app.get('/worker', (req, res) => {
+  app.get('/brand/:brand_id/shop/:shop_id/worker', (req, res) => {
     res.json({
       data: [
         {
@@ -33,7 +33,7 @@ export default function (app: Express) {
   })
 
   app.get('/worker/position', (req, res) => {
-    if (req.query['brief']) {
+    if (req.query.brief) {
       res.json({
         data: [
           { id: 1, value: '高级员工' },
