@@ -2,18 +2,22 @@ import React, { MutableRefObject, useCallback, useEffect, useState } from 'react
 import { Form, Input, Radio, Select } from 'antd'
 import { FormComponentProps } from 'antd/es/form'
 import { Subject } from 'rxjs'
+import { observer } from 'mobx-react'
 import { Logger } from '~util/debug'
 import { getWorkerPositionList } from '~api/worker'
 import { getShopList } from '~api/shop'
 import { useFetch } from '~util/hooks'
+import { store } from '~store/index'
 
 interface Props extends FormComponentProps {
   subject: MutableRefObject<Subject<boolean>>
 }
 
-const AddWorkerForm: React.FC<Props> = (props) => {
+const AddWorkerForm: React.FC<Props> = observer((props) => {
   const { getFieldDecorator, validateFields } = props.form
-  const [positionList] = useFetch(getWorkerPositionList, [])
+  const [positionList] = useFetch(getWorkerPositionList, [], {
+    defaultParams: [store.currentBrandID, store.currentShopID, true]
+  })
   const [shopList] = useFetch(getShopList, [])
   const checkFinished = useCallback(() => {
     validateFields((err, val) => {
@@ -120,6 +124,6 @@ const AddWorkerForm: React.FC<Props> = (props) => {
       </Form.Item>
     </Form>
   )
-}
+})
 
 export default Form.create<Props>({ name: 'addWorker' })(AddWorkerForm)

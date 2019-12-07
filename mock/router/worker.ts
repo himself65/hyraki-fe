@@ -32,7 +32,7 @@ export default function (app: Express) {
     res.end()
   })
 
-  app.get('/worker/position', (req, res) => {
+  app.get('/brand/:brand_id/shop/:shop_id/worker/position', (req, res) => {
     if (req.query.brief) {
       res.json({
         data: [
