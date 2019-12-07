@@ -21,7 +21,14 @@ const GoodView: React.FC<DefaultProps> = observer(() => {
         <GoodList api={{
           getSupplier,
           deleteGoods
-        }} items={goods} compact={true}/>
+        }}
+        store={{
+          brandID: store.currentBrandID,
+          shopID: store.currentShopID
+        }}
+        items={goods}
+        compact={true}
+        />
       </Card>
     </Fragment>
   )

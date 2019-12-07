@@ -2,15 +2,15 @@ import React, { MutableRefObject, useEffect, useState } from 'react'
 import { Form, Input, InputNumber, Select, Switch } from 'antd'
 import { FormComponentProps } from 'antd/es/form'
 import { Subject } from 'rxjs'
+import { observer } from 'mobx-react'
+import { AxiosPromise } from 'axios'
 import { ListAPI } from '~type/API'
 import { Good, Supplier } from '~type/Good'
-import { AxiosPromise } from 'axios'
 import { useFetch } from '~util/hooks'
 import { numberFormatter } from '~util/helpers'
-import { Simulate } from 'react-dom/test-utils'
 import { Logger } from '~util/debug'
 import { addGood } from '~api/good'
-import error = Simulate.error
+import { store } from '~store/index'
 
 interface Props extends FormComponentProps<Required<Good>> {
   subject: MutableRefObject<Subject<boolean>>
@@ -19,7 +19,7 @@ interface Props extends FormComponentProps<Required<Good>> {
   }
 }
 
-const AddGoodForm: React.FC<Props> = ({ subject, form, api }) => {
+const AddGoodForm: React.FC<Props> = observer(({ subject, form, api }) => {
   const { getFieldDecorator, validateFields } = form
   const [supplier] = useFetch(api.getSupplier, [])
   const [unit, setUnit] = useState<string>('')
@@ -31,7 +31,7 @@ const AddGoodForm: React.FC<Props> = ({ subject, form, api }) => {
           if (error) {
             Logger(`%c${error}`, 'background: red')
           } else {
-            addGood(value).then() // todo: 全局提醒添加成功
+            addGood(store.currentBrandID, store.currentShopID, value).then() // todo: 全局提醒添加成功
           }
         })
       }
@@ -158,6 +158,6 @@ const AddGoodForm: React.FC<Props> = ({ subject, form, api }) => {
       </Form.Item>
     </Form>
   )
-}
+})
 
 export default Form.create<Props>({ name: 'addGood' })(AddGoodForm)

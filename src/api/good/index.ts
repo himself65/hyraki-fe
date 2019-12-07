@@ -19,12 +19,20 @@ export async function getGoods (
   }).then(value => axiosHandle(value))
 }
 
-export async function addGood (good: Good | GoodBrief) {
-  return axiosInstance.post<MessageAPI>('/goods').then(value => axiosHandle(value))
+export async function addGood (
+  brandID: string,
+  shopID: string,
+  good: Good | GoodBrief
+) {
+  return axiosInstance.post<MessageAPI>(`/brand/${brandID}/shop/${shopID}/good`, { good }).then(value => axiosHandle(value))
 }
 
-export async function deleteGoods (id: string | number | (string | number)[]) {
-  return axiosInstance.delete<MessageAPI>('/goods', {
+export async function deleteGoods (
+  brandID: string,
+  shopID: string,
+  id: string | number | (string | number)[]
+) {
+  return axiosInstance.delete<MessageAPI>(`/brand/${brandID}/shop/${shopID}/good/${id}`, {
     params: {
       id: id
     }

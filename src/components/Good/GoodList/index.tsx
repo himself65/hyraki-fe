@@ -1,9 +1,10 @@
 import React, { ReactElement, useMemo, useRef, useState } from 'react'
 import { DetailsList, DetailsListLayoutMode, IColumn, MarqueeSelection, Selection } from 'office-ui-fabric-react'
+import { Subject } from 'rxjs'
+import { observer } from 'mobx-react'
 import { Good } from '~type/Good'
 import { booleanToString, filterItems } from '~util/helpers'
 import './index.less'
-import { Subject } from 'rxjs'
 import { Button, Modal } from 'antd'
 import AddGoodForm from '~component/Good/AddGoodForm'
 import { deleteGoods, getSupplier } from '~api/good'
@@ -12,6 +13,10 @@ export interface GoodListProps {
   api: {
     getSupplier: typeof getSupplier
     deleteGoods: typeof deleteGoods
+  }
+  store: {
+    brandID: string
+    shopID: string
   }
   items: Good[]
   compact: boolean
@@ -76,7 +81,11 @@ const columns: GoodColumn[] = [
   }
 ]
 
-export const GoodList: React.FC<GoodListProps> = ({ items = [], compact, api: { getSupplier } }) => {
+export const GoodList: React.FC<GoodListProps> = observer((
+  {
+    items = [], compact, api: { getSupplier, deleteGoods },
+    store: { brandID, shopID }
+  }) => {
   const subject = useRef(new Subject<boolean>())
   const [showAddGoodModal, setShowAddGoodModal] = useState<boolean>(false)
   const [selectedItemKeys, setSelectedItemKeys] = useState<string[]>([])
@@ -98,7 +107,7 @@ export const GoodList: React.FC<GoodListProps> = ({ items = [], compact, api: { 
       <Button
         type='primary'
         onClick={() => {
-          deleteGoods(selectedItemKeys).then(
+          deleteGoods(brandID, shopID, selectedItemKeys).then(
             () => {
               // todo
             }
@@ -134,4 +143,4 @@ export const GoodList: React.FC<GoodListProps> = ({ items = [], compact, api: { 
       </Modal>
     </MarqueeSelection>
   )
-}
+})
