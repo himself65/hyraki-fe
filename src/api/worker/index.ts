@@ -11,13 +11,13 @@ export async function getWorkerList (brandID: string, shopID: string) {
 }
 
 // fixme: abandoned api
-export async function postAddWorker (data: Worker) {
-  return axiosInstance.post<PostAPI>('/worker', data)
+export async function postAddWorker (brandID: string, shopID: string, data: Worker) {
+  return axiosInstance.post<PostAPI>(`/brand/${brandID}/shop/${shopID}/worker`, data)
 }
 
 // fixme: abandoned api
-export async function deleteWorker (id: string | number) {
-  return axiosInstance.delete('/worker', {
+export async function deleteWorker (brandID: string, shopID: string, id: string | number) {
+  return axiosInstance.delete(`/brand/${brandID}/shop/${shopID}/worker`, {
     data: {
       id
     }
