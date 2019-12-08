@@ -1,6 +1,7 @@
 import React, { ReactElement } from 'react'
 import { DetailsList, IColumn } from 'office-ui-fabric-react'
 import { Reserve } from '~type/Reserve'
+import moment from 'moment'
 
 interface ReserveListProps {
   items: Reserve[]
@@ -25,6 +26,13 @@ const columns: ReserveColumn[] = [
     minWidth: 200,
     maxWidth: 270,
     onRender: item => <div>{item.phone}</div>
+  },
+  {
+    key: 'startTime',
+    name: '开始时间',
+    minWidth: 200,
+    maxWidth: 260,
+    onRender: item => <div>{moment.unix(item.startTime).format('YYYY年M月D日 HH:m')}</div>
   },
   {
     key: 'targetShop',
