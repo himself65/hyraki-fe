@@ -70,6 +70,8 @@ export function axiosHandle<T = any> (
 
 export const filterItems = (items: any[] = [], indexes: number[] = []) => indexes.map(idx => items[idx])
 
+export const getRandomColor = () => '#' + (Math.random() * 0xffffff << 0).toString(16)
+
 // only assert on LoggerMode
 export const assert = DEBUG ? (judgement: boolean, message: string) => {
   !judgement && Logger(message)
