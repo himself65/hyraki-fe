@@ -1,8 +1,10 @@
 import React, { useCallback, useEffect, useMemo } from 'react'
 import { Badge, Calendar } from 'antd'
-import { Text } from 'office-ui-fabric-react'
+import {
+  HoverCard, HoverCardType, Text, Stack,
+  DocumentCard, DocumentCardDetails, DocumentCardTitle, DocumentCardActivity
+} from 'office-ui-fabric-react'
 import * as moment from 'moment'
-import HoverCard from './HoverCard'
 import { Reserve } from '~type/Reserve'
 import { getRandomColor } from '~util/helpers'
 
@@ -36,7 +38,32 @@ const ReserveCalendar: React.FC<ReserveCalendarProps> = (props) => {
       console.log(queryItems)
     }
     return (
-      <HoverCard>
+      <HoverCard
+        type={HoverCardType.plain}
+        plainCardProps={{
+          onRenderPlainCard: () => queryItems.length > 0 ? (
+            <Stack tokens={{ childrenGap: 10 }}>
+              <Text variant='xLarge'>共{queryItems.length}场预约</Text>
+              {
+                queryItems.map(item => (
+                  <DocumentCard key={item.data.id}>
+                    <DocumentCardDetails>
+                      <DocumentCardActivity
+                        activity={item.time.format('h时m分')}
+                        people={[
+                          {
+                            name: '暂无',
+                            profileImageSrc: ''
+                          }
+                        ]} />
+                    </DocumentCardDetails>
+                  </DocumentCard>
+                ))
+              }
+            </Stack>
+          ) : null
+        }}
+      >
         <div>
           {queryItems.length > 0 ? (queryItems.map(item => (
             <div key={item.data.id}>
