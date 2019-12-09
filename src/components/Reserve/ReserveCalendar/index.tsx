@@ -2,11 +2,12 @@ import React, { useCallback, useEffect, useMemo } from 'react'
 import { Badge, Calendar } from 'antd'
 import {
   HoverCard, HoverCardType, Text, Stack,
-  DocumentCard, DocumentCardDetails, DocumentCardTitle, DocumentCardActivity
+  DocumentCard, DocumentCardDetails, DocumentCardActivity
 } from 'office-ui-fabric-react'
 import * as moment from 'moment'
 import { Reserve } from '~type/Reserve'
 import { getRandomColor } from '~util/helpers'
+import { Logger } from '~util/debug'
 
 interface ReserveCalendarProps {
   items: Reserve[]
@@ -34,7 +35,7 @@ const ReserveCalendar: React.FC<ReserveCalendarProps> = (props) => {
   const dateCellRender = useCallback((value: moment.Moment) => {
     const queryItems = findItems(items, value)
     if (queryItems.length > 0) {
-      console.log(queryItems)
+      Logger(`${value.format('YYYY-M-D')} find queryItems:`, queryItems)
     }
     return (
       <HoverCard
