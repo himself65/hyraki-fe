@@ -15,8 +15,7 @@ interface ReserveCalendarProps {
 export const findItems = function <T extends { time: moment.Moment }> (items: T[], query: moment.Moment): T[] {
   // fixme: 性能优化
   return items
-    .map(item => item.time.isSame(query, 'day') ? item : null)
-    .filter(v => v != null) as T[]
+    .filter(item => item.time.isSame(query, 'day'))
 }
 
 const ReserveCalendar: React.FC<ReserveCalendarProps> = (props) => {
