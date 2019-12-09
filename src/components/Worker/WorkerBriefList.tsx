@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Avatar, List, Spin } from 'antd'
+import { List, Spin } from 'antd'
 import { Worker } from '~type/Worker'
 
 export interface Props {
@@ -23,9 +23,6 @@ const WorkerBriefList: React.FC<Props> = (props) => {
           ]}
         >
           <List.Item.Meta
-            avatar={
-              <Avatar src={item.avatar}/>
-            }
             title={<a href={'/error'}>{item.name}</a>}
             description={`所在店铺：${item.shop}`}
           />

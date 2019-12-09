@@ -34,7 +34,7 @@ describe('api: api with defaultAxiosHandle', () => {
   })
 
   it('should pass', (done) => {
-    API.getGoods(false).then(res => {
+    API.getGoods('himself65', 'himself65', false).then(res => {
       expect(typeof res.data).toBe('object')
       done()
     })
