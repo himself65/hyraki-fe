@@ -2156,6 +2156,11 @@
   dependencies:
     "@types/jest-diff" "*"
 
+"@types/js-md5@^0.4.2":
+  version "0.4.2"
+  resolved "https://registry.yarnpkg.com/@types/js-md5/-/js-md5-0.4.2.tgz#95b39911e2081bf2915436e61cc345e12459e5bb"
+  integrity sha512-FUPoQkpQTzA5wz9ebrdVRjsjQsFehr+cW1CVhLcI2UwD/SO/4NHPO1esrXPPbx7ux762U0POmWFSrUjQq2ophw==
+
 "@types/json-schema@^7.0.3":
   version "7.0.3"
   resolved "https://registry.npm.taobao.org/@types/json-schema/download/@types/json-schema-7.0.3.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2F%40types%2Fjson-schema%2Fdownload%2F%40types%2Fjson-schema-7.0.3.tgz#bdfd69d61e464dcc81b25159c270d75a73c1a636"
@@ -8602,6 +8607,11 @@ js-levenshtein@^1.1.3:
   resolved "https://registry.npm.taobao.org/js-levenshtein/download/js-levenshtein-1.1.6.tgz#c6cee58eb3550372df8deb85fad5ce66ce01d59d"
   integrity sha1-xs7ljrNVA3LfjeuF+tXOZs4B1Z0=
 
+js-md5@^0.7.3:
+  version "0.7.3"
+  resolved "https://registry.yarnpkg.com/js-md5/-/js-md5-0.7.3.tgz#b4f2fbb0b327455f598d6727e38ec272cd09c3f2"
+  integrity sha512-ZC41vPSTLKGwIRjqDh8DfXoCrdQIyBgspJVPXHBGu4nZlAEvG3nf+jO9avM9RmLiGakg7vz974ms99nEV0tmTQ==
+
 "js-tokens@^3.0.0 || ^4.0.0", js-tokens@^4.0.0:
   version "4.0.0"
   resolved "https://registry.npm.taobao.org/js-tokens/download/js-tokens-4.0.0.tgz#19203fb59991df98e3a287050d4647cdeaf32499"
@@ -12580,6 +12590,15 @@ react-is@^16.6.0, react-is@^16.7.0, react-is@^16.8.1, react-is@^16.8.4, react-is
   version "16.9.0"
   resolved "https://registry.npm.taobao.org/react-is/download/react-is-16.9.0.tgz#21ca9561399aad0ff1a7701c01683e8ca981edcb"
   integrity sha1-IcqVYTmarQ/xp3AcAWg+jKmB7cs=
+
+react-keep-alive@^2.5.2:
+  version "2.5.2"
+  resolved "https://registry.yarnpkg.com/react-keep-alive/-/react-keep-alive-2.5.2.tgz#c0b8118f3dd6743323d1662b8368e6ebd649e81a"
+  integrity sha512-CoEsY5xE6rT31Z4p4UGZ/Crp0nZN+CY61ZflKzBGKB3D315jQMe2l8G5OrSEJ86V4stua7lSeFDIeG3DCuY2Rg==
+  dependencies:
+    "@types/js-md5" "^0.4.2"
+    hoist-non-react-statics "^3.3.0"
+    js-md5 "^0.7.3"
 
 react-lazy-load@^3.0.13:
   version "3.0.13"
