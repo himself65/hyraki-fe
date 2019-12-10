@@ -26,7 +26,11 @@ const ReserveOverView: React.FC<DefaultProps> = (props) => {
         <Button type='primary' onClick={() => setShowAddDateModal(true)}>添加预约</Button>
       </Card>
       <Card className='hy-card' style={{ marginTop: '1rem' }}>
-        <Pivot>
+        <Pivot styles={{
+          itemContainer: {
+            marginTop: '0.5rem'
+          }
+        }}>
           <PivotItem headerText='预览图'>
             <ReserveCalendar items={reserves}/>
           </PivotItem>

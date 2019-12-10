@@ -1,10 +1,14 @@
-import React, { ReactElement } from 'react'
-import { DetailsList, IColumn } from 'office-ui-fabric-react'
+import React, { ReactElement, useCallback } from 'react'
+import { DetailsList, IColumn, Stack, PrimaryButton } from 'office-ui-fabric-react'
 import { Reserve } from '~type/Reserve'
 import moment from 'moment'
 
 interface ReserveListProps {
   items: Reserve[]
+  hide?: {
+    add?: boolean
+    del?: boolean
+  }
 }
 
 interface ReserveColumn extends IColumn {
@@ -61,9 +65,35 @@ const columns: ReserveColumn[] = [
 ]
 
 // todo
-const ReserveList: React.FC<ReserveListProps> = ({ items }) => {
+const ReserveList: React.FC<ReserveListProps> = ({
+  items,
+  hide: {
+    add = false,
+    del = false
+  } = {
+    add: false,
+    del: false
+  }
+}) => {
+  // todo: 这两个事件
+  const deleteEvent = useCallback(() => { }, [])
+  const newEvent = useCallback(() => { }, [])
   return (
-    <DetailsList items={items} columns={columns}/>
+    <Stack>
+      <Stack.Item>
+        <Stack tokens={{ childrenGap: 5 }} horizontal>
+          <Stack.Item>
+            <PrimaryButton>添加</PrimaryButton>
+          </Stack.Item>
+          <Stack.Item>
+            <PrimaryButton>删除</PrimaryButton>
+          </Stack.Item>
+        </Stack>
+      </Stack.Item>
+      <Stack.Item>
+        <DetailsList items={items} columns={columns}/>
+      </Stack.Item>
+    </Stack>
   )
 }
 
