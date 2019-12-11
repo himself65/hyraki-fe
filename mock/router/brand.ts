@@ -15,6 +15,16 @@ export default function (app: Express) {
     res.end()
   })
 
+  app.get('/my_brand', (req, res) => {
+    // todo
+    res.json({
+      data: [
+
+      ]
+    })
+    res.end()
+  })
+
   // 修改 Brand，需要对此 Brand 的管理权限
   app.put('/brand/:brand_id', (req, res) => {
     res.status(200)
