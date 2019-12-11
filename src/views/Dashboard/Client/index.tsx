@@ -7,12 +7,14 @@ import PropTypes from 'prop-types'
 import { Route, Switch } from 'react-router'
 import ClientList from '~component/Client/ClientList'
 import { useFetch } from '~util/hooks'
-import { getClients } from '~api/client'
+import { deleteClients, getClients } from '~api/client'
+import { observer } from 'mobx-react'
 import { Client } from '~type/Client'
 import './ClientContent.less'
 import { Text } from 'office-ui-fabric-react'
+import { store } from '~store/index'
 
-const ClientView: React.FC<DefaultProps> = (props) => {
+const ClientView: React.FC<DefaultProps> = observer((props) => {
   const [clients] = useFetch<Client[]>(getClients, [], {
     defaultParams: [0]
   })
@@ -23,13 +25,23 @@ const ClientView: React.FC<DefaultProps> = (props) => {
       </Breadcrumb>
       <Card className='hy-card'>
         <Text variant='large'>会员资料</Text>
-        <ClientList style={{
-          marginTop: '1rem'
-        }} items={clients}/>
+        <ClientList
+          style={{
+            marginTop: '1rem'
+          }}
+          items={clients}
+          api={{
+            deleteClients: deleteClients
+          }}
+          store={{
+            shopID: store.currentShopID,
+            brandID: store.currentBrandID
+          }}
+        />
       </Card>
     </Fragment>
   )
-}
+})
 
 ClientView.propTypes = {
   location: PropTypes.any

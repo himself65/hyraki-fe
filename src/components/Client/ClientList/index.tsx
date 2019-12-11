@@ -1,4 +1,4 @@
-import React, { CSSProperties, ReactElement, useMemo } from 'react'
+import React, { CSSProperties, ReactElement, useMemo, useState } from 'react'
 import {
   Stack,
   DefaultButton,
@@ -14,10 +14,16 @@ import PropTypes from 'prop-types'
 import { Gender } from '~util/shared'
 import ClientCardHover from '~component/Client/ClientCardHover'
 import { filterItems } from '~util/helpers'
+import { deleteClients } from '~api/client'
+import { StoreProps } from '~type/index'
 
 export interface ClientListProps {
   items: Client[]
   style?: CSSProperties
+  api: {
+    deleteClients: typeof deleteClients
+  }
+  store: StoreProps
 }
 
 const stackTokens: IStackTokens = { childrenGap: 20 }
@@ -92,18 +98,36 @@ const columns: ClientColumn[] = [
   }
 ]
 
-const ClientList: React.FC<ClientListProps> = ({ items, style, ...props }) => {
+const ClientList: React.FC<ClientListProps> = ({
+  items,
+  style,
+  api: { deleteClients },
+  store: { brandID, shopID }
+}) => {
+  const [selectedItemKeys, setSelectedItemKeys] = useState<string[]>([])
   const selection = useMemo(() => new Selection({
     onSelectionChanged: () => {
       // tip: 已经找到了选中的keys
-      const selectedKeys = filterItems(selection.getItems(), selection.getSelectedIndices()).map(v => v.id)
+      const selectedKeys = filterItems(
+        selection.getItems() as Client[],
+        selection.getSelectedIndices()
+      ).map(v => v.id)
+      setSelectedItemKeys(selectedKeys)
     }
   }), [])
   return (
     <Fabric style={style}>
       {/* todo: 删除功能 */}
       <Stack horizontal tokens={stackTokens}>
-        <DefaultButton>
+        <DefaultButton
+          disabled={selectedItemKeys.length === 0}
+          onClick={() => {
+            deleteClients(brandID, shopID, selectedItemKeys)
+              .then(() => {
+                // todo
+              })
+          }}
+        >
           删除
         </DefaultButton>
       </Stack>
@@ -111,6 +135,7 @@ const ClientList: React.FC<ClientListProps> = ({ items, style, ...props }) => {
         <DetailsList
           items={items}
           columns={columns}
+          selection={selection}
           layoutMode={DetailsListLayoutMode.justified}
         />
       </MarqueeSelection>

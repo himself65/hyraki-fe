@@ -6,4 +6,9 @@ export type Optional<T> = T extends object ?
 
 export type DefaultProps = RouteChildrenProps<{}, LocationState>
 
+export interface StoreProps {
+  brandID: string
+  shopID: string
+}
+
 export type TODO = unknown

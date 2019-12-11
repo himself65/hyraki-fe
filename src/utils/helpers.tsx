@@ -68,7 +68,9 @@ export function axiosHandle<T = any> (
   return Promise.resolve(req)
 }
 
-export const filterItems = (items: any[] = [], indexes: number[] = []) => indexes.map(idx => items[idx])
+export function filterItems <T = any> (items: T[] = [], indexes: number[] = []): T[] {
+  return indexes.map(idx => items[idx])
+}
 
 export const getRandomColor = () => '#' + (Math.random() * 0xffffff << 0).toString(16)
 
