@@ -2,6 +2,7 @@ import jwt from 'jsonwebtoken'
 import { random } from '../utils'
 import { secretKey } from '../utils/shared'
 import { Express } from 'express'
+import { message1, message2, message3 } from '../data/user'
 
 export default function (app: Express) {
   // 创建全站管理用户，需要最高权限
@@ -41,7 +42,8 @@ export default function (app: Express) {
 
   app.get('/user/messages', (req, res) => {
     res.json({
-      data: []
+      data: [message1, message2, message3],
+      page: 2
     })
   })
 }

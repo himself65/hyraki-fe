@@ -1,11 +1,11 @@
 import React, { ReactElement, useMemo, useRef, useState } from 'react'
-import { DetailsList, DetailsListLayoutMode, IColumn, MarqueeSelection, Selection } from 'office-ui-fabric-react'
+import { DetailsList, DetailsListLayoutMode, IColumn, MarqueeSelection, Selection, Stack, PrimaryButton } from 'office-ui-fabric-react'
 import { Subject } from 'rxjs'
 import { observer } from 'mobx-react'
 import { Good } from '~type/Good'
 import { booleanToString, filterItems } from '~util/helpers'
 import './index.less'
-import { Button, Modal } from 'antd'
+import { Modal } from 'antd'
 import AddGoodForm from '~component/Good/AddGoodForm'
 import { deleteGoods, getSupplier } from '~api/good'
 
@@ -99,23 +99,31 @@ export const GoodList: React.FC<GoodListProps> = observer((
   })), [])
   return (
     <MarqueeSelection selection={selection}>
-      <Button
-        type='primary'
-        onClick={() => setShowAddGoodModal(true)}>
+      <Stack
+        horizontal
+        tokens={{
+          childrenGap: '10'
+        }}>
+        <Stack.Item>
+          <PrimaryButton
+            onClick={() => setShowAddGoodModal(true)}>
         添加
-      </Button>
-      <Button
-        type='primary'
-        onClick={() => {
-          deleteGoods(brandID, shopID, selectedItemKeys).then(
-            () => {
-              // todo
-            }
-          )
-        }}
-      >
+          </PrimaryButton>
+        </Stack.Item>
+        <Stack.Item>
+          <PrimaryButton
+            onClick={() => {
+              deleteGoods(brandID, shopID, selectedItemKeys).then(
+                () => {
+                  // todo
+                }
+              )
+            }}
+          >
         删除
-      </Button>
+          </PrimaryButton>
+        </Stack.Item>
+      </Stack>
       <DetailsList
         items={items}
         columns={columns}

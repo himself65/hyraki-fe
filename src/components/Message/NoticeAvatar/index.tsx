@@ -1,20 +1,30 @@
 import React from 'react'
-import { Fabric, HoverCard, HoverCardType, Persona, PersonaPresence, PersonaSize, Text } from 'office-ui-fabric-react'
+import { Stack, HoverCard, HoverCardType, Persona, PersonaPresence, PersonaSize, Text, List } from 'office-ui-fabric-react'
 import { useFetch } from '~util/hooks'
-import { getMessagesCount, getUserInfo } from '~api/user'
-import { TODO } from '~type/index'
+import { getMessages, getMessagesCount, getUserInfo } from '~api/user'
+import { Message } from '~type/User'
 
 type MessageListProps = {
   api: {
-    getMessageList: TODO
+    getMessages: typeof getMessages
   }
 }
 
-const MessageList: React.FC<MessageListProps> = ({ api }) => {
+const MessageList: React.FC<MessageListProps> = ({ api: { getMessages } }) => {
+  const [messages] = useFetch(getMessages, [], {
+    defaultParams: [0]
+  })
   return (
-    <div>
+    <List items={messages} onRenderCell={(item?: Message) => {
+      return (
+        <div data-is-focusable={true}>
+          {/* todo: 优化UI */}
+          <Text variant='small'>{item?.id} {item?.message}</Text>
+        </div>
+      )
+    }}>
 
-    </div>
+    </List>
   )
 }
 
@@ -32,11 +42,22 @@ const NoticeAvatar: React.FC<NoticeAvatarProps> = ({ api: { getMessageCount } })
       plainCardProps={{
         onRenderPlainCard: () => {
           return (
-            <Fabric>
-              <Text variant='large'>
-                共有 {count} 个消息
-              </Text>
-            </Fabric>
+            <Stack
+              tokens={{
+                padding: '0.7rem 0.5rem'
+              }}
+            >
+              <Stack.Item>
+                <Text variant='medium'>
+                  共有 {count} 条消息
+                </Text>
+              </Stack.Item>
+              <Stack.Item>
+                <MessageList api={{
+                  getMessages
+                }}/>
+              </Stack.Item>
+            </Stack>
           )
         }
       }}
