@@ -17,6 +17,7 @@
   "dependencies": {
     "@hot-loader/react-dom": "^16.11.0",
     "@sentry/browser": "^5.10.1",
+    "@uifabric/experiments": "^7.18.9",
     "@uifabric/icons": "^7.3.0",
     "@uifabric/react-cards": "^0.109.1",
     "ant-design-pro": "^2.3.2",

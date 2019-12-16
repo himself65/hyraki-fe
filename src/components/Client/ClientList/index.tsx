@@ -6,25 +6,35 @@ import {
   DetailsListLayoutMode,
   IColumn,
   MarqueeSelection,
-  Selection,
+  Selection, mergeStyleSets,
   Fabric, IStackTokens
 } from 'office-ui-fabric-react'
+import { Pagination } from '@uifabric/experiments'
 import { Client } from '~type/Client'
-import PropTypes from 'prop-types'
 import { Gender } from '~util/shared'
 import ClientCardHover from '~component/Client/ClientCardHover'
 import { filterItems } from '~util/helpers'
-import { deleteClients } from '~api/client'
+import { deleteClients, getClients } from '~api/client'
 import { StoreProps } from '~type/index'
+import { useFetch } from '~util/hooks'
+import { ListAPI } from '~type/API'
 
 export interface ClientListProps {
-  items: Client[]
   style?: CSSProperties
   api: {
     deleteClients: typeof deleteClients
+    getClients: typeof getClients
   }
   store: StoreProps
 }
+
+const classNames = mergeStyleSets({
+  pagination: {
+    display: 'flex',
+    flexDirection: 'row-reverse',
+    marginTop: '1rem'
+  }
+})
 
 const stackTokens: IStackTokens = { childrenGap: 20 }
 
@@ -99,11 +109,17 @@ const columns: ClientColumn[] = [
 ]
 
 const ClientList: React.FC<ClientListProps> = ({
-  items,
   style,
   api: { deleteClients },
   store: { brandID, shopID }
 }) => {
+  const [page, setPage] = useState(0)
+  const [clients, {
+    data: { page: maxPage = 0 },
+    trigger: fetchClients
+  }] = useFetch<Client[], [number], ListAPI<Client[]>>(getClients, [], {
+    defaultParams: [page]
+  })
   const [selectedItemKeys, setSelectedItemKeys] = useState<string[]>([])
   const selection = useMemo(() => new Selection({
     onSelectionChanged: () => {
@@ -133,19 +149,23 @@ const ClientList: React.FC<ClientListProps> = ({
       </Stack>
       <MarqueeSelection selection={selection}>
         <DetailsList
-          items={items}
+          items={clients}
           columns={columns}
           selection={selection}
           layoutMode={DetailsListLayoutMode.justified}
         />
       </MarqueeSelection>
+      <div className={classNames.pagination}>
+        <Pagination
+          selectedPageIndex={page}
+          pageCount={clients.length}
+          itemsPerPage={clients.length}
+          totalItemCount={maxPage * clients.length}
+          onPageChange={index => fetchClients(index).then(() => setPage(index))}
+        />
+      </div>
     </Fabric>
   )
-}
-
-ClientList.propTypes = {
-  items: PropTypes.array.isRequired,
-  style: PropTypes.object
 }
 
 export default ClientList

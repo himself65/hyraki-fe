@@ -4,7 +4,8 @@ import { client1, client2 } from '../data/client'
 export default function (app: Express) {
   app.get('/clients', (req, res) => {
     res.json({
-      data: [client1, client2]
+      data: [client1, client2],
+      page: 10
     })
     res.end()
   })

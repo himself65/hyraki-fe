@@ -2,42 +2,62 @@ import { Dispatch, SetStateAction, useCallback, useEffect, useState } from 'reac
 import { AxiosPromise } from 'axios'
 import { BaseAPI } from '~type/API'
 
-export type Trigger<T extends Array<any> = any[]> = (...args: T) => void
+export type Trigger<T extends Array<any> = any[],
+  U extends (...args: any[]) => any = (...args: any[]) => any> = (...args: T) => ReturnType<U>
 
-export function useFetch<T = any, U extends Array<any> = any[]>(
-  func: (...args: U) => AxiosPromise<BaseAPI<T>>
-): [T | undefined, Trigger<U>, Dispatch<SetStateAction<T>>]
-export function useFetch<T = any, U extends Array<any> = any[]>(
-  func: (...args: U) => AxiosPromise<BaseAPI<T>>,
+export function useFetch<T = any, U extends Array<any> = any[], V extends BaseAPI<T | undefined> = BaseAPI<T | undefined>> (
+  func: (...args: U) => AxiosPromise<V>
+): [T | undefined, {
+  data: V
+  trigger: Trigger<U, (...args: U) => AxiosPromise<V>>
+}, Dispatch<SetStateAction<T>>]
+export function useFetch<T = any, U extends Array<any> = any[], V extends BaseAPI<T> = BaseAPI<T>> (
+  func: (...args: U) => AxiosPromise<V>,
   defaultVal: T
-): [T, Trigger<U>, Dispatch<SetStateAction<T>>]
-export function useFetch<T = any, U extends Array<any> = any[]>(
-  func: (...args: U) => AxiosPromise<BaseAPI<T>>,
+): [T, {
+  data: V
+  trigger: Trigger<U, (...args: U) => AxiosPromise<V>>
+}, Dispatch<SetStateAction<T>>]
+export function useFetch<T = any, U extends Array<any> = any[], V extends BaseAPI<T> = BaseAPI<T>> (
+  func: (...args: U) => AxiosPromise<V>,
   defaultVal: T,
-  options?: {
+  options: {
     defaultParams?: U
     handle?: Function
   }
-): [T, Trigger<U>, Dispatch<SetStateAction<T>>]
-export function useFetch<T = any, U extends Array<any> = any[]> (
-  func: (...args: U) => AxiosPromise<BaseAPI<T>>,
+): [T, {
+  data: V
+  trigger: Trigger<U, (...args: U) => AxiosPromise<V>>
+}, Dispatch<SetStateAction<T>>]
+
+// implement
+export function useFetch<T = any,
+  U extends Array<any> = any[],
+  V extends BaseAPI<T | undefined> = BaseAPI<T | undefined>> (
+  func: (...args: U) => AxiosPromise<V>,
   defaultVal?: T,
   options?: {
     defaultParams?: U
     handle?: Function
   }
-): [T | undefined, Trigger<U>, Dispatch<SetStateAction<T | undefined>>] {
-  const [data, setData] = useState(defaultVal)
+): [T | undefined, {
+  data: V
+  trigger: Trigger<U, (...args: U) => AxiosPromise<V>>
+}, Dispatch<SetStateAction<T | undefined>>] {
+  const [data, setData] = useState<T | undefined>(defaultVal)
+  const [allData, setAllData] = useState<V>({
+    data: defaultVal
+  } as V)
   const [destroyed, destroy] = useState<boolean>(false)
-  const fetchData = async (...args: U) => {
-    await func(...args).then(res => {
-      if (res.status === 200) {
-        !destroyed && setData(res.data.data)
-      } else {
-        options && options.handle && options.handle(res)
-      }
-    })
-  }
+  const fetchData = async (...args: U) => func(...args).then(res => {
+    if (res.status === 200) {
+      !destroyed && setData(res.data.data)
+      !destroyed && setAllData(res.data)
+    } else {
+      options && options.handle && options.handle(res)
+    }
+    return res
+  })
   useEffect(() => {
     // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
     // @ts-ignore
@@ -47,8 +67,9 @@ export function useFetch<T = any, U extends Array<any> = any[]> (
       destroy(true)
     }
   }, [])
-  const trigger = useCallback((...args: U) => {
-    fetchData(...args).then()
-  }, [])
-  return [data, trigger, setData]
+  const trigger = useCallback((...args: U) => fetchData(...args), [])
+  return [data, {
+    data: allData,
+    trigger: trigger
+  }, setData]
 }

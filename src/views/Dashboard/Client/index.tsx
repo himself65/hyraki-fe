@@ -15,9 +15,6 @@ import { Text } from 'office-ui-fabric-react'
 import { store } from '~store/index'
 
 const ClientView: React.FC<DefaultProps> = observer((props) => {
-  const [clients] = useFetch<Client[]>(getClients, [], {
-    defaultParams: [0]
-  })
   return (
     <Fragment>
       <Breadcrumb className='top-element hy-top-breadcrumb'>
@@ -29,9 +26,9 @@ const ClientView: React.FC<DefaultProps> = observer((props) => {
           style={{
             marginTop: '1rem'
           }}
-          items={clients}
           api={{
-            deleteClients: deleteClients
+            deleteClients: deleteClients,
+            getClients: getClients
           }}
           store={{
             shopID: store.currentShopID,

@@ -4,10 +4,13 @@ import { getPositionList, getShopList } from '../../../../api/shop'
 import { Shop } from '../../../../../types/Shop'
 import { WorkerPosition } from '../../../../../types/Worker'
 import { useFetch } from '../../../../utils/hooks'
+import { ListAPI } from '~type/API'
 
 const PositionContent: React.FC = () => {
   const [shops] = useFetch<Shop[]>(getShopList, [])
-  const [positions, fetchPositionList] = useFetch(getPositionList, [], {
+  const [positions, {
+    trigger: fetchPositionList
+  }] = useFetch<WorkerPosition[], [string], ListAPI<WorkerPosition[]>>(getPositionList, [], {
     defaultParams: ['1']
   })
 
