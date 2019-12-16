@@ -21,7 +21,7 @@ interface Props extends FormComponentProps<Required<Good>> {
 
 const AddGoodForm: React.FC<Props> = observer(({ subject, form, api }) => {
   const { getFieldDecorator, validateFields } = form
-  const [supplier] = useFetch(api.getSupplier, [])
+  const [supplier] = useFetch<Supplier[]>(api.getSupplier, [])
   const [unit, setUnit] = useState<string>('')
   useEffect(() => {
     // tip: 仅运行一次

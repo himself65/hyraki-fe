@@ -93,7 +93,7 @@ export const GoodList: React.FC<GoodListProps> = observer((
     onSelectionChanged: () => {
       // tip: 已经找到了选中的keys
       setSelectedItemKeys(
-        filterItems(selection.getItems(), selection.getSelectedIndices()).map(v => v.id)
+        filterItems(selection.getItems() as typeof items, selection.getSelectedIndices()).map(v => v.id)
       )
     }
   })), [])

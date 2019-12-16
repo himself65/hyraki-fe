@@ -8,6 +8,8 @@ import { getWorkerPositionList } from '~api/worker'
 import { getShopList } from '~api/shop'
 import { useFetch } from '~util/hooks'
 import { store } from '~store/index'
+import { WorkerPosition } from '~type/Worker'
+import { Shop } from '~type/Shop'
 
 interface Props extends FormComponentProps {
   subject: MutableRefObject<Subject<boolean>>
@@ -15,10 +17,10 @@ interface Props extends FormComponentProps {
 
 const AddWorkerForm: React.FC<Props> = observer((props) => {
   const { getFieldDecorator, validateFields } = props.form
-  const [positionList] = useFetch(getWorkerPositionList, [], {
+  const [positionList] = useFetch<WorkerPosition[]>(getWorkerPositionList, [], {
     defaultParams: [store.currentBrandID, store.currentShopID, true]
   })
-  const [shopList] = useFetch(getShopList, [])
+  const [shopList] = useFetch<Shop[]>(getShopList, [])
   const checkFinished = useCallback(() => {
     validateFields((err, val) => {
       if (err) {

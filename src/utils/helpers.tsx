@@ -32,17 +32,17 @@ export function BreadcrumbFactory (pathname: string) {
       })])
 }
 
-export function axiosHandle<T = any>(
+export function axiosHandle<T = any> (
   req: AxiosResponse<T>
 ): Promise<AxiosResponse<T>>
-export function axiosHandle<T = any>(req: AxiosResponse<T>,
-                                     config: {
-                                       check?: (req: AxiosResponse<T>) => boolean
-                                       onSuccessDebug?: Function
-                                       onFailedDebug?: Function
-                                       onSuccess?: Function
-                                       onFailed?: Function
-                                     }): Promise<AxiosResponse<T>>
+export function axiosHandle<T = any> (req: AxiosResponse<T>,
+  config: {
+    check?: (req: AxiosResponse<T>) => boolean
+    onSuccessDebug?: Function
+    onFailedDebug?: Function
+    onSuccess?: Function
+    onFailed?: Function
+  }): Promise<AxiosResponse<T>>
 export function axiosHandle<T = any> (
   req: AxiosResponse<T>, {
     check = req => req.status === 200,
@@ -68,7 +68,7 @@ export function axiosHandle<T = any> (
   return Promise.resolve(req)
 }
 
-export function filterItems <T = any> (items: T[] = [], indexes: number[] = []): T[] {
+export function filterItems<T = any> (items: T[] = [], indexes: number[] = []): T[] {
   return indexes.map(idx => items[idx])
 }
 

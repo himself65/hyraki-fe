@@ -10,10 +10,11 @@ import AddWorkerForm from '~component/Worker/AddWorkerForm'
 import PositionContent from './position'
 import { useFetch } from '~util/hooks'
 import { store } from '~store/index'
+import { Worker } from '~type/Worker'
 
 const ManageContent: React.FC<DefaultProps> = observer((props) => {
   const addWorkerSubject = useRef(new Subject<boolean>())
-  const [workerData] = useFetch(getWorkerList, [], {
+  const [workerData] = useFetch<Worker[]>(getWorkerList, [], {
     defaultParams: [store.currentBrandID, store.currentShopID]
   })
   const [showAddWorkerModal, setShowAddWorkerModal] = useState(false)

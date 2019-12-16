@@ -11,7 +11,7 @@ type MessageListProps = {
 }
 
 const MessageList: React.FC<MessageListProps> = ({ api: { getMessages } }) => {
-  const [messages] = useFetch(getMessages, [], {
+  const [messages] = useFetch<Message[]>(getMessages, [], {
     defaultParams: [0]
   })
   return (

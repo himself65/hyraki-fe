@@ -21,7 +21,7 @@ const DashboardContent: React.FC<DefaultProps> = (props) => {
     if (data) {
       const today = new Date().getTime()
       return data.trend.sales
-        .map((v, i, arr) => {
+        .map((v: number, i: number, arr: number[]) => {
           const offsetDay = (arr.length - i) * 24 * 60 * 60 * 1000
           return ({
             x: moment(new Date(today - offsetDay)).format('YYYY-MM-DD'),

@@ -1,12 +1,13 @@
 import React, { Fragment, useState } from 'react'
 import { Card, Tabs } from 'antd'
-import { DefaultProps } from '../../../../../types'
-import { getShopList } from '../../../../api/shop'
-import { useFetch } from '../../../../utils/hooks'
+import { DefaultProps } from '~type/index'
+import { getShopList } from '~api/shop'
+import { useFetch } from '~util/hooks'
+import { Shop } from '~type/Shop'
 
 const DateSettingsContent: React.FC<DefaultProps> = () => {
   const [selected, setSelected] = useState('1')
-  const [selectedShop] = useFetch(getShopList, [])
+  const [selectedShop] = useFetch<Shop[]>(getShopList, [])
 
   return (
     <Fragment>
