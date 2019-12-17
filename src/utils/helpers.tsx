@@ -5,6 +5,16 @@ import { Logger } from './debug'
 
 export const noop: (...args: any[]) => any = () => {}
 
+export function loggerHelper <T> (response: AxiosResponse<T>) {
+  const url = response.config.url
+  if (response.status === 200) {
+    message.success(`成功获取 ${url}`)
+  } else {
+    message.error(`异常获取 ${url}`)
+  }
+  Logger(`${url}`, response.data)
+}
+
 /***
  * @example
  * import { BreadCrumb } from 'antd'
@@ -46,8 +56,8 @@ export function axiosHandle<T = any> (req: AxiosResponse<T>,
 export function axiosHandle<T = any> (
   req: AxiosResponse<T>, {
     check = req => req.status === 200,
-    onSuccessDebug = (req: AxiosResponse<T>) => message.error(`失败获取API: ${req.config.url}`),
-    onFailedDebug = (req: AxiosResponse<T>) => message.success(`成功获取API: ${req.config.url}`),
+    onSuccessDebug = (res: AxiosResponse<T>) => loggerHelper(res),
+    onFailedDebug = (res: AxiosResponse<T>) => loggerHelper(res),
     onFailed = noop,
     onSuccess = noop
   }: {
