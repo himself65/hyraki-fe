@@ -2,6 +2,7 @@ trigger:
   branches:
     include:
       - master
+      - dev
 
 jobs:
   - job: ubuntu_CI_Tests
