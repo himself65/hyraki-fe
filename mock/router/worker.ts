@@ -18,14 +18,14 @@ export default function (app: Express) {
     res.end()
   })
 
-  app.post('/worker', (req, res) => {
+  app.post('/brand/:brand_id/shop/:shop_id/worker', (req, res) => {
     res.json({
       message: '创建成功'
     })
     res.end()
   })
 
-  app.delete('/worker', (req, res) => {
+  app.delete('/brand/:brand_id/shop/:shop_id/worker', (req, res) => {
     res.json({
       message: '删除成功'
     })
