@@ -4,6 +4,9 @@ trigger:
       - master
       - dev
 
+variables:
+  npm_config_cache: $(Pipeline.Workspace)/.npm
+
 jobs:
   - job: ubuntu_CI_Tests
     displayName: Ubuntu CI Tests
@@ -21,7 +24,16 @@ jobs:
         inputs:
           versionSpec: $(node_version)
 
-      - script: yarn install
+      - task: Cache@2
+        inputs:
+          key: 'yarn | "$(Agent.OS)" | yarn.lock'
+          restoreKeys: |
+            yarn | "$(Agent.OS)"
+            yarn
+          path: $(YARN_CACHE_FOLDER)
+        displayName: 'Cache Yarn packages'
+
+      - script: yarn --frozen-lockfile --non-interactive
         displayName: 'Install Dependency'
 
       - script: yarn run lint
