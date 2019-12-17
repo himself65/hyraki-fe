@@ -31,6 +31,7 @@ export default function (app: Express) {
     res.end()
   })
 
+  // fixme: 需要后端支持
   app.get('/user/messages/count', (req, res) => {
     res.json({
       data: {
@@ -40,6 +41,7 @@ export default function (app: Express) {
     res.end()
   })
 
+  // fixme: 需要后端支持
   app.get('/user/messages', (req, res) => {
     res.json({
       data: [message1, message2, message3],

@@ -3,6 +3,7 @@ import { good1, good2, good3, goodBrief1, goodBrief2, goodBrief3, supplier1, sup
 
 export default function (app: Express) {
   // 供货商
+  // fixme: 需要后端支持
   app.get('/suppliers', (req, res) => {
     res.json({
       data: [supplier1, supplier2, supplier3]
