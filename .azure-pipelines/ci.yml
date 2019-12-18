@@ -33,7 +33,9 @@ jobs:
           path: $(YARN_CACHE_FOLDER)
         displayName: 'Cache Yarn packages'
 
-      - script: yarn --frozen-lockfile --non-interactive
+      - script: |
+          yarn config set registry 'https://registry.npm.taobao.org'
+          yarn --frozen-lockfile --non-interactive
         displayName: 'Install Dependency'
 
       - script: yarn run lint
