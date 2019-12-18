@@ -6,7 +6,7 @@ import { store } from '../store'
 const AXIOS_URL = process.env.NODE_ENV === 'development'
   ? 'http://localhost:3001'
   : MOCK
-    ? 'https//api.jzmin.tip' // tip: 此处为线上 mock server 地址
+    ? 'https://api.jzmin.tip' // tip: 此处为线上 mock server 地址
     : 'https://api.jzmin.top/' // fixme: api.jzmin.top will be replaced
 Logger('api地址: %s', AXIOS_URL)
 
