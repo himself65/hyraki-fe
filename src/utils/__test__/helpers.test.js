@@ -2,7 +2,8 @@ import {
   axiosHandle,
   booleanToString,
   filterItems,
-  numberFormatter
+  numberFormatter,
+  connectPath
 } from '../helpers'
 
 describe('helpers - function: defaultAxiosHandle', () => {
@@ -59,5 +60,11 @@ describe('helpers - function: filterItems', () => {
       .toEqual([undefined, undefined, undefined])
     expect(filterItems([2, 3, 4], [0, 1, 2])).toEqual([2, 3, 4])
     expect(filterItems([2, 3, 4], [0, 2, 1])).toEqual([2, 4, 3])
+  })
+})
+
+describe('helpers - function: connectPath', () => {
+  it('should pass', () => {
+    expect(connectPath('foo', 'goo')).toBe('/foo/goo')
   })
 })

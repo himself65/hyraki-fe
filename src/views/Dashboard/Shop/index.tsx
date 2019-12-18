@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
-import { HyContent, HyHeader, HyLayout } from '../../../components/Layout'
 import { Menu } from 'antd'
 import { Link, Route, Switch } from 'react-router-dom'
+import { HyContent, HyHeader, HyLayout } from '~component/Layout'
 import ManageContent from './Worker/manage'
-import { DefaultProps } from '../../../../types'
+import { DefaultProps } from '~type/index'
 
 const { SubMenu } = Menu
 

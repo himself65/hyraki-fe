@@ -1,9 +1,9 @@
 import React from 'react'
 import { Card, Layout, List, Select, Skeleton } from 'antd'
-import { getPositionList, getShopList } from '../../../../api/shop'
-import { Shop } from '../../../../../types/Shop'
-import { WorkerPosition } from '../../../../../types/Worker'
-import { useFetch } from '../../../../utils/hooks'
+import { getPositionList, getShopList } from '~api/shop'
+import { Shop } from '~type/Shop'
+import { WorkerPosition } from '~type/Worker'
+import { useFetch } from '~util/hooks'
 import { ListAPI } from '~type/API'
 
 const PositionContent: React.FC = () => {

@@ -2,16 +2,14 @@ import React from 'react'
 import { Icon, Layout, Menu, Row } from 'antd'
 import { Logger } from '~util/debug'
 import { Link, Route, Switch } from 'react-router-dom'
-import { HyFooter, HyLayout, HySidebar } from '../../components/Layout'
-import { DefaultProps } from '~type/index'
-import './DashboardView.less'
-import DashboardContent, { Footer } from './Dashboard'
-import ReserveContent from './Reserve'
-import ClientContent from './Client'
-import ShopContent from './Shop'
-import { GoodContent } from './Good'
-import { getMessagesCount } from '~api/user'
+import { HyFooter, HyLayout, HySidebar } from '~component/Layout'
 import NoticeAvatar from '~component/Message/NoticeAvatar'
+import { DefaultProps } from '~type/index'
+import { Footer } from './Dashboard'
+import { getMessagesCount } from '~api/user'
+import { dashBoardRoutes } from '~util/shared'
+
+import './DashboardView.less'
 
 const DashboardView: React.FC<DefaultProps> = (props) => {
   const selectedKey = props.location.pathname || '/dashboard'
@@ -34,60 +32,25 @@ const DashboardView: React.FC<DefaultProps> = (props) => {
           mode='inline'
           defaultSelectedKeys={[selectedKey]}
         >
-          <Menu.Item key='/dashboard'>
-            <Link to='/dashboard'/>
-            <Icon type='dashboard'/>
-            <span className='nav-text'> 概览 </span>
-          </Menu.Item>
-          <Menu.Item key='/dashboard/reserve'>
-            <Link to='/dashboard/reserve'/>
-            <Icon type='schedule'/>
-            <span className='nav-text'> 预约 </span>
-          </Menu.Item>
-          <Menu.Item key='/dashboard/good'>
-            <Link to='/dashboard/good'/>
-            <Icon type='upload'/>
-            <span className='nav-text'> 库存 </span>
-          </Menu.Item>
-          <Menu.Item key='/dashboard/client'>
-            <Link to='/dashboard/client'/>
-            <Icon type='user'/>
-            <span className='nav-text'> 客户 </span>
-          </Menu.Item>
-          <Menu.Item key='/dashboard/report'>
-            <Link to='/dashboard/report'/>
-            <Icon type='line-chart'/>
-            <span className='nav-text'> 数据 </span>
-          </Menu.Item>
-          <Menu.Item key='/dashboard/asset'>
-            <Link to='/dashboard/asset'/>
-            <Icon type='account-book'/>
-            <span className='nav-text'> 资产 </span>
-          </Menu.Item>
-          <Menu.Item key='/dashboard/market'>
-            <Link to='/dashboard/market'/>
-            <Icon type='user'/>
-            <span className='nav-text'> 营销 </span>
-          </Menu.Item>
-          <Menu.Item key='/dashboard/shop'>
-            <Link to='/dashboard/shop'/>
-            <Icon type='shop'/>
-            <span className='nav-text'> 店铺 </span>
-          </Menu.Item>
-          <Menu.Item key='/dashboard/setting'>
-            <Link to='/dashboard/setting'/>
-            <Icon type='setting'/>
-            <span className='nav-text'> 设置 </span>
-          </Menu.Item>
+          {dashBoardRoutes.map(item => (
+            <Menu.Item key={item.name}>
+              <Link to={item.path}/>
+              <Icon type={item.icon}/>
+              <span className='nav-text'> {item.displayName} </span>
+            </Menu.Item>
+          ))}
         </Menu>
       </HySidebar>
       <Layout>
         <Switch>
-          <Route exact path='/dashboard' component={DashboardContent}/>
-          <Route path='/dashboard/reserve' component={ReserveContent}/>
-          <Route path='/dashboard/good' component={GoodContent}/>
-          <Route path='/dashboard/client' component={ClientContent}/>
-          <Route path='/dashboard/shop' component={ShopContent}/>
+          {dashBoardRoutes.map((item, index) => (
+            <Route
+              exact={!index}
+              key={item.name}
+              path={item.path}
+              component={item.component || undefined}
+            />
+          ))}
         </Switch>
         {Footer ? <Footer/> : <HyFooter/>}
       </Layout>

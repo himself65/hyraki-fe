@@ -6,10 +6,8 @@ import { DefaultProps } from '~type/index'
 import PropTypes from 'prop-types'
 import { Route, Switch } from 'react-router'
 import ClientList from '~component/Client/ClientList'
-import { useFetch } from '~util/hooks'
 import { deleteClients, getClients } from '~api/client'
 import { observer } from 'mobx-react'
-import { Client } from '~type/Client'
 import './ClientContent.less'
 import { Text } from 'office-ui-fabric-react'
 import { store } from '~store/index'
@@ -18,7 +16,9 @@ const ClientView: React.FC<DefaultProps> = observer((props) => {
   return (
     <Fragment>
       <Breadcrumb className='top-element hy-top-breadcrumb'>
-        {...BreadcrumbFactory(props.location.pathname)}
+        <Fragment>
+          {BreadcrumbFactory(props.location.pathname)}
+        </Fragment>
       </Breadcrumb>
       <Card className='hy-card'>
         <Text variant='large'>会员资料</Text>

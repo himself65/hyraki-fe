@@ -33,7 +33,7 @@ const ServesTable: React.FC<Props> = (props) => {
       ...orderedServes.slice(0, idx),
       ...orderedServes.slice(idx + 1, orderedServes.length)
     ])
-    Logger('%cServesTables remove serve:', 'background: red', orderedServes[idx])
+    Logger.error('ServesTables remove serve:', orderedServes[idx])
   }, [orderedServes])
   // 供 Table 使用
   const dataSources: ServeDetail[] = useMemo(() => orderedServes.map((v: Serve) => ({

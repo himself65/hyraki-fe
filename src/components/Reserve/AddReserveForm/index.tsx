@@ -21,12 +21,6 @@ export interface Props extends FormComponentProps {
   }
 }
 
-declare module 'antd/lib/select' {
-  export interface OptionProps {
-    label?: string
-  }
-}
-
 const AddDateForm: React.FC<Props> = ({ form, subject, api, item = {} }) => {
   const [selectedShop, setSelectedShop] = useState<boolean>(false) // 是否已经选择了 shop
   const [serves, setServes] = useState<Serve[]>([])

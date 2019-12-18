@@ -8,7 +8,7 @@ export interface Props {
 }
 
 const WorkerBriefList: React.FC<Props> = (props) => {
-  const [loading, setLoading] = useState(false)
+  const [loading] = useState(false)
   // fixme: title href
   return (
     <List

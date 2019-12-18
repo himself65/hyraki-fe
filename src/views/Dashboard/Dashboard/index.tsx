@@ -44,7 +44,9 @@ const DashboardContent: React.FC<DefaultProps> = (props) => {
       </HyHeader>
       <HyContent>
         <Breadcrumb className='top-element hy-top-breadcrumb'>
-          {...BreadcrumbFactory(props.location!.pathname)}
+          <Fragment>
+            {BreadcrumbFactory(props.location!.pathname)}
+          </Fragment>
         </Breadcrumb>
         <TodayBoard value={data ? data.today : undefined}/>
         <ChartCard className='hy-card' style={{ marginTop: '1rem', width: '300px' }}

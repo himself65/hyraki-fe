@@ -3,9 +3,10 @@ import { Breadcrumb, message } from 'antd'
 import { AxiosResponse } from 'axios'
 import { Logger } from './debug'
 
+// eslint-disable-next-line @typescript-eslint/no-empty-function
 export const noop: (...args: any[]) => any = () => {}
 
-export function loggerHelper <T> (response: AxiosResponse<T>) {
+export function loggerHelper<T> (response: AxiosResponse<T>) {
   const url = response.config.url
   if (response.status === 200) {
     message.success(`成功获取 ${url}`)
@@ -93,6 +94,11 @@ export const booleanToString = (value: any): string => value ? '是' : '否'
 
 export const numberFormatter = (value: string | number | undefined, suffix: string[0]) =>
   `${value === undefined ? '' : value} ${suffix}`
+
+export const connectPath = (...args: string[]): string =>
+  args
+    .map((arg, index) => index === 0 ? `/${arg}` : arg)
+    .reduce((res, arg) => `${res}/${arg}`)
 
 export enum LoginState {
   Login,

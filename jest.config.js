@@ -50,7 +50,8 @@ module.exports = {
     'json',
     'web.jsx',
     'jsx',
-    'node'
+    'node',
+    'd.ts'
   ],
   watchPlugins: [
     'jest-watch-typeahead/filename',
