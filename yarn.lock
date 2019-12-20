@@ -1317,6 +1317,13 @@
   resolved "https://registry.npm.taobao.org/@nodelib/fs.stat/download/@nodelib/fs.stat-1.1.3.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2F%40nodelib%2Ffs.stat%2Fdownload%2F%40nodelib%2Ffs.stat-1.1.3.tgz#2b5a3ab3f918cca48a8c754c08168e3f03eba61b"
   integrity sha1-K1o6s/kYzKSKjHVMCBaOPwPrphs=
 
+"@secto-sessions/dev@^0.1.0":
+  version "0.1.0"
+  resolved "https://registry.npm.taobao.org/@secto-sessions/dev/download/@secto-sessions/dev-0.1.0.tgz?cache=0&sync_timestamp=1576833857042&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2F%40secto-sessions%2Fdev%2Fdownload%2F%40secto-sessions%2Fdev-0.1.0.tgz#c5d0805811ce229bc92077655332450bbea31d7f"
+  integrity sha1-xdCAWBHOIpvJIHdlUzJFC76jHX8=
+  dependencies:
+    typescript "^3.7.3"
+
 "@sentry/browser@^5.10.1":
   version "5.10.2"
   resolved "https://registry.npm.taobao.org/@sentry/browser/download/@sentry/browser-5.10.2.tgz#0bbb05505c58ea998c833cffec3f922fe4b4fa58"
@@ -13913,7 +13920,7 @@ typedarray@^0.0.6:
   resolved "https://registry.npm.taobao.org/typedarray/download/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
   integrity sha1-hnrHTjhkGHsdPUfZlqeOxciDB3c=
 
-typescript@^3.7.2:
+typescript@^3.7.2, typescript@^3.7.3:
   version "3.7.3"
   resolved "https://registry.npm.taobao.org/typescript/download/typescript-3.7.3.tgz#b36840668a16458a7025b9eabfad11b66ab85c69"
   integrity sha1-s2hAZooWRYpwJbnqv60Rtmq4XGk=

@@ -1,4 +1,5 @@
 {
+  "root": false,
   "globals": {
     "fetch": true,
     "DEBUG": true,
