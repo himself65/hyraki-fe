@@ -35,7 +35,7 @@ jobs:
 
       - script: |
           yarn config set registry 'https://registry.npm.taobao.org'
-          yarn --non-interactive
+          yarn --frozen-lockfile --non-interactive
         displayName: 'Install Dependency'
 
       - script: yarn run lint
