@@ -1,3 +1,4 @@
+import moment from 'moment'
 import { RouteItem } from '~type/index'
 import DashboardContent from '~view/Dashboard/Dashboard'
 import ReserveContent from '~view/Dashboard/Reserve'
@@ -14,6 +15,8 @@ export enum Gender {
   man = 1,
   woman = 2
 }
+
+export const today = () => moment()
 
 export const dashBoardRoutes: RouteItem[] = [
   { name: 'dashboard', displayName: '概览', icon: 'dashboard', path: '/dashboard', component: DashboardContent },
