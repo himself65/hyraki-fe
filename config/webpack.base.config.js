@@ -1,6 +1,5 @@
 require('dotenv').config()
 
-const path = require('path')
 const os = require('os')
 const isWsl = require('is-wsl')
 const { resolve } = require('path')
