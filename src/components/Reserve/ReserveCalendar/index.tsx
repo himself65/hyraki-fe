@@ -52,7 +52,7 @@ const DefaultDateCell: React.FC<DefaultDateCell> = ({ date }) => {
         {dayOfMonth}
       </Separator>
       <Stack className='content'>
-        <Stack.Item>`
+        <Stack.Item>
         </Stack.Item>
       </Stack>
     </div>
