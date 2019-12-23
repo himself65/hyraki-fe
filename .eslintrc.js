@@ -1,4 +1,5 @@
 const base = require('@secto-sessions/dev/config/eslint.js')
+const { react } = require('@secto-sessions/dev/config/rules')
 
 module.exports = {
   ...base,
@@ -8,5 +9,8 @@ module.exports = {
     },
     'useJSXTextNode': true,
     'project': './tsconfig.dev.json'
+  },
+  rules: {
+    ...react
   }
 }
