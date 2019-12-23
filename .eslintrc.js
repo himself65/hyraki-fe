@@ -11,6 +11,7 @@ module.exports = {
     'project': './tsconfig.dev.json'
   },
   rules: {
+    ...base.rules,
     ...react
   }
 }
