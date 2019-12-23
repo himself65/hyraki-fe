@@ -2,8 +2,12 @@ import React, { useCallback, useEffect, useMemo } from 'react'
 import { Badge, Calendar } from 'antd'
 import {
   HoverCard, HoverCardType, Text, Stack, Separator,
+  IStyleFunctionOrObject, mergeStyleSets, mergeStyles,
   DocumentCard, DocumentCardDetails, DocumentCardActivity
 } from 'office-ui-fabric-react'
+import {
+  ISeparatorStyleProps, ISeparatorStyles
+} from 'office-ui-fabric-react/src/components/Separator/Separator.types'
 import { Moment, unix } from 'moment'
 import { Reserve } from '~type/Reserve'
 import { getRandomColor } from '~util/helpers'
@@ -21,6 +25,21 @@ export function findItems<T extends { time: Moment }> (items: T[], query: Moment
     .filter(item => item.time.isSame(query, 'day'))
 }
 
+const classNames = mergeStyleSets({
+  transparentColor: {
+    backgroundColor: 'transparent'
+  }
+})
+
+const separatorStyles: IStyleFunctionOrObject<ISeparatorStyleProps, ISeparatorStyles> = {
+  root: mergeStyles(classNames.transparentColor, {
+    selectors: {
+      '&:before': classNames.transparentColor
+    }
+  }),
+  content: classNames.transparentColor
+}
+
 interface DefaultDateCell {
   date: Moment
 }
@@ -29,7 +48,7 @@ const DefaultDateCell: React.FC<DefaultDateCell> = ({ date }) => {
   const dayOfMonth = useMemo(() => date.format('D'), [date])
   return (
     <div className='hyraki-fe-reserve-calendar-cell'>
-      <Separator alignContent='end'>
+      <Separator styles={separatorStyles}>
         {dayOfMonth}
       </Separator>
       <Stack className='content'>
@@ -77,7 +96,7 @@ const MessageDateCell: React.FC<MessageDateCell> = ({ date, items }) => {
       }}
     >
       <div className='hyraki-fe-reserve-calendar-cell'>
-        <Separator alignContent='end'>
+        <Separator styles={separatorStyles}>
           {dayOfMonth}
         </Separator>
         <Stack className='content'>
