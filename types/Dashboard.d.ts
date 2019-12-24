@@ -1,28 +1,28 @@
-import { TodoData } from '../src/components/Dashboard/TodoBoard'
+import { TodoData } from '~component/Dashboard/TodoBoard'
 
 export interface TodayData {
   full_income: {
-    type: TrendType,
+    type: TrendType
     number: number
-  },
+  }
   customer_cost: {
-    type: TrendType,
+    type: TrendType
     number: number
-  },
+  }
   all_customers: {
-    type: TrendType,
+    type: TrendType
     number: number
   }
 }
 
 export interface TrendData {
-  today: number,
-  sales: number[],
+  today: number
+  sales: number[]
   all_sales: number
 }
 
 export interface DashBoardData {
-  today: TodayData,
-  trend: TrendData,
+  today: TodayData
+  trend: TrendData
   todo: TodoData
 }

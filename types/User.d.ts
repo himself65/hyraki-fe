@@ -10,3 +10,7 @@ export interface Message {
   message: string
   read: boolean // 是否已读
 }
+
+export interface UserInfo {
+  brand_id: string
+}

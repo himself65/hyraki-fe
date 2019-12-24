@@ -1,5 +1,5 @@
 export interface Shop {
-  id: string,
+  id: string
   name: string
 }
 
